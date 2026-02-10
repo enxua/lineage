@@ -5,6 +5,7 @@ class LineageApp {
     this.currentCategory = 'items';
     this.searchQuery = '';
     this.expandedRows = new Set();
+    this.data = DATA;
 
     this.init();
   }
@@ -42,7 +43,7 @@ class LineageApp {
   }
 
   getFilteredData() {
-    const categoryData = DATA[this.currentCategory];
+    const categoryData = this.data[this.currentCategory];
     if (!this.searchQuery) return categoryData;
 
     return categoryData.filter(item => {
@@ -106,7 +107,10 @@ class LineageApp {
                 <h4>상세 설명</h4>
                 <p>${item.description || '정보 없음'}</p>
               </div>
-              ${this.getExtraDetails(item)}
+              <div class="detail-item">
+                <h4>전체 정보</h4>
+                <p>${item.stats}</p>
+              </div>
             </div>
           </td>
         `;
@@ -122,7 +126,8 @@ class LineageApp {
       monsters: 'ghost'
     }[this.currentCategory];
 
-    const imageHTML = `<img src="${item.image}" alt="${item.name}" class="item-image" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'default-icon-placeholder\'><i data-lucide=\'${defaultIcon}\'></i></div>'; lucide.createIcons();">`;
+    const imageHTML = `<img src="${item.image}" alt="${item.name}" class="item-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                       <div class="default-icon-placeholder" style="display:none;"><i data-lucide="${defaultIcon}"></i></div>`;
 
     if (this.currentCategory === 'items') {
       return `
@@ -167,18 +172,6 @@ class LineageApp {
         <td class="stats-text">${item.location}</td>
       `;
     }
-  }
-
-  getExtraDetails(item) {
-    if (this.currentCategory === 'items') {
-      return `
-        <div class="detail-item">
-          <h4>아이템 ID</h4>
-          <p>#${item.id.toString().padStart(4, '0')}</p>
-        </div>
-      `;
-    }
-    return '';
   }
 
   toggleRow(id) {
