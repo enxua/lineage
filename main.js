@@ -37,32 +37,30 @@ class LineageApp {
     });
 
     this.searchInput.addEventListener('input', (e) => {
-      this.searchQuery = e.target.value.toLowerCase();
+      this.searchQuery = e.target.value.toLowerCase().trim();
       this.render();
     });
   }
 
   getFilteredData() {
-    const categoryData = this.data[this.currentCategory];
+    const categoryData = this.data[this.currentCategory] || [];
     if (!this.searchQuery) return categoryData;
 
     return categoryData.filter(item => {
       return (
         item.name.toLowerCase().includes(this.searchQuery) ||
-        item.category.toLowerCase().includes(this.searchQuery) ||
         (item.stats && item.stats.toLowerCase().includes(this.searchQuery)) ||
-        (item.description && item.description.toLowerCase().includes(this.searchQuery)) ||
-        (item.classes && item.classes.toLowerCase().includes(this.searchQuery))
+        (item.category && item.category.toLowerCase().includes(this.searchQuery))
       );
     });
   }
 
   render() {
-    const data = this.getFilteredData();
+    const filtered = this.getFilteredData();
     this.renderHeader();
-    this.renderBody(data);
+    this.renderBody(filtered);
     
-    if (data.length === 0) {
+    if (filtered.length === 0) {
       this.noResults.classList.remove('hidden');
     } else {
       this.noResults.classList.add('hidden');
@@ -73,9 +71,9 @@ class LineageApp {
 
   renderHeader() {
     const headers = {
-      items: ['이름 / 분류', '상세 능력치', '클래스', '무게'],
-      spells: ['이름 / 분류', '효과 / 소모 MP', '사용 클래스', '습득처'],
-      monsters: ['이름 / 분류', '레벨 / 속성 / 지역', '주요 드롭 아이템']
+      items: ['이름 / 분류', '인벤 가이드 정보 (타격치/AC/클래스/무게 등)'],
+      spells: ['마법 이름 / 분류', '마법 정보 (MP소모/효과/클래스 등)'],
+      monsters: ['몬스터 이름', '레벨 / 속성 / 지역 / 드롭 아이템']
     };
 
     this.tableHeader.innerHTML = headers[this.currentCategory]
@@ -86,38 +84,46 @@ class LineageApp {
   renderBody(data) {
     this.tableBody.innerHTML = '';
     
+    // 성능을 위해 상위 200개만 먼저 렌더링하거나 전체 렌더링 최적화
+    const fragment = document.createDocumentFragment();
+    
     data.forEach(item => {
       const row = document.createElement('tr');
       row.className = 'expandable-row';
-      row.dataset.id = item.id;
       
       const isExpanded = this.expandedRows.has(item.id);
-
       row.innerHTML = this.getRowHTML(item);
-      row.addEventListener('click', () => this.toggleRow(item.id));
       
-      this.tableBody.appendChild(row);
+      row.addEventListener('click', () => {
+        if (this.expandedRows.has(item.id)) this.expandedRows.delete(item.id);
+        else this.expandedRows.add(item.id);
+        this.render();
+      });
+      
+      fragment.appendChild(row);
 
       if (isExpanded) {
         const detailsRow = document.createElement('tr');
         detailsRow.className = 'details-row';
         detailsRow.innerHTML = `
-          <td colspan="${this.currentCategory === 'monsters' ? 3 : 4}">
+          <td colspan="2">
             <div class="details-content">
               <div class="detail-item">
-                <h4>상세 설명</h4>
-                <p>${item.description || '정보 없음'}</p>
+                <h4>상세 속성</h4>
+                <p>${item.stats || '정보 없음'}</p>
               </div>
               <div class="detail-item">
-                <h4>획득 / 드롭 정보</h4>
-                <p>${item.location || item.source || item.drops || '정보 없음'}</p>
+                <h4>가이드 링크</h4>
+                <p>인벤 리니지 클래식 DB 참조</p>
               </div>
             </div>
           </td>
         `;
-        this.tableBody.appendChild(detailsRow);
+        fragment.appendChild(detailsRow);
       }
     });
+    
+    this.tableBody.appendChild(fragment);
   }
 
   getRowHTML(item) {
@@ -125,65 +131,31 @@ class LineageApp {
       items: 'sword',
       spells: 'wand-2',
       monsters: 'ghost'
-    }[this.currentCategory];
+    }[this.currentCategory] || 'shield';
 
-    const imageHTML = `<img src="${item.image}" alt="${item.name}" class="item-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                       <div class="default-icon-placeholder" style="display:none;"><i data-lucide="${defaultIcon}"></i></div>`;
+    // 인벤 이미지 강제 노출을 위한 referrer 정책 무시 속성 추가
+    const imageHTML = `
+      <div class="image-container">
+        <img src="${item.image}" 
+             referrerpolicy="no-referrer" 
+             alt="${item.name}" 
+             class="item-image" 
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="default-icon-placeholder" style="display:none;"><i data-lucide="${defaultIcon}"></i></div>
+      </div>`;
 
-    if (this.currentCategory === 'items') {
-      return `
-        <td>
-          <div class="item-info">
-            <div class="image-container">${imageHTML}</div>
-            <div>
-              <div class="item-name">${item.name}</div>
-              <span class="category-badge">${item.category}</span>
-            </div>
+    return `
+      <td>
+        <div class="item-info">
+          ${imageHTML}
+          <div>
+            <div class="item-name">${item.name}</div>
+            <span class="category-badge">${item.category}</span>
           </div>
-        </td>
-        <td class="stats-text">${item.stats}</td>
-        <td class="stats-text"><span class="class-badge">${item.classes}</span></td>
-        <td class="stats-text">${item.weight}</td>
-      `;
-    } else if (this.currentCategory === 'spells') {
-      return `
-        <td>
-          <div class="item-info">
-            <div class="image-container">${imageHTML}</div>
-            <div>
-              <div class="item-name">${item.name}</div>
-              <span class="category-badge">${item.category}</span>
-            </div>
-          </div>
-        </td>
-        <td class="stats-text">${item.stats}</td>
-        <td class="stats-text"><span class="class-badge">${item.classes}</span></td>
-        <td class="stats-text">${item.source}</td>
-      `;
-    } else {
-      return `
-        <td>
-          <div class="item-info">
-            <div class="image-container">${imageHTML}</div>
-            <div>
-              <div class="item-name">${item.name}</div>
-              <span class="category-badge">${item.category}</span>
-            </div>
-          </div>
-        </td>
-        <td class="stats-text">${item.stats}</td>
-        <td class="stats-text">${item.drops}</td>
-      `;
-    }
-  }
-
-  toggleRow(id) {
-    if (this.expandedRows.has(id)) {
-      this.expandedRows.delete(id);
-    } else {
-      this.expandedRows.add(id);
-    }
-    this.render();
+        </div>
+      </td>
+      <td class="stats-text">${item.stats}</td>
+    `;
   }
 }
 
