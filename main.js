@@ -5,7 +5,7 @@ class LineageApp {
     this.currentCategory = 'items';
     this.searchQuery = '';
     this.expandedRows = new Set();
-    this.data = DATA;
+    this.allData = DATA.items; // 모든 데이터를 items 배열 하나에서 가져옴
 
     this.init();
   }
@@ -43,24 +43,34 @@ class LineageApp {
   }
 
   getFilteredData() {
-    const categoryData = this.data[this.currentCategory] || [];
-    if (!this.searchQuery) return categoryData;
+    // 카테고리 필터링 (무기, 방어구, 마법, 몬스터 등 키워드 기준)
+    let filtered = this.allData;
+    
+    if (this.currentCategory === 'items') {
+      filtered = this.allData.filter(item => !item.category.includes('마법') && !item.category.includes('보스') && !item.category.includes('일반'));
+    } else if (this.currentCategory === 'spells') {
+      filtered = this.allData.filter(item => item.category.includes('마법'));
+    } else if (this.currentCategory === 'monsters') {
+      filtered = this.allData.filter(item => item.category.includes('보스') || item.category.includes('일반') || item.category.includes('몬스터'));
+    }
 
-    return categoryData.filter(item => {
-      return (
+    // 검색어 필터링
+    if (this.searchQuery) {
+      filtered = filtered.filter(item => 
         item.name.toLowerCase().includes(this.searchQuery) ||
-        (item.stats && item.stats.toLowerCase().includes(this.searchQuery)) ||
-        (item.category && item.category.toLowerCase().includes(this.searchQuery))
+        item.stats.toLowerCase().includes(this.searchQuery)
       );
-    });
+    }
+
+    return filtered;
   }
 
   render() {
-    const filtered = this.getFilteredData();
+    const data = this.getFilteredData();
     this.renderHeader();
-    this.renderBody(filtered);
+    this.renderBody(data);
     
-    if (filtered.length === 0) {
+    if (data.length === 0) {
       this.noResults.classList.remove('hidden');
     } else {
       this.noResults.classList.add('hidden');
@@ -71,9 +81,9 @@ class LineageApp {
 
   renderHeader() {
     const headers = {
-      items: ['이름 / 분류', '인벤 가이드 정보 (타격치/AC/클래스/무게 등)'],
-      spells: ['마법 이름 / 분류', '마법 정보 (MP소모/효과/클래스 등)'],
-      monsters: ['몬스터 이름', '레벨 / 속성 / 지역 / 드롭 아이템']
+      items: ['이름 / 분류', '상세 능력치 (타격치/AC/클래스/무게)'],
+      spells: ['마법 이름 / 단계', '마법 정보 (소모MP/효과)'],
+      monsters: ['몬스터 이름', '레벨 / 속성 / 지역']
     };
 
     this.tableHeader.innerHTML = headers[this.currentCategory]
@@ -83,17 +93,14 @@ class LineageApp {
 
   renderBody(data) {
     this.tableBody.innerHTML = '';
-    
-    // 성능을 위해 상위 200개만 먼저 렌더링하거나 전체 렌더링 최적화
     const fragment = document.createDocumentFragment();
     
     data.forEach(item => {
       const row = document.createElement('tr');
       row.className = 'expandable-row';
-      
-      const isExpanded = this.expandedRows.has(item.id);
       row.innerHTML = this.getRowHTML(item);
       
+      const isExpanded = this.expandedRows.has(item.id);
       row.addEventListener('click', () => {
         if (this.expandedRows.has(item.id)) this.expandedRows.delete(item.id);
         else this.expandedRows.add(item.id);
@@ -109,12 +116,12 @@ class LineageApp {
           <td colspan="2">
             <div class="details-content">
               <div class="detail-item">
-                <h4>상세 속성</h4>
-                <p>${item.stats || '정보 없음'}</p>
+                <h4>상세 설명</h4>
+                <p>${item.description || '정보 없음'}</p>
               </div>
               <div class="detail-item">
-                <h4>가이드 링크</h4>
-                <p>인벤 리니지 클래식 DB 참조</p>
+                <h4>아이콘 ID</h4>
+                <p>#${item.id}</p>
               </div>
             </div>
           </td>
@@ -133,7 +140,6 @@ class LineageApp {
       monsters: 'ghost'
     }[this.currentCategory] || 'shield';
 
-    // 인벤 이미지 강제 노출을 위한 referrer 정책 무시 속성 추가
     const imageHTML = `
       <div class="image-container">
         <img src="${item.image}" 
