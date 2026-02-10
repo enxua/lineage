@@ -70,9 +70,9 @@ class LineageApp {
 
   renderHeader() {
     const headers = {
-      items: ['이름 / 분류', '인벤 가이드 상세 정보'],
-      spells: ['마법 이름 / 분류', '마법 정보 (MP/효과 등)'],
-      monsters: ['몬스터 이름', '레벨 / 속성 / 드롭 / 지역']
+      items: ['이름 / 분류', '인벤 상세 정보 (능력치/클래스/무게/드롭)'],
+      spells: ['마법 이름', '마법 상세 정보 (소모MP/효과)'],
+      monsters: ['몬스터 이름', '레벨 / 속성 / 지역 / 드롭템']
     };
 
     this.tableHeader.innerHTML = headers[this.currentCategory]
@@ -87,6 +87,8 @@ class LineageApp {
     data.forEach(item => {
       const row = document.createElement('tr');
       row.className = 'expandable-row';
+      
+      const isExpanded = this.expandedRows.has(item.id);
       row.innerHTML = this.getRowHTML(item);
       
       row.addEventListener('click', () => {
@@ -97,7 +99,7 @@ class LineageApp {
       
       fragment.appendChild(row);
 
-      if (this.expandedRows.has(item.id)) {
+      if (isExpanded) {
         const detailsRow = document.createElement('tr');
         detailsRow.className = 'details-row';
         detailsRow.innerHTML = `
@@ -128,18 +130,21 @@ class LineageApp {
       monsters: 'ghost'
     }[this.currentCategory] || 'shield';
 
-    // 구글 이미지 프록시 주소를 사용하므로 hotlink 차단 방지됨
+    // referrerpolicy="no-referrer"가 핵심입니다.
+    const imageHTML = `
+      <div class="image-container">
+        <img src="${item.image}" 
+             referrerpolicy="no-referrer" 
+             alt="${item.name}" 
+             class="item-image" 
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="default-icon-placeholder" style="display:none;"><i data-lucide="${defaultIcon}"></i></div>
+      </div>`;
+
     return `
       <td>
         <div class="item-info">
-          <div class="image-container">
-            <img src="${item.image}" 
-                 referrerpolicy="no-referrer" 
-                 alt="${item.name}" 
-                 class="item-image" 
-                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-            <div class="default-icon-placeholder" style="display:none;"><i data-lucide="${defaultIcon}"></i></div>
-          </div>
+          ${imageHTML}
           <div>
             <div class="item-name">${item.name}</div>
             <span class="category-badge">${item.category}</span>
