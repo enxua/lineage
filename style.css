@@ -224,23 +224,38 @@ tr.expandable-row:hover {
   flex-shrink: 0;
 }
 
-.item-name {
-  font-weight: 600;
-  color: var(--text-main);
-}
-
-.category-badge {
+.class-badge {
   display: inline-block;
-  padding: 0.25rem 0.6rem;
-  background: rgba(255, 255, 255, 0.1);
+  padding: 0.2rem 0.5rem;
+  background: rgba(227, 192, 141, 0.15);
+  border: 1px solid var(--primary);
   border-radius: 4px;
-  font-size: 0.75rem;
-  color: var(--text-dim);
+  font-size: 0.8rem;
+  color: var(--primary);
+  font-weight: 500;
 }
 
 .stats-text {
   font-size: 0.9rem;
   color: var(--text-dim);
+  vertical-align: middle;
+}
+
+.item-name {
+  font-weight: 700;
+  color: var(--text-main);
+  font-size: 1.05rem;
+  margin-bottom: 0.25rem;
+}
+
+.category-badge {
+  display: inline-block;
+  padding: 0.15rem 0.4rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 3px;
+  font-size: 0.7rem;
+  color: var(--text-dim);
+  text-transform: uppercase;
 }
 
 /* Details Row */

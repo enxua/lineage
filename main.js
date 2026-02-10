@@ -51,7 +51,8 @@ class LineageApp {
         item.name.toLowerCase().includes(this.searchQuery) ||
         item.category.toLowerCase().includes(this.searchQuery) ||
         (item.stats && item.stats.toLowerCase().includes(this.searchQuery)) ||
-        (item.description && item.description.toLowerCase().includes(this.searchQuery))
+        (item.description && item.description.toLowerCase().includes(this.searchQuery)) ||
+        (item.classes && item.classes.toLowerCase().includes(this.searchQuery))
       );
     });
   }
@@ -72,9 +73,9 @@ class LineageApp {
 
   renderHeader() {
     const headers = {
-      items: ['이름 / 분류', '옵션', '획득처'],
-      spells: ['이름 / 분류', '효과', '사용 가능 클래스'],
-      monsters: ['이름 / 분류', '레벨 / 속성', '주요 서식지']
+      items: ['이름 / 분류', '상세 능력치', '클래스', '무게'],
+      spells: ['이름 / 분류', '효과 / 소모 MP', '사용 클래스', '습득처'],
+      monsters: ['이름 / 분류', '레벨 / 속성 / 지역', '주요 드롭 아이템']
     };
 
     this.tableHeader.innerHTML = headers[this.currentCategory]
@@ -101,15 +102,15 @@ class LineageApp {
         const detailsRow = document.createElement('tr');
         detailsRow.className = 'details-row';
         detailsRow.innerHTML = `
-          <td colspan="3">
+          <td colspan="${this.currentCategory === 'monsters' ? 3 : 4}">
             <div class="details-content">
               <div class="detail-item">
                 <h4>상세 설명</h4>
                 <p>${item.description || '정보 없음'}</p>
               </div>
               <div class="detail-item">
-                <h4>전체 정보</h4>
-                <p>${item.stats}</p>
+                <h4>획득 / 드롭 정보</h4>
+                <p>${item.location || item.source || item.drops || '정보 없음'}</p>
               </div>
             </div>
           </td>
@@ -141,7 +142,8 @@ class LineageApp {
           </div>
         </td>
         <td class="stats-text">${item.stats}</td>
-        <td class="stats-text">${item.location}</td>
+        <td class="stats-text"><span class="class-badge">${item.classes}</span></td>
+        <td class="stats-text">${item.weight}</td>
       `;
     } else if (this.currentCategory === 'spells') {
       return `
@@ -155,7 +157,8 @@ class LineageApp {
           </div>
         </td>
         <td class="stats-text">${item.stats}</td>
-        <td class="stats-text">${item.classes.join(', ')}</td>
+        <td class="stats-text"><span class="class-badge">${item.classes}</span></td>
+        <td class="stats-text">${item.source}</td>
       `;
     } else {
       return `
@@ -169,7 +172,7 @@ class LineageApp {
           </div>
         </td>
         <td class="stats-text">${item.stats}</td>
-        <td class="stats-text">${item.location}</td>
+        <td class="stats-text">${item.drops}</td>
       `;
     }
   }
