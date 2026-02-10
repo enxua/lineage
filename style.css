@@ -198,6 +198,30 @@ tr.expandable-row:hover {
   padding: 4px;
   border: 1px solid var(--border);
   object-fit: contain;
+  display: block;
+}
+
+.default-icon-placeholder {
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  background: rgba(227, 192, 141, 0.1);
+  border: 1px solid var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary);
+}
+
+.default-icon-placeholder i {
+  width: 24px;
+  height: 24px;
+}
+
+.image-container {
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
 }
 
 .item-name {

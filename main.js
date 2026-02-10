@@ -116,11 +116,19 @@ class LineageApp {
   }
 
   getRowHTML(item) {
+    const defaultIcon = {
+      items: 'sword',
+      spells: 'wand-2',
+      monsters: 'ghost'
+    }[this.currentCategory];
+
+    const imageHTML = `<img src="${item.image}" alt="${item.name}" class="item-image" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'default-icon-placeholder\'><i data-lucide=\'${defaultIcon}\'></i></div>'; lucide.createIcons();">`;
+
     if (this.currentCategory === 'items') {
       return `
         <td>
           <div class="item-info">
-            <img src="${item.image}" alt="${item.name}" class="item-image">
+            <div class="image-container">${imageHTML}</div>
             <div>
               <div class="item-name">${item.name}</div>
               <span class="category-badge">${item.category}</span>
@@ -134,7 +142,7 @@ class LineageApp {
       return `
         <td>
           <div class="item-info">
-            <img src="${item.image}" alt="${item.name}" class="item-image">
+            <div class="image-container">${imageHTML}</div>
             <div>
               <div class="item-name">${item.name}</div>
               <span class="category-badge">${item.category}</span>
@@ -148,7 +156,7 @@ class LineageApp {
       return `
         <td>
           <div class="item-info">
-            <img src="${item.image}" alt="${item.name}" class="item-image">
+            <div class="image-container">${imageHTML}</div>
             <div>
               <div class="item-name">${item.name}</div>
               <span class="category-badge">${item.category}</span>
