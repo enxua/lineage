@@ -28,7 +28,7 @@ body {
 }
 
 .app-container {
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
   padding: 2rem;
 }
@@ -187,7 +187,8 @@ tr.expandable-row:hover {
 .item-info {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 1.5rem;
+  min-width: 300px;
 }
 
 .item-image {
@@ -246,6 +247,7 @@ tr.expandable-row:hover {
   color: var(--text-main);
   font-size: 1.05rem;
   margin-bottom: 0.25rem;
+  white-space: nowrap;
 }
 
 .category-badge {
@@ -256,6 +258,7 @@ tr.expandable-row:hover {
   font-size: 0.7rem;
   color: var(--text-dim);
   text-transform: uppercase;
+  white-space: nowrap;
 }
 
 /* Details Row */
