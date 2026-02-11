@@ -59,57 +59,78 @@
     const MAP_DATA = {
       village: [
         {
-          title: "기란 마을 (상업 도시)",
-          desc: "아덴 대륙 최대의 상업 도시입니다. 모든 아이템 거래의 중심지이며 혈맹들의 본거지가 많이 위치해 있습니다.",
-          image: "https://static.inven.co.kr/column/2026/02/08/news/i1490153021.webp",
-          tag: "CITY",
-          info: "주요 시설: 시장, 창고, 혈맹 관리인"
-        },
-        {
-          title: "은기사 마을 (기사 전용)",
-          desc: "기사들이 처음으로 모험을 시작하고 수련하는 마을입니다. 리키를 통해 시련을 통과할 수 있습니다.",
-          image: "https://static.inven.co.kr/column/2026/02/08/news/i1779810777.webp",
-          tag: "KNIGHT",
-          info: "주요 시설: 기사 퀘스트 NPC 리키"
-        },
-        {
-          title: "말하는 섬 (시작 지점)",
-          desc: "모든 클래스가 처음으로 발을 내딛는 섬입니다. 기초적인 전투 방법을 익히고 본토로 나갈 준비를 합니다.",
+          title: "말하는 섬 마을",
+          desc: "모든 모험이 시작되는 섬의 유일한 마을입니다. 본토 글루딘 마을로 이동하는 배가 운행됩니다.",
           image: "https://static.inven.co.kr/column/2026/02/08/news/i1691930423.webp",
-          tag: "START",
-          info: "주요 던전: 말하는 섬 던전 (바포메트)"
+          tag: "Lv.1-13",
+          info: "주요 시설: 창고, 선착장, 퀘스트 NPC 제이/건"
+        },
+        {
+          title: "글루딘 마을",
+          desc: "항구 도시로 본토의 관문입니다. 카오틱 신전과 개를 길들일 수 있는 장소가 있습니다.",
+          image: "https://static.inven.co.kr/column/2026/02/08/news/i1490153021.webp",
+          tag: "Lv.13-20",
+          info: "주요 시설: 투견장, 선착장, 카오틱 신전"
+        },
+        {
+          title: "기란 마을",
+          desc: "아덴 대륙 최대의 상업 도시입니다. 게시판을 통한 대규모 거래와 혈맹 아지트가 밀집되어 있습니다.",
+          image: "https://static.inven.co.kr/column/2026/02/08/news/i1779810777.webp",
+          tag: "Lv.30+",
+          info: "주요 시설: 시장(매우 활성화), 혈맹 아지트, 투기장"
+        },
+        {
+          title: "은기사 마을",
+          desc: "기사들의 성지이며 근처에 거친 사막이 펼쳐져 있습니다. 리키를 통해 기사 퀘스트를 수행합니다.",
+          image: "https://static.inven.co.kr/column/2026/02/08/news/i1437233137.webp",
+          tag: "Lv.13-30",
+          info: "주요 시설: 기사 수련장, 퀘스트 NPC 리키"
         }
       ],
       field: [
         {
-          title: "용의 계곡 (고레벨 사냥터)",
-          desc: "강력한 드레이크와 언데드들이 출몰합니다. 희귀한 아이템과 높은 경험치를 얻을 수 있습니다.",
-          image: "https://static.inven.co.kr/column/2026/02/08/news/i1437233137.webp",
-          tag: "FIELD",
-          info: "주요 드롭: 지룡의 비늘, 희귀 주문서"
+          title: "요정 숲",
+          desc: "요정 클래스의 시작점이며 인간의 출입이 제한적입니다. 엔트와 판을 통해 제작 재료를 얻습니다.",
+          image: "https://static.inven.co.kr/column/2026/02/08/news/i1102119580.webp",
+          tag: "요정 전용",
+          info: "주요 특징: 미스릴 화살 제작, 엄마나무, 네루파"
         },
         {
-          title: "오크 숲 (토템 파밍)",
-          desc: "오크들이 집단으로 거주하는 지역입니다. 토템 노가다를 통해 안정적인 아데나 수급이 가능합니다.",
+          title: "용의 계곡",
+          desc: "강력한 드레이크와 언데드가 도사리는 고레벨 사냥터입니다. 고가의 희귀 주문서가 드롭됩니다.",
           image: "https://static.inven.co.kr/column/2026/02/08/news/i1150989084.webp",
-          tag: "FARMING",
-          info: "주요 몬스터: 간디 오크, 네루가 오크"
+          tag: "Lv.45+",
+          info: "드롭 아이템: 지룡의 비늘, 젤/데이, 변신 주문서"
+        },
+        {
+          title: "윈다우드 사막",
+          desc: "개미떼와 스콜피온이 서식하는 광활한 사막입니다. 길을 잃기 쉬우며 오아시스가 존재합니다.",
+          image: "https://static.inven.co.kr/column/2026/02/08/news/i1514765686.webp",
+          tag: "Lv.25-40",
+          info: "주요 보스: 개미 여왕, 바실리스크"
         }
       ],
       dungeon: [
         {
           title: "글루디오 던전 (본던)",
-          desc: "지하 7층으로 이루어진 거대 던전입니다. 각 층마다 난이도가 다르며 데스나이트가 최종 보스로 등장합니다.",
+          desc: "지하 7층의 거대 미로입니다. 해골과 구울이 주를 이루며 7층에는 데스나이트가 서식합니다.",
           image: "https://static.inven.co.kr/column/2026/02/08/news/i1514765686.webp",
-          tag: "DUNGEON",
-          info: "최종 보스: 데스나이트 (52레벨 변신)"
+          tag: "Lv.15-52",
+          info: "7층 보스: 데스나이트 (전설적인 보스)"
         },
         {
-          title: "개미굴 (사막 던전)",
-          desc: "윈다우드 사막 지하에 위치한 던전입니다. 여왕 개미 레이드가 활발하게 이루어지는 곳입니다.",
-          image: "https://static.inven.co.kr/column/2026/02/08/news/i1102119580.webp",
-          tag: "BOSS",
-          info: "최종 보스: 여왕 개미"
+          title: "말하는 섬 던전",
+          desc: "지하 2층으로 구성되어 있습니다. 2층에서는 강력한 보스 바포메트가 출현합니다.",
+          image: "https://static.inven.co.kr/column/2026/02/08/news/i1691930423.webp",
+          tag: "Lv.10-45",
+          info: "2층 보스: 바포메트 (지팡이 드롭)"
+        },
+        {
+          title: "기란 던전",
+          desc: "에바의 축복이 필요한 수중 던전입니다. 사악한 몬스터들이 높은 경험치를 줍니다.",
+          image: "https://static.inven.co.kr/column/2026/02/08/news/i1779810777.webp",
+          tag: "Lv.40+",
+          info: "필수 아이템: 에바의 축복 (수중 호흡)"
         }
       ]
     };
@@ -125,8 +146,8 @@
           <div class="card-details">
             <h3>${item.title}</h3>
             <p>${item.desc}</p>
-            <div style="margin-top: 1rem; padding: 0.8rem; background: rgba(227, 192, 141, 0.1); border-radius: 8px; font-size: 0.9rem; color: var(--primary);">
-              <strong>상세 정보:</strong> ${item.info}
+            <div style="margin-top: 1rem; display:flex; align-items:center; gap:0.5rem; color:var(--primary); font-size: 0.9rem; font-weight:700;">
+              <i data-lucide="info" size="16"></i> ${item.info}
             </div>
           </div>
         </article>
