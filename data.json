@@ -5527,35 +5527,63 @@
       "name": "크로스보우",
       "category": "무기(요정)",
       "image": "https://static.inven.co.kr/column/2026/02/08/news/i1514765686.webp",
-      "stats": "NPC 네루파 (요정 숲): 미스릴 원석 60, 판의 갈기털 60, 엔트의 줄기 60, 정령의 돌 16"
+      "stats": "NPC 네루파(요정숲): 미스릴 원석 60, 판의 갈기털 60, 엔트의 줄기 60, 정령의 돌 16"
     },
     {
       "id": "c2",
       "name": "요정족 판금 갑옷",
       "category": "갑옷(요정)",
       "image": "https://static.inven.co.kr/column/2026/02/08/news/i1437233137.webp",
-      "stats": "NPC 네루파 (요정 숲): 미스릴 판금 10, 오리하루콘 판금 2, 페어리의 날개 5"
+      "stats": "NPC 네루파(요정숲): 미스릴 판금 10, 오리하루콘 판금 2, 페어리의 날개 5"
     },
     {
       "id": "c3",
-      "name": "가죽 모자",
-      "category": "투구(공통)",
+      "name": "엘름의 축복",
+      "category": "투구(요정)",
       "image": "https://static.inven.co.kr/column/2026/02/08/news/i1102119580.webp",
-      "stats": "NPC 라다르 (말하는 섬): 동물가죽 20, 1000 아데나"
+      "stats": "NPC 네루파(요정숲): 미스릴 원석 100, 아라크네의 거미줄 20, 고급 피혁 5"
     },
     {
       "id": "c4",
-      "name": "강철 장갑",
-      "category": "장갑(공통)",
-      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1490153021.webp",
-      "stats": "NPC 빈센트 (기란 마을): 철괴 50, 가죽 10, 5000 아데나"
+      "name": "가죽 모자",
+      "category": "투구(공통)",
+      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1102119580.webp",
+      "stats": "NPC 라다르(말하는 섬): 동물가죽 20, 1000 아데나"
     },
     {
       "id": "c5",
+      "name": "가죽 부츠",
+      "category": "부츠(공통)",
+      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1102119580.webp",
+      "stats": "NPC 라다르(말하는 섬): 동물가죽 15, 500 아데나"
+    },
+    {
+      "id": "c6",
+      "name": "강철 장갑",
+      "category": "장갑(공통)",
+      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1490153021.webp",
+      "stats": "NPC 빈센트(기란): 철괴 50, 가죽 10, 5000 아데나"
+    },
+    {
+      "id": "c7",
+      "name": "강철 부츠",
+      "category": "부츠(공통)",
+      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1490153021.webp",
+      "stats": "NPC 빈센트(기란): 철괴 40, 가죽 5, 3000 아데나"
+    },
+    {
+      "id": "c8",
       "name": "레이피어",
       "category": "무기(기사)",
       "image": "https://static.inven.co.kr/column/2026/02/08/news/i1437233137.webp",
-      "stats": "NPC 줄리 (은기사 마을): 철괴 100, 10000 아데나"
+      "stats": "NPC 줄리(은기사 마을): 철괴 100, 10000 아데나"
+    },
+    {
+      "id": "c9",
+      "name": "활골무",
+      "category": "장갑(요정)",
+      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1102119580.webp",
+      "stats": "NPC 네루파(요정숲): 미스릴 원석 30, 가죽 10, 정령의 돌 5"
     }
   ]
 }
