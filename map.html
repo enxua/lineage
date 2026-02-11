@@ -85,6 +85,7 @@
         title: "말하는 섬 (Talking Island)",
         desc: "모험가들이 처음 태어나는 곳입니다. 기초 교육 교관을 통해 전투의 기본을 배울 수 있습니다.",
         bg: "https://static.plaync.com/ingame/lineageclassic/guide/img/town_talkingisland.jpg",
+        town_img: "image/town_talkingisland.png",
         npcs: [
           { name: "판도라", role: "잡화 상인", loc: "선착장 부근" },
           { name: "건", role: "군주 퀘스트 NPC", loc: "마을 중앙" },
@@ -99,6 +100,7 @@
         title: "글루딘 마을 (Gludin)",
         desc: "본토와 섬을 잇는 거대 항구 도시입니다. 슬라임 경기와 낚시터 등 다양한 즐길거리가 있습니다.",
         bg: "https://static.plaync.com/ingame/lineageclassic/guide/img/town_gludin.jpg",
+        town_img: "image/town_gludin.png",
         npcs: [
           { name: "룻", role: "잡화 상인", loc: "마을 입구" },
           { name: "로로", role: "스탯 초기화 NPC", loc: "마을 동쪽" },
@@ -112,6 +114,7 @@
         title: "켄트 마을 (Kent)",
         desc: "켄트 성 아래 형성된 마을로 정석적인 판타지 풍경을 자아냅니다. 오우거 사냥의 거점이기도 합니다.",
         bg: "https://static.plaync.com/ingame/lineageclassic/guide/img/town_kent.jpg",
+        town_img: "image/town_kent.png",
         npcs: [
           { name: "이소리야", role: "잡화 및 마법상인", loc: "성 입구 근처" },
           { name: "제라드", role: "창고지기", loc: "마을 중심" }
@@ -124,6 +127,7 @@
         title: "우드벡 마을 (Wudbeck)",
         desc: "윈다우드 사막의 관문입니다. 개미굴 사냥을 준비하는 모험가들이 거쳐가는 뜨거운 모래의 마을입니다.",
         bg: "https://static.plaync.com/ingame/lineageclassic/guide/img/town_woodbeck.jpg",
+        town_img: "image/town_wudbeck.png",
         npcs: [
           { name: "엘미나", role: "잡화 상인", loc: "마을 입구" },
           { name: "아리아", role: "군주 30레벨 퀘스트 NPC", loc: "마을 서쪽" }
@@ -136,6 +140,7 @@
         title: "화전민 마을 (Hwajeonmin)",
         desc: "척박한 오크 숲 인근에 형성된 무법자들의 마을입니다. 카오틱 유저들이 주로 이용하는 거점입니다.",
         bg: "https://static.plaync.com/ingame/lineageclassic/guide/img/town_hwajeonmin.jpg",
+        town_img: "image/town_hwajeonmin.png",
         npcs: [
           { name: "잭슨", role: "잡화 상인", loc: "마을 입구" },
           { name: "라이라", role: "토템 교환 NPC", loc: "마을 중앙" }
@@ -148,6 +153,7 @@
         title: "요정 숲 (Fairy Forest)",
         desc: "요정 클래스 전용 시작 지역입니다. 인간의 출입을 경계하며 자연 친화적인 독특한 장비를 제작할 수 있습니다.",
         bg: "https://static.plaync.com/ingame/lineageclassic/guide/img/town_fairyforest.jpg",
+        town_img: "image/town_fairy.png",
         npcs: [
           { name: "엘핀", role: "요정 잡화 상인", loc: "엄마나무 아래" },
           { name: "네루파", role: "요정 퀘스트 및 제작 NPC", loc: "나무 쉼터" }
@@ -160,6 +166,7 @@
         title: "기란 마을 (Giran)",
         desc: "아덴 대륙 경제의 심장입니다. 시장에서 모든 아이템의 거래가 이루어지며 혈맹들의 거점인 아지트가 많습니다.",
         bg: "https://static.plaync.com/ingame/lineageclassic/guide/img/town_giran.jpg",
+        town_img: "image/town_giran.png",
         npcs: [
           { name: "베리", role: "잡화 상인", loc: "시장 입구" },
           { name: "바라", role: "마법 주문서 상인", loc: "상점가" }
@@ -170,6 +177,7 @@
         title: "은기사 마을 (Silver Knight)",
         desc: "기사들의 성지입니다. 수련장에서 기사 퀘스트를 수행하며 강력한 용사로 성장합니다.",
         bg: "https://static.plaync.com/ingame/lineageclassic/guide/img/town_silverknight.jpg",
+        town_img: "image/town_silverknight.png",
         npcs: [
           { name: "리키", role: "기사 퀘스트 NPC", loc: "수련장" },
           { name: "모리아", role: "잡화 상인", loc: "마을 서쪽" }
@@ -227,6 +235,10 @@
             <p>${data.desc}</p>
           </div>
         </div>
+
+        ${data.town_img ? `<div style="margin-bottom: 2rem; border-radius: 12px; overflow: hidden; border: 1px solid var(--border);">
+          <img src="${data.town_img}" style="width: 100%; height: auto; display: block;" onerror="this.style.display='none'">
+        </div>` : ''}
 
         <div class="info-section">
           <h3><i data-lucide="map-pin"></i> 주요 정보</h3>
