@@ -65,8 +65,12 @@
         <button onclick="renderMap('fairy')"><i data-lucide="tree-pine"></i> 요정 숲</button>
         
         <div class="map-nav-group">주요 사냥터</div>
+        <button onclick="renderMap('field_talking')"><i data-lucide="mountain"></i> 말하는 섬 필드</button>
+        <button onclick="renderMap('field_gludio')"><i data-lucide="mountain"></i> 글루디오 필드</button>
+        <button onclick="renderMap('field_fairy')"><i data-lucide="mountain"></i> 요정 숲 필드</button>
+        <button onclick="renderMap('field_wind')"><i data-lucide="mountain"></i> 윈다우드 필드</button>
+        <button onclick="renderMap('field_silver')"><i data-lucide="mountain"></i> 은기사 지역 필드</button>
         <button onclick="renderMap('dragon')"><i data-lucide="mountain"></i> 용의 계곡</button>
-        <button onclick="renderMap('orc')"><i data-lucide="tree-pine"></i> 오크 숲</button>
         
         <div class="map-nav-group">주요 던전</div>
         <button onclick="renderMap('gludio_dungeon')"><i data-lucide="skull"></i> 글루디오 던전</button>
@@ -91,10 +95,7 @@
           { name: "건", role: "군주 퀘스트 NPC", loc: "마을 중앙" },
           { name: "제이", role: "마법사 퀘스트 NPC", loc: "마을 동쪽" }
         ],
-        monsters: [
-          { name: "허수아비", level: 1, drop: "없음" },
-          { name: "오크", level: 3, drop: "오크족 단검, 아데나" }
-        ]
+        monsters: []
       },
       gludin: {
         title: "글루딘 마을 (Gludin)",
@@ -106,9 +107,7 @@
           { name: "로로", role: "스탯 초기화 NPC", loc: "마을 동쪽" },
           { name: "피스", role: "선착장 관리인", loc: "항구" }
         ],
-        monsters: [
-          { name: "늑대인간", level: 12, drop: "초록 물약" }
-        ]
+        monsters: []
       },
       kent: {
         title: "켄트 마을 (Kent)",
@@ -119,9 +118,7 @@
           { name: "이소리야", role: "잡화 및 마법상인", loc: "성 입구 근처" },
           { name: "제라드", role: "창고지기", loc: "마을 중심" }
         ],
-        monsters: [
-          { name: "오우거", level: 40, drop: "오우거의 벨트, 오우거의 피", boss: false }
-        ]
+        monsters: []
       },
       woodbeck: {
         title: "우드벡 마을 (Wudbeck)",
@@ -132,9 +129,7 @@
           { name: "엘미나", role: "잡화 상인", loc: "마을 입구" },
           { name: "아리아", role: "군주 30레벨 퀘스트 NPC", loc: "마을 서쪽" }
         ],
-        monsters: [
-          { name: "바실리스크", level: 32, drop: "바실리스크의 뿔" }
-        ]
+        monsters: []
       },
       hwajeonmin: {
         title: "화전민 마을 (Hwajeonmin)",
@@ -145,9 +140,7 @@
           { name: "잭슨", role: "잡화 상인", loc: "마을 입구" },
           { name: "라이라", role: "토템 교환 NPC", loc: "마을 중앙" }
         ],
-        monsters: [
-          { name: "가스트", level: 28, drop: "가스트의 손톱", boss: false }
-        ]
+        monsters: []
       },
       fairy: {
         title: "요정 숲 (Fairy Forest)",
@@ -158,9 +151,7 @@
           { name: "엘핀", role: "요정 잡화 상인", loc: "엄마나무 아래" },
           { name: "네루파", role: "요정 퀘스트 및 제작 NPC", loc: "나무 쉼터" }
         ],
-        monsters: [
-          { name: "엔트", level: 20, drop: "엔트의 줄기, 껍질", boss: false }
-        ]
+        monsters: []
       },
       giran: {
         title: "기란 마을 (Giran)",
@@ -184,14 +175,75 @@
         ],
         monsters: []
       },
+      field_talking: {
+        title: "말하는 섬 필드",
+        desc: "초보 모험가들을 위한 사냥터입니다. 고블린, 오크 등이 출현하며 안전하게 성장할 수 있습니다.",
+        bg: "https://static.plaync.com/ingame/lineageclassic/guide/img/field_talkingisland.jpg",
+        town_img: "image/field_talkingisland.png",
+        npcs: [],
+        monsters: [
+          { name: "고블린", level: 2, drop: "빨간 물약, 아데나" },
+          { name: "오크", level: 3, drop: "오크족 단검, 아데나" },
+          { name: "코볼트", level: 3, drop: "짧은 부츠, 아데나" }
+        ]
+      },
+      field_gludio: {
+        title: "글루디오 필드",
+        desc: "본토 사냥의 시작점입니다. 언데드 몬스터들이 많이 출몰하여 은 무기를 사용하기 좋습니다.",
+        bg: "https://static.plaync.com/ingame/lineageclassic/guide/img/field_gludio.jpg",
+        town_img: "image/field_gludin.png",
+        npcs: [],
+        monsters: [
+          { name: "늑대인간", level: 12, drop: "초록 물약, 마법서" },
+          { name: "해골", level: 12, drop: "철괴, 아데나" },
+          { name: "오크 마법사", level: 12, drop: "마법서(그레이터 힐)" }
+        ]
+      },
+      field_fairy: {
+        title: "요정 숲 필드",
+        desc: "요정들을 위한 풍요로운 숲입니다. 제작 재료를 모으기에 최적의 장소입니다.",
+        bg: "https://static.plaync.com/ingame/lineageclassic/guide/img/field_fairyforest.jpg",
+        town_img: "image/field_fairy.png",
+        npcs: [],
+        monsters: [
+          { name: "엔트", level: 20, drop: "엔트의 줄기, 껍질" },
+          { name: "판", level: 20, drop: "판의 뿔" },
+          { name: "가스트", level: 28, drop: "가스트의 손톱" }
+        ]
+      },
+      field_wind: {
+        title: "윈다우드 필드",
+        desc: "광활한 사막 지대입니다. 모래 속에 숨은 위험한 생물들이 모험가를 위협합니다.",
+        bg: "https://static.plaync.com/ingame/lineageclassic/guide/img/field_windawood.jpg",
+        town_img: "image/field_windawood.png",
+        npcs: [],
+        monsters: [
+          { name: "바실리스크", level: 32, drop: "바실리스크의 뿔" },
+          { name: "하피", level: 26, drop: "마법서(헤이스트)" },
+          { name: "샌드 웜", level: 60, drop: "영웅급 장비", boss: true }
+        ]
+      },
+      field_silver: {
+        title: "은기사 지역 필드",
+        desc: "황무지와 바위가 가득한 척박한 지역입니다. 강력한 오크 전사들이 서식합니다.",
+        bg: "https://static.plaync.com/ingame/lineageclassic/guide/img/field_silverknight.jpg",
+        town_img: "image/field_silverknight.png",
+        npcs: [],
+        monsters: [
+          { name: "오크 전사", level: 15, drop: "오크족 창" },
+          { name: "버그베어", level: 24, drop: "갑옷 마법 주문서" }
+        ]
+      },
       dragon: {
         title: "용의 계곡 (Dragon Valley)",
         desc: "드레이크와 언데드가 출몰하는 최고 난이도의 사냥터입니다. 희귀한 주문서와 재료를 얻을 수 있습니다.",
         bg: "https://static.plaync.com/ingame/lineageclassic/guide/img/field_dragonvalley.jpg",
+        town_img: "image/field_dragon.png",
         npcs: [],
         monsters: [
           { name: "드레이크", level: 50, drop: "용의 비늘, 희귀 주문서", boss: true },
-          { name: "코카트리스", level: 38, drop: "보석류" }
+          { name: "코카트리스", level: 38, drop: "보석류" },
+          { name: "오우거", level: 40, drop: "오우거의 벨트" }
         ]
       },
       orc: {
@@ -242,7 +294,7 @@
 
         <div class="info-section">
           <h3><i data-lucide="map-pin"></i> 주요 정보</h3>
-          ${data.npcs.length > 0 ? `
+          ${data.npcs && data.npcs.length > 0 ? `
             <h4 style="color:var(--primary); margin-top:1rem; font-size:1.1rem;">주요 NPC</h4>
             <table class="data-table">
               <thead><tr><th width="30%">이름</th><th width="40%">역할</th><th>위치</th></tr></thead>
@@ -252,7 +304,7 @@
             </table>
           ` : ''}
 
-          ${data.monsters.length > 0 ? `
+          ${data.monsters && data.monsters.length > 0 ? `
             <h4 style="color:var(--primary); margin-top:2rem; font-size:1.1rem;">출현 몬스터</h4>
             <table class="data-table">
               <thead><tr><th width="30%">이름 (레벨)</th><th>주요 드롭 아이템</th></tr></thead>
@@ -267,7 +319,7 @@
                 `).join('')}
               </tbody>
             </table>
-          ` : '<p style="color:#666; padding:1.5rem; background:rgba(0,0,0,0.1); border-radius:8px; margin-top:1rem;">이 지역에는 적대적인 몬스터가 출현하지 않습니다.</p>'}
+          ` : '<p style="color:#666; padding:1.5rem; background:rgba(0,0,0,0.1); border-radius:8px; margin-top:1rem;">이 지역에는 적대적인 몬스터가 출현하지 않거나 정보가 준비 중입니다.</p>'}
         </div>
       `;
       
