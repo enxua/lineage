@@ -34,9 +34,15 @@
     .boss-badge { background: #8b0000; color: #fff; padding: 2px 6px; border-radius: 4px; font-size: 0.75rem; font-weight: bold; margin-right: 5px; }
 
     .image-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
-    .gallery-item { border-radius: 12px; overflow: hidden; border: 1px solid var(--border); background: #000; }
+    .gallery-item { border-radius: 12px; overflow: hidden; border: 1px solid var(--border); background: #000; cursor: pointer; transition: transform 0.2s; }
+    .gallery-item:hover { transform: scale(1.02); border-color: var(--primary); }
     .gallery-item img { width: 100%; height: auto; display: block; }
     .gallery-item span { display: block; padding: 0.5rem; text-align: center; font-size: 0.85rem; color: var(--text-dim); background: rgba(0,0,0,0.5); }
+
+    /* Modal Style */
+    #image-modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 1000; justify-content: center; align-items: center; padding: 2rem; cursor: zoom-out; }
+    #modal-img { max-width: 95%; max-height: 95%; object-fit: contain; border: 2px solid var(--primary); border-radius: 8px; box-shadow: 0 0 50px rgba(0,0,0,1); }
+    #modal-close { position: absolute; top: 2rem; right: 2rem; color: #fff; cursor: pointer; background: rgba(255,255,255,0.1); padding: 0.5rem; border-radius: 50%; }
   </style>
 </head>
 <body>
@@ -91,6 +97,12 @@
         <!-- Content loaded via JS -->
       </main>
     </div>
+  </div>
+
+  <!-- Image Modal -->
+  <div id="image-modal" onclick="this.style.display='none'">
+    <i data-lucide="x" id="modal-close"></i>
+    <img id="modal-img" src="" alt="Enlarged view">
   </div>
 
   <script>
@@ -192,8 +204,7 @@
         town_img: "image/field_talkingisland.png",
         monsters: [
           { name: "고블린", level: 2, drop: "빨간 물약, 아데나" },
-          { name: "오크", level: 3, drop: "오크족 단검, 아데나" },
-          { name: "코볼트", level: 3, drop: "짧은 부츠, 아데나" }
+          { name: "오크", level: 3, drop: "오크족 단검, 아데나" }
         ]
       },
       field_gludio: {
@@ -203,8 +214,7 @@
         town_img: "image/field_gludin.png",
         monsters: [
           { name: "늑대인간", level: 12, drop: "초록 물약, 마법서" },
-          { name: "해골", level: 12, drop: "철괴, 아데나" },
-          { name: "오크 마법사", level: 12, drop: "마법서(그레이터 힐)" }
+          { name: "해골", level: 12, drop: "철괴, 아데나" }
         ]
       },
       field_fairy: {
@@ -214,8 +224,7 @@
         town_img: "image/field_fairy.png",
         monsters: [
           { name: "엔트", level: 20, drop: "엔트의 줄기, 껍질" },
-          { name: "판", level: 20, drop: "판의 뿔" },
-          { name: "가스트", level: 28, drop: "가스트의 손톱" }
+          { name: "판", level: 20, drop: "판의 뿔" }
         ]
       },
       field_wind: {
@@ -225,7 +234,6 @@
         town_img: "image/field_windawood.png",
         monsters: [
           { name: "바실리스크", level: 32, drop: "바실리스크의 뿔" },
-          { name: "하피", level: 26, drop: "마법서(헤이스트)" },
           { name: "샌드 웜", level: 60, drop: "영웅급 장비", boss: true }
         ]
       },
@@ -235,8 +243,7 @@
         bg: "https://static.plaync.com/ingame/lineageclassic/guide/img/field_silverknight.jpg",
         town_img: "image/field_silverknight.png",
         monsters: [
-          { name: "오크 전사", level: 15, drop: "오크족 창" },
-          { name: "버그베어", level: 24, drop: "갑옷 마법 주문서" }
+          { name: "오크 전사", level: 15, drop: "오크족 창" }
         ]
       },
       dragon: {
@@ -245,9 +252,7 @@
         bg: "https://static.plaync.com/ingame/lineageclassic/guide/img/field_dragonvalley.jpg",
         town_img: "image/field_dragon.png",
         monsters: [
-          { name: "드레이크", level: 50, drop: "용의 비늘, 희귀 주문서", boss: true },
-          { name: "코카트리스", level: 38, drop: "보석류" },
-          { name: "오우거", level: 40, drop: "오우거의 벨트" }
+          { name: "드레이크", level: 50, drop: "용의 비늘, 희귀 주문서", boss: true }
         ]
       },
       dungeon_talking: {
@@ -259,11 +264,7 @@
           { img: "image/dungen_talkingisland_1.jpg", label: "지하 1층" },
           { img: "image/dungen_talkingisland_2.jpg", label: "지하 2층 (바포메트)" }
         ],
-        monsters: [
-          { name: "바포메트", level: 45, drop: "바포메트의 지팡이", boss: true },
-          { name: "좀비", level: 6, drop: "마법서(뱀파이어릭 터치)" },
-          { name: "해골", level: 12, drop: "철괴, 아데나" }
-        ]
+        monsters: [{ name: "바포메트", level: 45, drop: "바포메트의 지팡이", boss: true }]
       },
       dungeon_fairy: {
         title: "요정 숲 던전",
@@ -275,10 +276,7 @@
           { img: "image/dungen_fairy_2.jpg", label: "지하 2층" },
           { img: "image/dungen_fairy_3.jpg", label: "지하 3층" }
         ],
-        monsters: [
-          { name: "브롭", level: 15, drop: "엔트의 줄기, 껍질" },
-          { name: "오크 전사", level: 15, drop: "미스릴 원석" }
-        ]
+        monsters: [{ name: "브롭", level: 15, drop: "엔트의 줄기, 껍질" }]
       },
       gludio_dungeon: {
         title: "글루디오 던전 (Main Dungeon)",
@@ -286,19 +284,15 @@
         bg: "https://static.plaync.com/ingame/lineageclassic/guide/img/dungeon_gludio.jpg",
         gallery: [
           { img: "image/dungen_gludin_0.png", label: "던전 입구" },
-          { img: "image/dungen_gludin_1.jpg", label: "지하 1층" },
-          { img: "image/dungen_gludin_2.jpg", label: "지하 2층" },
-          { img: "image/dungen_gludin_3.jpg", label: "지하 3층" },
-          { img: "image/dungen_gludin_4.jpg", label: "지하 4층" },
-          { img: "image/dungen_gludin_5.jpg", label: "지하 5층" },
-          { img: "image/dungen_gludin_6.jpg", label: "지하 6층" },
-          { img: "image/dungen_gludin_7.jpg", label: "지하 7층 (데스나이트)" }
+          { img: "image/dungen_gludin_1.gif", label: "지하 1층" },
+          { img: "image/dungen_gludin_2.gif", label: "지하 2층" },
+          { img: "image/dungen_gludin_3.gif", label: "지하 3층" },
+          { img: "image/dungen_gludin_4.gif", label: "지하 4층" },
+          { img: "image/dungen_gludin_5.gif", label: "지하 5층" },
+          { img: "image/dungen_gludin_6.gif", label: "지하 6층" },
+          { img: "image/dungen_gludin_7.gif", label: "지하 7층 (데스나이트)" }
         ],
-        monsters: [
-          { name: "데스나이트", level: 52, drop: "데스나이트의 불검", boss: true },
-          { name: "버그베어", level: 26, drop: "갑옷 마법 주문서" },
-          { name: "카스파 패밀리", level: 42, drop: "마법서(헤이스트)", boss: true }
-        ]
+        monsters: [{ name: "데스나이트", level: 52, drop: "데스나이트의 불검", boss: true }]
       },
       dungeon_samak: {
         title: "사막 던전",
@@ -311,10 +305,7 @@
           { img: "image/dungen_samak_3.jpg", label: "지하 3층" },
           { img: "image/dungen_samak_4.jpg", label: "지하 4층" }
         ],
-        monsters: [
-          { name: "사악한 해골", level: 18, drop: "철괴" },
-          { name: "사악한 구울", level: 20, drop: "마력의 돌" }
-        ]
+        monsters: [{ name: "사악한 해골", level: 18, drop: "철괴" }]
       },
       ant_cave: {
         title: "개미굴 (Ant Cave)",
@@ -334,14 +325,11 @@
           { img: "image/dungen_ant_10.jpg", label: "지하 3-5층" },
           { img: "image/dungen_ant_11.jpg", label: "여왕 개미 산란장" }
         ],
-        monsters: [
-          { name: "여왕 개미", level: 45, drop: "고대의 주문서", boss: true },
-          { name: "거대 병정 개미", level: 32, drop: "보석류" }
-        ]
+        monsters: [{ name: "여왕 개미", level: 45, drop: "고대의 주문서", boss: true }]
       },
       dungeon_giran: {
         title: "기란 던전",
-        desc: "높은 경험치를 자랑하는 인기 던전입니다. 에바의 축복이 필요한 수중 구역도 존재합니다.",
+        desc: "높은 경험치를 자랑하는 인기 던전입니다.",
         bg: "https://static.plaync.com/ingame/lineageclassic/guide/img/dungeon_giran.jpg",
         gallery: [
           { img: "image/dungen_giran_0.png", label: "던전 입구" },
@@ -350,14 +338,11 @@
           { img: "image/dungen_giran_3.jpg", label: "지하 3층" },
           { img: "image/dungen_giran_4.jpg", label: "지하 4층" }
         ],
-        monsters: [
-          { name: "라히칸스로프", level: 30, drop: "무기 마법 주문서" },
-          { name: "사악한 다크엘프", level: 35, drop: "마법서" }
-        ]
+        monsters: [{ name: "라히칸스로프", level: 30, drop: "무기 마법 주문서" }]
       },
       dungeon_dragon: {
         title: "용의 계곡 던전",
-        desc: "최상위 모험가들을 위한 고난이도 던전. 지룡 안타라스의 기운이 감도는 곳입니다.",
+        desc: "최상위 모험가들을 위한 고난이도 던전.",
         bg: "https://static.plaync.com/ingame/lineageclassic/guide/img/dungeon_dragonvalley.jpg",
         gallery: [
           { img: "image/dungen_dragon_0.png", label: "던전 입구" },
@@ -367,14 +352,18 @@
           { img: "image/dungen_dragon_4.jpg", label: "지하 4층" },
           { img: "image/dungen_dragon_5.jpg", label: "지하 5층" },
           { img: "image/dungen_dragon_6.jpg", label: "지하 6층" },
-          { img: "image/dungen_dragon_7.jpg", label: "지하 7층 (안타라스 구역)" }
+          { img: "image/dungen_dragon_7.jpg", label: "지하 7층" }
         ],
-        monsters: [
-          { name: "지룡의 졸개", level: 45, drop: "희귀 제작 비법서" },
-          { name: "해골 근위병", level: 40, drop: "혹한의 창" }
-        ]
+        monsters: [{ name: "지룡의 졸개", level: 45, drop: "희귀 제작 비법서" }]
       }
     };
+
+    function enlargeImage(src) {
+      const modal = document.getElementById('image-modal');
+      const modalImg = document.getElementById('modal-img');
+      modalImg.src = src;
+      modal.style.display = 'flex';
+    }
 
     function renderMap(key) {
       const data = MAP_DB[key];
@@ -386,14 +375,14 @@
           </div>
         </div>
 
-        ${data.town_img ? `<div style="margin-bottom: 2rem; border-radius: 12px; overflow: hidden; border: 1px solid var(--border);">
+        ${data.town_img ? `<div style="margin-bottom: 2rem; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); cursor: pointer;" onclick="enlargeImage('${data.town_img}')">
           <img src="${data.town_img}" style="width: 100%; height: auto; display: block;" onerror="this.style.display='none'">
         </div>` : ''}
 
         ${data.gallery ? `
           <div class="image-gallery">
             ${data.gallery.map(item => `
-              <div class="gallery-item">
+              <div class="gallery-item" onclick="enlargeImage('${item.img}')">
                 <img src="${item.img}" onerror="this.parentElement.style.display='none'">
                 <span>${item.label}</span>
               </div>
