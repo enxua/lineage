@@ -40,16 +40,6 @@
   <meta property="og:url" content="https://enxua.github.io/lineage/map.html">
   <meta property="og:site_name" content="Lineage Classic Knowledge Base">
 
-  <!-- GEO Structured Data -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Map",
-    "name": "Lineage Classic World Map",
-    "description": "리니지 클래식의 전체 마을, 필드, 던전 지도를 포함한 가이드입니다."
-  }
-  </script>
-
   <style>
     .geo-summary { background: linear-gradient(135deg, rgba(227, 192, 141, 0.1) 0%, rgba(0,0,0,0) 100%); border: 1px solid var(--border); padding: 1.5rem; border-radius: 12px; margin-bottom: 2rem; }
     .geo-summary h2 { font-size: 1.2rem !important; color: var(--primary) !important; margin-bottom: 1rem !important; border: none !important; padding: 0 !important; }
@@ -58,8 +48,8 @@
 
     .map-container { display: flex; gap: 2rem; align-items: flex-start; }
     .map-nav { width: 220px; flex-shrink: 0; display: flex; flex-direction: column; gap: 0.5rem; position: sticky; top: 2rem; }
-    .map-nav-group { font-size:0.85rem; color:var(--text-dim); margin: 1rem 0 0.3rem 0.5rem; text-transform: uppercase; letter-spacing: 1px; }
-    .map-nav button { padding: 0.8rem 1rem; border-radius: 8px; background: var(--bg-card); border: 1px solid var(--border); color: var(--text-dim); text-align: left; cursor: pointer; transition: all 0.2s; font-weight: 700; display: flex; align-items: center; gap: 0.8rem; font-size: 0.9rem; }
+    .map-nav-group { font-size:0.8rem; color:var(--primary); margin: 1rem 0 0.3rem 0.5rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 900; opacity: 0.8; }
+    .map-nav button { padding: 0.8rem 1rem; border-radius: 8px; background: var(--bg-card); border: 1px solid var(--border); color: var(--text-dim); text-align: left; cursor: pointer; transition: all 0.2s; font-weight: 700; display: flex; align-items: center; gap: 0.8rem; font-size: 0.9rem; width: 100%; }
     .map-nav button:hover, .map-nav button.active { background: var(--gold-gradient); color: #000; border-color: transparent; }
     
     .map-content { flex-grow: 1; display: flex; flex-direction: column; gap: 2rem; width: 100%; }
@@ -73,8 +63,8 @@
     .info-section { background: var(--bg-card); padding: 2rem; border-radius: 12px; border: 1px solid var(--border); }
     .info-section h3 { color: #fff; border-bottom: 1px solid var(--border); padding-bottom: 1rem; margin-bottom: 1.5rem; font-size: 1.3rem; }
     
-    .table-responsive { margin-top: 1rem; }
-    .data-table { width: 100%; border-collapse: collapse; }
+    .table-responsive { overflow-x: auto; -webkit-overflow-scrolling: touch; margin-top: 1rem; border-radius: 8px; border: 1px solid var(--border); }
+    .data-table { width: 100%; border-collapse: collapse; min-width: 500px; }
     .data-table th { text-align: left; color: var(--text-dim); padding: 0.8rem; border-bottom: 1px solid var(--border); font-size: 0.85rem; background: rgba(0,0,0,0.3); }
     .data-table td { padding: 0.9rem 0.8rem; border-bottom: 1px solid rgba(255,255,255,0.05); color: #eee; font-size: 0.9rem; }
     .data-table tr:last-child td { border-bottom: none; }
@@ -90,13 +80,24 @@
 
     #image-modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 1000; justify-content: center; align-items: center; padding: 1rem; cursor: zoom-out; }
     #modal-img { max-width: 100%; max-height: 90%; object-fit: contain; border: 2px solid var(--primary); border-radius: 8px; }
-    #modal-close { position: absolute; top: 1rem; right: 1rem; color: #fff; cursor: pointer; background: rgba(255,255,255,0.1); padding: 0.5rem; border-radius: 50%; }
+    #modal-close { position: absolute; top: 2rem; right: 2rem; color: #fff; cursor: pointer; background: rgba(255,255,255,0.1); padding: 0.5rem; border-radius: 50%; }
 
     @media (max-width: 1024px) {
       .map-container { flex-direction: column; }
       .map-nav { width: 100%; position: sticky; top: 0; z-index: 100; display: flex; flex-direction: row; overflow-x: auto; border-radius: 0; border-bottom: 1px solid var(--border); background: var(--bg-deep); padding: 0.5rem; }
-      .map-nav-group { display: none; }
-      .map-nav button { white-space: nowrap; flex-shrink: 0; padding: 0.6rem 1rem; font-size: 0.85rem; }
+      .map-nav-group { 
+        display: flex; 
+        align-items: center; 
+        white-space: nowrap; 
+        background: rgba(227, 192, 141, 0.1); 
+        color: var(--primary); 
+        padding: 0 1rem; 
+        margin: 0 0.5rem 0 0; 
+        border-radius: 8px; 
+        font-size: 0.75rem; 
+        border: 1px solid rgba(227, 192, 141, 0.2);
+      }
+      .map-nav button { white-space: nowrap; flex-shrink: 0; padding: 0.6rem 1rem; font-size: 0.85rem; width: auto; margin-right: 0.3rem; }
       .map-header { min-height: 150px; padding: 1.5rem; }
       .map-header::before { background: rgba(0,0,0,0.6); }
       .map-title h2 { font-size: 1.5rem; }
@@ -124,6 +125,7 @@
 
     <div class="map-container">
       <nav class="map-nav">
+        <div class="map-nav-group">마을</div>
         <button class="active" onclick="renderMap('talking_island')">말하는 섬</button>
         <button onclick="renderMap('gludin')">글루딘 마을</button>
         <button onclick="renderMap('kent')">켄트 마을</button>
@@ -132,12 +134,16 @@
         <button onclick="renderMap('woodbeck')">우드벡 마을</button>
         <button onclick="renderMap('hwajeonmin')">화전민 마을</button>
         <button onclick="renderMap('fairy')">요정 숲</button>
+        
+        <div class="map-nav-group">사냥터</div>
         <button onclick="renderMap('field_talking')">말하는 섬 필드</button>
         <button onclick="renderMap('field_gludio')">글루디오 필드</button>
         <button onclick="renderMap('field_fairy')">요정 숲 필드</button>
         <button onclick="renderMap('field_wind')">윈다우드 필드</button>
         <button onclick="renderMap('field_silver')">은기사 필드</button>
         <button onclick="renderMap('dragon')">용의 계곡</button>
+        
+        <div class="map-nav-group">던전</div>
         <button onclick="renderMap('dungeon_talking')">말하는 섬 던전</button>
         <button onclick="renderMap('dungeon_fairy')">요정 숲 던전</button>
         <button onclick="renderMap('gludio_dungeon')">글루디오 던전</button>
