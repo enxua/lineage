@@ -2,3 +2,5 @@ User-agent: *
 Allow: /
 
 Sitemap: https://linlib.pages.dev/sitemap.xml
+
+#DaumWebMasterTool:4766dc1069e0e174caa66da5f81920a8ced1733e44b327104241d029ade2c0c2:yoPeIV5QL7Z1hL4c3KNBAg==
