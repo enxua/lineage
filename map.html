@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="referrer" content="no-referrer">
-  <title>Lineage Classic - 월드맵</title>
+  <title>Lineage Classic - 지도</title>
   <link rel="stylesheet" href="style.css">
   <script src="https://unpkg.com/lucide@latest"></script>
 </head>
@@ -20,20 +20,16 @@
       </a>
       <nav class="nav-menu">
         <a href="index.html" class="nav-item">
-          <i data-lucide="book-open"></i>
-          <span>사전</span>
+          <i data-lucide="book-open"></i><span>사전</span>
         </a>
         <a href="quests.html" class="nav-item">
-          <i data-lucide="scroll"></i>
-          <span>퀘스트</span>
+          <i data-lucide="scroll"></i><span>퀘스트</span>
         </a>
         <a href="map.html" class="nav-item active">
-          <i data-lucide="map"></i>
-          <span>지도</span>
+          <i data-lucide="map"></i><span>지도</span>
         </a>
         <a href="simulation.html" class="nav-item">
-          <i data-lucide="flask-conical"></i>
-          <span>모의실험</span>
+          <i data-lucide="flask-conical"></i><span>모의실험</span>
         </a>
       </nav>
     </header>
@@ -46,100 +42,62 @@
       </nav>
     </div>
 
-    <main id="map-grid" class="content-grid"></main>
+    <main id="map-content" class="content-grid"></main>
   </div>
 
   <script>
     const MAP_DATA = {
       village: [
         {
-          title: "말하는 섬 마을",
-          desc: "모험가들의 고향이자 수련의 장입니다. 본토 글루딘 항구로 이동할 수 있는 유일한 곳입니다.",
-          image: "https://static.plaync.com/ingame/lineageclassic/guide/img/town_talkingisland.jpg",
-          tag: "Lv.1-15",
-          info: "NPC: 판도라, 제이 / 던전: 말하는 섬 던전"
-        },
-        {
-          title: "글루딘 마을",
-          desc: "항구 도시로 대륙의 관문입니다. 카오틱 신전과 개 훈련장이 위치해 있습니다.",
-          image: "https://static.plaync.com/ingame/lineageclassic/guide/img/town_gludin.jpg",
-          tag: "Lv.13-20",
-          info: "주요 시설: 카오틱 신전, 투견장"
-        },
-        {
-          title: "기란 마을",
-          desc: "아덴 대륙 최대의 상업 요충지입니다. 기란 시장과 혈맹 아지트가 밀집된 번화가입니다.",
-          image: "https://static.plaync.com/ingame/lineageclassic/guide/img/town_giran.jpg",
-          tag: "Trade",
-          info: "시설: 기란 시장, 투기장, 혈맹 관리인"
+          title: "마을 소개 (기란, 은기사, 말하는 섬 등)",
+          images: [
+            "https://fizz-download.playnccdn.com/download/v2/buckets/conti-upload/files/19bfd25ee0e-5897c344-0c3d-4ce7-b675-f7825d755e92",
+            "https://fizz-download.playnccdn.com/download/v2/buckets/conti-upload/files/19bfd25ee0e-5897c344-0c3d-4ce7-b675-f7825d755e93"
+          ],
+          desc: "아덴 대륙의 주요 마을 정보입니다. 각 마을별 퀘스트 NPC와 편의 시설을 확인하세요.",
+          info: "기란: 상업 중심 / 은기사: 기사 수련 / 말섬: 시작의 땅"
         }
       ],
       field: [
         {
-          title: "용의 계곡",
-          desc: "고레벨 모험가들의 성지입니다. 드레이크와 언데드 몬스터가 출몰하며 높은 경험치를 제공합니다.",
-          image: "https://static.plaync.com/ingame/lineageclassic/guide/img/field_dragonvalley.jpg",
-          tag: "Lv.45+",
-          info: "주요 드롭: 지룡의 비늘, 젤/데이"
-        },
-        {
-          title: "오크 숲",
-          desc: "부족별 오크들이 거주하는 숲입니다. 토템 퀘스트를 통한 아데나 수급에 최적인 장소입니다.",
-          image: "https://static.plaync.com/ingame/lineageclassic/guide/img/field_orcforest.jpg",
-          tag: "Farming",
-          info: "몬스터: 간디/네루가/아투바 오크"
-        },
-        {
-          title: "거울의 숲",
-          desc: "도펠갱어들이 변신하여 공격해오는 위험한 숲입니다. 하이네 마을 동쪽에 위치합니다.",
-          image: "https://static.plaync.com/ingame/lineageclassic/guide/img/field_mirrorforest.jpg",
-          tag: "Lv.40+",
-          info: "주요 몬스터: 도펠갱어, 악어"
+          title: "필드 사냥터 가이드",
+          images: [
+            "https://fizz-download.playnccdn.com/download/v2/buckets/conti-upload/files/19bfd25ee0e-5897c344-0c3d-4ce7-b675-f7825d755e96",
+            "https://fizz-download.playnccdn.com/download/v2/buckets/conti-upload/files/19bfd25ee0e-5897c344-0c3d-4ce7-b675-f7825d755e97"
+          ],
+          desc: "용의 계곡, 요정 숲, 거울의 숲 등 아덴 대륙의 광활한 필드 사냥터입니다.",
+          info: "주요 사냥터: 용의 계곡, 화룡의 둥지, 오크 숲"
         }
       ],
       dungeon: [
         {
-          title: "글루디오 던전 (본던)",
-          desc: "7층 규모의 고대 미로입니다. 최하층에는 전설적인 보스 데스나이트가 서식합니다.",
-          image: "https://static.plaync.com/ingame/lineageclassic/guide/img/dungeon_gludio.jpg",
-          tag: "Lv.20-52",
-          info: "보스: 데스나이트 (7층)"
-        },
-        {
-          title: "개미굴 (사막 던전)",
-          desc: "윈다우드 사막 지하의 거대 개미 서식지입니다. 여왕 개미 레이드가 주기적으로 발생합니다.",
-          image: "https://static.plaync.com/ingame/lineageclassic/guide/img/dungeon_antcave.jpg",
-          tag: "Boss",
-          info: "보스: 여왕 개미 / 주요 드롭: 개미 다리"
-        },
-        {
-          title: "상아탑",
-          desc: "마법사들의 성지로 오렌 마을 북쪽에 있습니다. 층별로 다양한 차원의 몬스터가 출현합니다.",
-          image: "https://static.plaync.com/ingame/lineageclassic/guide/img/dungeon_ivorytower.jpg",
-          tag: "Lv.40+",
-          info: "주요 드롭: 마법서, 마나의 지팡이"
+          title: "던전 가이드 (본던, 개미굴 등)",
+          images: [
+            "https://fizz-download.playnccdn.com/download/v2/buckets/conti-upload/files/19bfd25ee0e-5897c344-0c3d-4ce7-b675-f7825d755e90",
+            "https://fizz-download.playnccdn.com/download/v2/buckets/conti-upload/files/19bfd25ee0e-5897c344-0c3d-4ce7-b675-f7825d755e91"
+          ],
+          desc: "글루디오 던전, 상아탑, 개미굴 등 리니지의 핵심 던전 내부 정보입니다.",
+          info: "주요 던전: 글루디오 던전(본던), 상아탑, 개미굴"
         }
       ]
     };
 
     function renderMaps(category) {
-      const grid = document.getElementById('map-grid');
-      grid.innerHTML = MAP_DATA[category].map(item => `
+      const container = document.getElementById('map-content');
+      container.innerHTML = MAP_DATA[category].map(m => `
         <article class="visual-card">
-          <div class="card-image-box">
-            <img src="${item.image}" alt="${item.title}" onerror="this.src='https://assets.playnccdn.com/common/lineageclassic.png'; this.style.objectFit='contain';">
-            <span class="card-tag">${item.tag}</span>
+          <div class="card-image-box" style="height: auto; display: flex; flex-direction: column; gap: 5px;">
+            ${m.images.map(img => `<img src="${img}" style="width:100%; object-fit: cover;" onerror="this.style.display='none'">`).join('')}
           </div>
           <div class="card-details">
-            <h3>${item.title}</h3>
-            <p>${item.desc}</p>
-            <div style="margin-top: 1rem; color:var(--primary); font-size: 0.9rem; padding: 0.8rem; background:rgba(0,0,0,0.2); border-radius:8px;">
-               <i data-lucide="info" size="14" style="vertical-align:middle;"></i> ${item.info}
+            <h3>${m.title}</h3>
+            <p>${m.desc}</p>
+            <div style="margin-top: 1rem; color:var(--primary); font-size: 0.9rem;">
+               <strong>특이사항:</strong> ${m.info}
             </div>
           </div>
         </article>
       `).join('');
-      lucide.createIcons();
     }
 
     document.querySelectorAll('.tab-btn').forEach(btn => {
@@ -149,7 +107,6 @@
         renderMaps(btn.dataset.category);
       };
     });
-
     renderMaps('village');
     lucide.createIcons();
   </script>

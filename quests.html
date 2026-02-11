@@ -20,153 +20,89 @@
       </a>
       <nav class="nav-menu">
         <a href="index.html" class="nav-item">
-          <i data-lucide="book-open"></i>
-          <span>사전</span>
+          <i data-lucide="book-open"></i><span>사전</span>
         </a>
         <a href="quests.html" class="nav-item active">
-          <i data-lucide="scroll"></i>
-          <span>퀘스트</span>
+          <i data-lucide="scroll"></i><span>퀘스트</span>
         </a>
         <a href="map.html" class="nav-item">
-          <i data-lucide="map"></i>
-          <span>지도</span>
+          <i data-lucide="map"></i><span>지도</span>
         </a>
         <a href="simulation.html" class="nav-item">
-          <i data-lucide="flask-conical"></i>
-          <span>모의실험</span>
+          <i data-lucide="flask-conical"></i><span>모의실험</span>
         </a>
       </nav>
     </header>
 
     <div class="dictionary-controls">
       <nav class="category-tabs">
-        <button class="tab-btn active" data-category="level15">15레벨</button>
-        <button class="tab-btn" data-category="level30">30레벨</button>
-        <button class="tab-btn" data-category="level45">45레벨</button>
-        <button class="tab-btn" data-category="level50">50레벨</button>
-        <button class="tab-btn" data-category="totem">토템</button>
+        <button class="tab-btn active" data-category="level">레벨 퀘스트</button>
+        <button class="tab-btn" data-category="totem">토템 퀘스트</button>
       </nav>
     </div>
 
-    <main id="quest-grid" class="content-grid"></main>
+    <main id="quest-content" class="content-grid"></main>
   </div>
 
   <script>
     const QUEST_DATA = {
-      level15: [
+      level: [
         {
-          title: "군주 15레벨 시련",
-          desc: "켄트성 마을의 '제로' 또는 '군터'에게서 시작합니다. 흑기사 수색대를 사냥하여 수색문서를 찾으십시오.",
-          image: "https://static.plaync.com/ingame/lineageclassic/guide/img/quest_15_lord.jpg",
-          tag: "Lord",
-          info: "NPC: 제로 / 보상: 붉은 망토, 트루타겟"
+          title: "15레벨 퀘스트 - 클래스별 시련",
+          images: [
+            "https://fizz-download.playnccdn.com/download/v2/buckets/conti-upload/files/19bfd25ee0e-5897c344-0c3d-4ce7-b675-f7825d755e90",
+            "https://fizz-download.playnccdn.com/download/v2/buckets/conti-upload/files/19bfd25ee0e-5897c344-0c3d-4ce7-b675-f7825d755e94"
+          ],
+          desc: "군주(건), 기사(리키), 요정(오스), 마법사(재매)를 찾아가 임무를 완수하고 클래스 전용 15레벨 장비를 획득하세요.",
+          rewards: "붉은 기사의 검, 붉은 기사의 두건, 요정족 투구, 저주받은 마력서 등"
         },
         {
-          title: "기사 15레벨 시련",
-          desc: "은기사 마을의 '리키'를 찾아가십시오. 흑기사를 처치하고 서약서와 거래 문서를 회수해야 합니다.",
-          image: "https://static.plaync.com/ingame/lineageclassic/guide/img/quest_15_knight.jpg",
-          tag: "Knight",
-          info: "NPC: 리키 / 보상: 붉은 기사의 두건 (AC-2)"
+          title: "30레벨 퀘스트 - 용사의 증명",
+          images: [
+            "https://fizz-download.playnccdn.com/download/v2/buckets/conti-upload/files/19c30358136-73b20068-a463-44c7-ae16-b9c22e6f4ef1",
+            "https://fizz-download.playnccdn.com/download/v2/buckets/conti-upload/files/19bfd25ee0e-5897c344-0c3d-4ce7-b675-f7825d755e95"
+          ],
+          desc: "진 레이피어, 화염의 활, 수정 지팡이 등 강력한 30레벨 무기를 보상으로 주는 핵심 시련입니다.",
+          rewards: "진 레이피어, 화염의 활, 수정 지팡이, 군주의 위엄 등"
         },
         {
-          title: "요정 15레벨 시련",
-          desc: "화전마을의 '오스'에게서 시작합니다. 오크 부족별 마법서를 수집하여 시련을 통과하십시오.",
-          image: "https://static.plaync.com/ingame/lineageclassic/guide/img/quest_15_elf.jpg",
-          tag: "Elf",
-          info: "NPC: 오스 / 보상: 체력/민첩의 투구 택1"
-        },
-        {
-          title: "마법사 15레벨 시련",
-          desc: "말하는 섬의 '재매'를 찾아가십시오. 구울과 해골의 부속물을 모아 마력을 증명하십시오.",
-          image: "https://static.plaync.com/ingame/lineageclassic/guide/img/quest_15_mage.jpg",
-          tag: "Mage",
-          info: "NPC: 재매 / 보상: 저주받은 마력서 (INT+2)"
-        }
-      ],
-      level30: [
-        {
-          title: "군주 30레벨 시련",
-          desc: "우드벡의 '아리아'를 통해 개미굴의 변종 여왕 개미를 처치하십시오. 거대 개미 변신이 필요합니다.",
-          image: "https://static.plaync.com/ingame/lineageclassic/guide/img/quest_30_lord.jpg",
-          tag: "Lord",
-          info: "NPC: 아리아 / 보상: 군주의 위엄, 콜 클랜"
-        },
-        {
-          title: "기사 30레벨 시련",
-          desc: "군터와 게라드의 시련입니다. 웅골리언트와 라미아를 사냥하여 환생의 물약을 획득하십시오.",
-          image: "https://static.plaync.com/ingame/lineageclassic/guide/img/quest_30_knight.jpg",
-          tag: "Knight",
-          info: "NPC: 군터, 게라드 / 보상: 환생의 물약"
-        },
-        {
-          title: "요정 30레벨 시련",
-          desc: "디롱과 오림을 거치는 험난한 여정입니다. 언데드 던전에서 배신자를 처단하고 열쇠를 찾으십시오.",
-          image: "https://static.plaync.com/ingame/lineageclassic/guide/img/quest_30_elf.jpg",
-          tag: "Elf",
-          info: "NPC: 디롱 / 보상: 요정족 티셔츠"
-        },
-        {
-          title: "마법사 30레벨 시련",
-          desc: "개렌의 시련을 통과하고 강력한 마력의 원천을 획득하십시오.",
-          image: "https://static.plaync.com/ingame/lineageclassic/guide/img/quest_30_mage.jpg",
-          tag: "Mage",
-          info: "보상: 수정 지팡이"
-        }
-      ],
-      level45: [
-        {
-          title: "군주 45레벨 시련",
-          desc: "왕가의 문장을 찾아 혈맹의 격을 높이십시오. 혈맹원들의 희생과 협력이 필요한 시련입니다.",
-          image: "https://static.plaync.com/ingame/lineageclassic/guide/img/quest_45_lord.jpg",
-          tag: "Lord",
-          info: "보상: 수호자의 반지, 연합 군주 권한"
-        },
-        {
-          title: "마법사 45레벨 시련",
-          desc: "상아탑 타라스의 부름입니다. 도펠갱어의 체액과 캔슬레이션 마법을 확보하십시오.",
-          image: "https://static.plaync.com/ingame/lineageclassic/guide/img/quest_45_mage.jpg",
-          tag: "Mage",
-          info: "보상: 마나 망토"
-        }
-      ],
-      level50: [
-        {
-          title: "전 클래스 50레벨 시련",
-          desc: "디가르뎅을 통해 재생의 성소로 잠입하십시오. 재생의 제단을 파괴하고 전설의 무기를 손에 넣으십시오.",
-          image: "https://static.plaync.com/ingame/lineageclassic/guide/img/quest_50.jpg",
-          tag: "Legend",
-          info: "최종 보상: 클래스별 전용 무기 (마나 지팡이 등)"
+          title: "45레벨 퀘스트 - 수호자의 시련",
+          images: [
+            "https://assets.playnccdn.com/uikit/cnb/3.2.0/img/bi/bi-lineageclassic-type1.png"
+          ],
+          desc: "상아탑과 하이네 지역을 넘나드는 고난이도 퀘스트로 45레벨 장비와 고위 마법 습득 자격을 얻습니다.",
+          rewards: "수호자의 반지, 마나 망토, 엘븐 와퍼 등"
         }
       ],
       totem: [
         {
-          title: "오크족 토템 수집",
-          desc: "간디, 네루가, 아투바 등 오크 부족을 사냥하여 얻은 토템을 아데나로 교환하십시오.",
-          image: "https://static.plaync.com/ingame/lineageclassic/guide/img/totem_oak.jpg",
-          tag: "Adena",
-          info: "네루가 토템: 확률적 주문서 보상"
+          title: "오크 토템 퀘스트 (아데나 벌이)",
+          images: [
+            "https://lineageclassic.plaync.com/ko-kr/guidebook/view?title=%ED%86%A0%ED%85%9C%20%ED%80%98%EC%8A%A4%ED%8A%B8/img/img_guide_totem_01.png",
+            "https://lineageclassic.plaync.com/ko-kr/guidebook/view?title=%ED%86%A0%ED%85%9C%20%ED%80%98%EC%8A%A4%ED%8A%B8/img/img_guide_totem_05.png"
+          ],
+          desc: "간디, 네루가, 아투바 등 각 오크 부족의 토템을 모아 아데나 및 주문서로 교환하세요.",
+          rewards: "아데나, 갑옷 마법 주문서, 무기 마법 주문서"
         }
       ]
     };
 
     function renderQuests(category) {
-      const grid = document.getElementById('quest-grid');
-      grid.innerHTML = QUEST_DATA[category].map(item => `
+      const container = document.getElementById('quest-content');
+      container.innerHTML = QUEST_DATA[category].map(q => `
         <article class="visual-card">
-          <div class="card-image-box">
-            <img src="${item.image}" alt="${item.title}" onerror="this.src='https://assets.playnccdn.com/common/lineageclassic.png'; this.style.objectFit='contain';">
-            <span class="card-tag">${item.tag}</span>
+          <div class="card-image-box" style="height: auto; display: flex; flex-direction: column; gap: 5px;">
+            ${q.images.map(img => `<img src="${img}" style="width:100%; object-fit: cover;" onerror="this.style.display='none'">`).join('')}
           </div>
           <div class="card-details">
-            <h3>${item.title}</h3>
-            <p>${item.desc}</p>
-            <div style="margin-top: 1rem; color:var(--primary); font-size: 0.9rem; padding: 1rem; background:rgba(0,0,0,0.2); border-radius:8px;">
-               <i data-lucide="info" size="14" style="vertical-align:middle;"></i> ${item.info}
+            <h3>${q.title}</h3>
+            <p>${q.desc}</p>
+            <div style="margin-top: 1rem; padding: 1rem; background: rgba(0,0,0,0.2); border-radius: 8px;">
+              <strong style="color:var(--primary);">보상:</strong> ${q.rewards}
             </div>
           </div>
         </article>
       `).join('');
-      lucide.createIcons();
     }
 
     document.querySelectorAll('.tab-btn').forEach(btn => {
@@ -176,8 +112,7 @@
         renderQuests(btn.dataset.category);
       };
     });
-
-    renderQuests('level15');
+    renderQuests('level');
     lucide.createIcons();
   </script>
 </body>
