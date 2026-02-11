@@ -16,15 +16,15 @@
     .quest-content { flex-grow: 1; background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 2.5rem; min-height: 600px; }
     .quest-section { margin-bottom: 3rem; }
     .quest-section h2 { color: var(--primary); font-size: 2rem; margin-bottom: 1.5rem; border-bottom: 2px solid var(--border); padding-bottom: 0.5rem; font-family: 'Cinzel', serif; }
-    .quest-section h3 { color: #fff; font-size: 1.4rem; margin: 2rem 0 1rem; display: flex; align-items: center; gap: 0.5rem; }
+    .quest-section h3 { color: #fff; font-size: 1.4rem; margin: 2.5rem 0 1rem; display: flex; align-items: center; gap: 0.5rem; border-left: 4px solid var(--primary); padding-left: 1rem; }
     .quest-step { display: flex; gap: 1.5rem; margin-bottom: 2rem; background: rgba(0,0,0,0.2); padding: 1.5rem; border-radius: 10px; border: 1px solid var(--border); }
-    .quest-step img { width: 280px; height: 180px; object-fit: cover; border-radius: 8px; border: 1px solid #333; flex-shrink: 0; }
+    .quest-step img { width: 320px; height: auto; border-radius: 8px; border: 1px solid #333; flex-shrink: 0; }
     .step-info { flex-grow: 1; }
     .step-info h4 { color: var(--primary-light); font-size: 1.1rem; margin-bottom: 0.8rem; }
-    .step-info p { color: var(--text-dim); font-size: 0.95rem; line-height: 1.6; }
-    .reward-box { display: flex; gap: 1rem; margin-top: 1rem; flex-wrap: wrap; }
-    .reward-item { display: flex; align-items: center; gap: 0.5rem; background: rgba(227, 192, 141, 0.1); padding: 0.5rem 1rem; border-radius: 20px; border: 1px solid rgba(227, 192, 141, 0.3); color: var(--primary); font-size: 0.9rem; font-weight: 700; }
-    .npc-tag { display: inline-block; background: #333; color: #fff; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; margin-right: 5px; }
+    .step-info p { color: var(--text-dim); font-size: 0.95rem; line-height: 1.6; margin-bottom: 0.5rem; }
+    .reward-box { display: flex; gap: 0.8rem; margin-top: 1rem; flex-wrap: wrap; }
+    .reward-item { display: flex; align-items: center; gap: 0.5rem; background: rgba(227, 192, 141, 0.1); padding: 0.4rem 0.8rem; border-radius: 6px; border: 1px solid rgba(227, 192, 141, 0.3); color: var(--primary); font-size: 0.85rem; font-weight: 700; }
+    .npc-tag { display: inline-block; background: #444; color: #fff; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; margin-right: 5px; }
   </style>
 </head>
 <body>
@@ -49,8 +49,6 @@
       <aside class="quest-sidebar">
         <button class="active" onclick="renderContent('lv15')">15레벨 퀘스트</button>
         <button onclick="renderContent('lv30')">30레벨 퀘스트</button>
-        <button onclick="renderContent('lv45')">45레벨 퀘스트</button>
-        <button onclick="renderContent('lv50')">50레벨 퀘스트</button>
         <button onclick="renderContent('totem')">토템 퀘스트</button>
       </aside>
       
@@ -65,44 +63,56 @@
       lv15: `
         <div class="quest-section">
           <h2>15레벨 퀘스트</h2>
-          <p style="color:var(--text-dim); margin-bottom:2rem;">각 클래스별로 주어지는 첫 번째 시련입니다. 기본적인 조작과 전투를 익히고 초반 핵심 장비를 획득할 수 있습니다.</p>
+          <p style="color:var(--text-dim); margin-bottom:2rem;">리니지 클래식의 첫 번째 시련입니다. 클래스별 특정 NPC를 찾아가 임무를 완수하십시오.</p>
           
-          <h3><i data-lucide="sword"></i> 군주: 붉은 기사의 검</h3>
+          <h3><i data-lucide="crown"></i> 군주: 붉은 기사의 시련</h3>
           <div class="quest-step">
-            <img src="https://fizz-download.playnccdn.com/download/v2/buckets/conti-upload/files/19bfd25ee0e-5897c344-0c3d-4ce7-b675-f7825d755e90" onerror="this.src='https://assets.playnccdn.com/common/lineageclassic.png'">
+            <img src="image/quest_monarch_15.png" alt="군주 15레벨 퀘스트">
             <div class="step-info">
-              <h4>1. 군터의 시험</h4>
-              <p><span class="npc-tag">NPC</span> <strong>건 (말하는 섬)</strong></p>
-              <p>말하는 섬의 '건'을 찾아가면 흑기사 수색대를 처치하고 '수색 문서'를 가져오라고 합니다. 섬 북쪽 숲에서 흑기사를 사냥하세요.</p>
+              <h4>수색 문서 회수</h4>
+              <p><span class="npc-tag">시작 NPC</span> <strong>건 (말하는 섬)</strong></p>
+              <p>말하는 섬 북쪽 지역에서 출현하는 흑기사 수색대를 사냥하여 '수색 문서'를 획득하십시오. 이를 건에게 전달하면 군주의 자질을 증명할 수 있습니다.</p>
               <div class="reward-box">
-                <span class="reward-item"><i data-lucide="gift"></i> 붉은 기사의 검</span>
-                <span class="reward-item"><i data-lucide="gift"></i> 군주의 망토</span>
+                <span class="reward-item">붉은 기사의 검</span>
               </div>
             </div>
           </div>
 
-          <h3><i data-lucide="shield"></i> 기사: 붉은 기사의 두건</h3>
+          <h3><i data-lucide="sword"></i> 기사: 리키의 의뢰</h3>
           <div class="quest-step">
-            <img src="https://fizz-download.playnccdn.com/download/v2/buckets/conti-upload/files/19bfd25ee0e-5897c344-0c3d-4ce7-b675-f7825d755e94" onerror="this.src='https://assets.playnccdn.com/common/lineageclassic.png'">
+            <img src="image/quest_knight_15.png" alt="기사 15레벨 퀘스트">
             <div class="step-info">
-              <h4>1. 리키의 의뢰</h4>
-              <p><span class="npc-tag">NPC</span> <strong>리키 (은기사 마을)</strong></p>
-              <p>은기사 마을의 '리키'는 흑기사의 맹세서를 요구합니다. 마을 주변의 흑기사를 처치하여 맹세서를 획득하고 돌아오세요.</p>
+              <h4>흑기사의 서약서</h4>
+              <p><span class="npc-tag">시작 NPC</span> <strong>리키 (은기사 마을)</strong></p>
+              <p>은기사 마을 주변의 흑기사를 처치하고 '흑기사의 서약서'를 입수하십시오. 리키에게 가져다주면 기사의 방어구를 보상으로 줍니다.</p>
               <div class="reward-box">
-                <span class="reward-item"><i data-lucide="gift"></i> 붉은 기사의 두건 (AC-2)</span>
+                <span class="reward-item">붉은 기사의 두건 (AC-2)</span>
               </div>
             </div>
           </div>
 
-          <h3><i data-lucide="feather"></i> 요정: 요정족 보물</h3>
+          <h3><i data-lucide="feather"></i> 요정: 네루파의 시험</h3>
           <div class="quest-step">
-            <img src="https://fizz-download.playnccdn.com/download/v2/buckets/conti-upload/files/19bfd25ee0e-5897c344-0c3d-4ce7-b675-f7825d755e92" onerror="this.src='https://assets.playnccdn.com/common/lineageclassic.png'">
+            <img src="image/quest_elf_15.png" alt="요정 15레벨 퀘스트">
             <div class="step-info">
-              <h4>1. 네루파의 부탁</h4>
-              <p><span class="npc-tag">NPC</span> <strong>네루파 (요정 숲)</strong></p>
-              <p>네루파는 오크들에게 도난당한 요정족 보물을 찾아달라고 합니다. 오크 숲에서 오크들을 사냥하여 마법서를 모으세요.</p>
+              <h4>요정족 보물 회수</h4>
+              <p><span class="npc-tag">시작 NPC</span> <strong>네루파 (요정 숲)</strong></p>
+              <p>오크들이 훔쳐간 요정족의 보물을 되찾아야 합니다. 오크 부족들을 사냥하여 증표를 모아 네루파에게 전달하십시오.</p>
               <div class="reward-box">
-                <span class="reward-item"><i data-lucide="gift"></i> 요정족 헬름 (체력/민첩 택1)</span>
+                <span class="reward-item">요정족 보물 (헬름)</span>
+              </div>
+            </div>
+          </div>
+
+          <h3><i data-lucide="wand"></i> 마법사: 재매의 부름</h3>
+          <div class="quest-step">
+            <img src="image/quest_wizard_15.png" alt="마법사 15레벨 퀘스트">
+            <div class="step-info">
+              <h4>구울과 해골의 잔해</h4>
+              <p><span class="npc-tag">시작 NPC</span> <strong>재매 (말하는 섬)</strong></p>
+              <p>마법의 기초를 다지기 위해 언데드 몬스터인 구울과 해골을 사냥하고 부속물을 수집하여 재매에게 제출하십시오.</p>
+              <div class="reward-box">
+                <span class="reward-item">저주받은 마력서 (INT+2)</span>
               </div>
             </div>
           </div>
@@ -111,70 +121,58 @@
       lv30: `
         <div class="quest-section">
           <h2>30레벨 퀘스트</h2>
-          <p style="color:var(--text-dim); margin-bottom:2rem;">진정한 모험가로 거듭나는 시기입니다. 클래스별 전용 무기를 획득하여 전투력이 대폭 상승합니다.</p>
+          <p style="color:var(--text-dim); margin-bottom:2rem;">중급 모험가로 인정받는 과정입니다. 클래스별 전용 무기를 획득할 수 있습니다.</p>
           
-          <h3><i data-lucide="sword"></i> 기사: 진 레이피어</h3>
+          <h3><i data-lucide="crown"></i> 군주: 왕가의 혈통</h3>
           <div class="quest-step">
-            <img src="https://fizz-download.playnccdn.com/download/v2/buckets/conti-upload/files/19c30358136-73b20068-a463-44c7-ae16-b9c22e6f4ef1" onerror="this.src='https://assets.playnccdn.com/common/lineageclassic.png'">
+            <img src="image/quest_monarch_30.png" alt="군주 30레벨 퀘스트">
             <div class="step-info">
-              <h4>1. 짐의 과거</h4>
-              <p><span class="npc-tag">NPC</span> <strong>짐 (글루디오 던전 7층)</strong></p>
-              <p>던전 깊은 곳에 있는 '짐'을 만나야 합니다. 그는 배신자에게 복수해달라며 시련의 동굴로 안내합니다. 라미아를 처치하세요.</p>
+              <h4>변종 여왕 개미 처단</h4>
+              <p><span class="npc-tag">시작 NPC</span> <strong>아리아 (우드벡 마을)</strong></p>
+              <p>개미굴에 침입하여 변종 여왕 개미를 처치해야 합니다. 거대 개미로의 변신이 필요하며, 군주의 통솔력을 증명하는 시련입니다.</p>
               <div class="reward-box">
-                <span class="reward-item"><i data-lucide="gift"></i> 진 레이피어 (손상되지 않음)</span>
+                <span class="reward-item">군주의 위엄 (망토)</span>
+                <span class="reward-item">콜 클랜 (마법서)</span>
               </div>
             </div>
           </div>
 
-          <h3><i data-lucide="feather"></i> 요정: 화염의 활 / 달의 장궁</h3>
+          <h3><i data-lucide="sword"></i> 기사: 군터의 시험</h3>
           <div class="quest-step">
-            <img src="https://fizz-download.playnccdn.com/download/v2/buckets/conti-upload/files/19bfd25ee0e-5897c344-0c3d-4ce7-b675-f7825d755e95" onerror="this.src='https://assets.playnccdn.com/common/lineageclassic.png'">
+            <img src="image/quest_knight_30.png" alt="기사 30레벨 퀘스트">
             <div class="step-info">
-              <h4>1. 저주받은 정령</h4>
-              <p><span class="npc-tag">NPC</span> <strong>네루파 (요정 숲)</strong></p>
-              <p>어둠에 물든 정령들을 정화해야 합니다. 던전에서 배신자의 해골을 처치하고 정령의 수정을 획득하세요.</p>
+              <h4>웅골리언트의 발톱</h4>
+              <p><span class="npc-tag">시작 NPC</span> <strong>군터 (말하는 섬)</strong></p>
+              <p>말하는 섬의 거대 거미 웅골리언트를 사냥하여 발톱을 획득하십시오. 이후 게라드와 오림을 거치는 연속 퀘스트가 진행됩니다.</p>
               <div class="reward-box">
-                <span class="reward-item"><i data-lucide="gift"></i> 화염의 활</span>
-                <span class="reward-item"><i data-lucide="gift"></i> 요정족 티셔츠</span>
+                <span class="reward-item">진 레이피어</span>
               </div>
             </div>
           </div>
-        </div>
-      `,
-      lv45: `
-        <div class="quest-section">
-          <h2>45레벨 퀘스트</h2>
-          <p style="color:var(--text-dim); margin-bottom:2rem;">고난이도의 퀘스트입니다. 혈맹원의 도움이나 철저한 준비가 필요합니다.</p>
-          
-          <h3><i data-lucide="crown"></i> 군주: 왕가의 문장</h3>
+
+          <h3><i data-lucide="feather"></i> 요정: 정령의 부름</h3>
           <div class="quest-step">
-            <img src="https://assets.playnccdn.com/uikit/cnb/3.2.0/img/bi/bi-lineageclassic-type1.png" onerror="this.src='https://assets.playnccdn.com/common/lineageclassic.png'">
+            <img src="image/quest_elf_30.png" alt="요정 30레벨 퀘스트">
             <div class="step-info">
-              <h4>1. 흩어진 문장</h4>
-              <p>배신당한 오크 대장을 찾아 왕가의 문장 조각을 모아야 합니다. 파티 플레이가 권장됩니다.</p>
+              <h4>언데드 배신자 처단</h4>
+              <p><span class="npc-tag">시작 NPC</span> <strong>디롱 (말하는 섬 던전)</strong></p>
+              <p>말하는 섬 던전 지하에서 배신한 언데드들을 처치하고 증표를 모으십시오. 요정족 티셔츠와 전용 무기 제작 재료를 얻게 됩니다.</p>
               <div class="reward-box">
-                <span class="reward-item"><i data-lucide="gift"></i> 수호자의 반지</span>
-                <span class="reward-item"><i data-lucide="gift"></i> 연합 군주 권한</span>
+                <span class="reward-item">요정족 티셔츠</span>
+                <span class="reward-item">화염의 활 (제작권)</span>
               </div>
             </div>
           </div>
-        </div>
-      `,
-      lv50: `
-        <div class="quest-section">
-          <h2>50레벨 퀘스트</h2>
-          <p style="color:var(--text-dim); margin-bottom:2rem;">전설적인 아이템을 얻기 위한 최후의 시련입니다. 재생의 성소로 향하십시오.</p>
-          
+
+          <h3><i data-lucide="wand"></i> 마법사: 마력의 원천</h3>
           <div class="quest-step">
-            <img src="https://static.plaync.com/ingame/lineageclassic/guide/img/quest_50.jpg" onerror="this.src='https://assets.playnccdn.com/common/lineageclassic.png'">
+            <img src="image/quest_wizard_30.png" alt="마법사 30레벨 퀘스트">
             <div class="step-info">
-              <h4>1. 디가르뎅의 의뢰</h4>
-              <p><span class="npc-tag">NPC</span> <strong>디가르뎅 (상아탑 3층)</strong></p>
-              <p>마족 신전을 통해 재생의 성소로 잠입해야 합니다. 1층부터 3층까지 열쇠를 얻어 제단을 파괴하십시오.</p>
+              <h4>개렌의 지혜</h4>
+              <p><span class="npc-tag">시작 NPC</span> <strong>개렌</strong></p>
+              <p>더 높은 단계의 마법을 사용하기 위해 마력의 정수가 담긴 아이템들을 수집해야 합니다. 시련을 통과하여 수정 지팡이를 획득하십시오.</p>
               <div class="reward-box">
-                <span class="reward-item"><i data-lucide="gift"></i> 황금 지휘봉</span>
-                <span class="reward-item"><i data-lucide="gift"></i> 마나의 지팡이</span>
-                <span class="reward-item"><i data-lucide="gift"></i> 소멸의 검</span>
+                <span class="reward-item">수정 지팡이</span>
               </div>
             </div>
           </div>
@@ -182,29 +180,17 @@
       `,
       totem: `
         <div class="quest-section">
-          <h2>토템 퀘스트</h2>
-          <p style="color:var(--text-dim); margin-bottom:2rem;">오크 숲에서 진행되는 반복 퀘스트입니다. 아데나 벌이에 최적화되어 있습니다.</p>
+          <h2>토템 퀘스트 (반복)</h2>
+          <p style="color:var(--text-dim); margin-bottom:2rem;">오크 숲에서 진행되는 아데나 파밍의 핵심 퀘스트입니다.</p>
           
-          <h3><i data-lucide="coins"></i> 아데나 수집</h3>
           <div class="quest-step">
             <img src="https://lineageclassic.plaync.com/ko-kr/guidebook/view?title=%ED%86%A0%ED%85%9C%20%ED%80%98%EC%8A%A4%ED%8A%B8/img/img_guide_totem_01.png" onerror="this.src='https://assets.playnccdn.com/common/lineageclassic.png'">
             <div class="step-info">
-              <h4>1. 오크 토템 수집</h4>
-              <p>오크 숲의 간디, 네루가, 아투바, 두다마라 오크를 사냥하면 토템을 얻을 수 있습니다. 마을의 수집가에게 가져가세요.</p>
+              <h4>오크 부족 토템 수집</h4>
+              <p>오크 숲의 간디, 네루가, 아투바 오크 등을 사냥하고 토템을 모으십시오. 마을의 오크 수집가에게 가져가면 아데나로 교환해 줍니다.</p>
               <div class="reward-box">
-                <span class="reward-item"><i data-lucide="coins"></i> 30 ~ 200 아데나 (종류별 상이)</span>
-              </div>
-            </div>
-          </div>
-
-          <h3><i data-lucide="scroll"></i> 대박의 기회</h3>
-          <div class="quest-step">
-            <img src="https://lineageclassic.plaync.com/ko-kr/guidebook/view?title=%ED%86%A0%ED%85%9C%20%ED%80%98%EC%8A%A4%ED%8A%B8/img/img_guide_totem_05.png" onerror="this.src='https://assets.playnccdn.com/common/lineageclassic.png'">
-            <div class="step-info">
-              <h4>2. 마법사의 연구 재료</h4>
-              <p>네루가 오크 토템은 특별합니다. 확률적으로 마법 주문서(데이, 젤)로 교환해 줍니다.</p>
-              <div class="reward-box">
-                <span class="reward-item"><i data-lucide="sparkles"></i> 무기/갑옷 마법 주문서</span>
+                <span class="reward-item">아데나 (부족별 상이)</span>
+                <span class="reward-item">마법 주문서 (네루가 부족)</span>
               </div>
             </div>
           </div>
@@ -213,16 +199,21 @@
     };
 
     function renderContent(key) {
-      document.getElementById('main-content').innerHTML = QUEST_DB[key];
+      const main = document.getElementById('main-content');
+      main.innerHTML = QUEST_DB[key];
       
       document.querySelectorAll('.quest-sidebar button').forEach(btn => btn.classList.remove('active'));
-      event.target.classList.add('active');
+      const activeBtn = Array.from(document.querySelectorAll('.quest-sidebar button')).find(btn => btn.innerText.includes(key === 'lv15' ? '15레벨' : key === 'lv30' ? '30레벨' : '토템'));
+      if (activeBtn) activeBtn.classList.add('active');
       
       lucide.createIcons();
+      window.scrollTo(0, 0);
     }
 
-    // 초기 로드
-    renderContent('lv15');
+    window.onload = () => {
+      renderContent('lv15');
+      lucide.createIcons();
+    };
   </script>
 </body>
 </html>
