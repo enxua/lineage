@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="referrer" content="no-referrer">
+  <title>Lineage Classic - 퀘스트</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+  <div class="app-container">
+    <header class="main-header">
+      <a href="index.html" class="logo-link">
+        <i data-lucide="shield-check" size="48" style="color: var(--primary);"></i>
+        <div class="logo-text">
+          <span class="line1">LINEAGE CLASSIC</span>
+          <span class="line2">KNOWLEDGE BASE</span>
+        </div>
+      </a>
+      <nav class="nav-menu">
+        <a href="index.html" class="nav-item">
+          <i data-lucide="book-open"></i>
+          <span>사전</span>
+        </a>
+        <a href="quests.html" class="nav-item active">
+          <i data-lucide="scroll"></i>
+          <span>퀘스트</span>
+        </a>
+        <a href="map.html" class="nav-item">
+          <i data-lucide="map"></i>
+          <span>지도</span>
+        </a>
+        <a href="simulation.html" class="nav-item">
+          <i data-lucide="flask-conical"></i>
+          <span>모의실험</span>
+        </a>
+      </nav>
+    </header>
+
+    <div class="dictionary-controls">
+      <nav class="category-tabs">
+        <button class="tab-btn active" data-category="level">
+          <i data-lucide="award"></i> 레벨 퀘스트
+        </button>
+        <button class="tab-btn" data-category="totem">
+          <i data-lucide="gem"></i> 토템 퀘스트
+        </button>
+      </nav>
+    </div>
+
+    <main id="quest-grid" class="content-grid"></main>
+  </div>
+
+  <script>
+    const QUEST_DATA = {
+      level: [
+        {
+          title: "15레벨 퀘스트",
+          desc: "각 클래스별로 주어지는 첫 번째 시련입니다. 말하는 섬과 은기사 마을에서 자질을 증명하십시오.",
+          image: "https://fizz-download.playnccdn.com/download/v2/buckets/conti-upload/files/19bfd25ee0e-5897c344-0c3d-4ce7-b675-f7825d755e94",
+          tag: "LV.15"
+        },
+        {
+          title: "30레벨 퀘스트",
+          desc: "중급 모험가로 거듭나기 위한 과정입니다. 클래스별 전용 장비와 보상을 획득할 수 있습니다.",
+          image: "https://fizz-download.playnccdn.com/download/v2/buckets/conti-upload/files/19bfd25ee0e-5897c344-0c3d-4ce7-b675-f7825d755e95",
+          tag: "LV.30"
+        },
+        {
+          title: "45레벨 퀘스트",
+          desc: "진정한 영웅의 길로 들어서는 단계입니다. 고난이도의 임무를 완수하고 강력한 유물을 얻으십시오.",
+          image: "https://assets.playnccdn.com/uikit/cnb/3.2.0/img/bi/bi-lineageclassic-type1.png",
+          tag: "LV.45"
+        },
+        {
+          title: "50레벨 퀘스트",
+          desc: "전설적인 힘을 얻기 위한 마지막 관문입니다. 클래스의 정점에 도달한 자만이 수행 가능합니다.",
+          image: "https://static.inven.co.kr/column/2026/02/08/news/i1779810777.webp",
+          tag: "LV.50"
+        }
+      ],
+      totem: [
+        {
+          title: "간디 오크 토템",
+          desc: "오크 숲 주변의 간디 오크들을 처치하고 토템을 수집하여 아데나로 교환하십시오.",
+          image: "https://lineageclassic.plaync.com/ko-kr/guidebook/view?title=%ED%86%A0%ED%85%9C%20%ED%80%98%EC%8A%A4%ED%8A%B8/img/img_guide_totem_01.png",
+          tag: "ADENA"
+        },
+        {
+          title: "네루가 오크 토템",
+          desc: "강력한 네루가 오크들이 드롭하는 토템입니다. 희귀한 아이템으로 교환될 확률이 높습니다.",
+          image: "https://lineageclassic.plaync.com/ko-kr/guidebook/view?title=%ED%86%A0%ED%85%9C%20%ED%80%98%EC%8A%A4%ED%8A%B8/img/img_guide_totem_05.png",
+          tag: "SCROLL"
+        },
+        {
+          title: "아투바 오크 토템",
+          desc: "아투바 오크들은 다른 오크들보다 강력합니다. 충분한 준비 후 토템 수집에 도전하십시오.",
+          image: "https://static.inven.co.kr/column/2026/02/08/news/i1779810777.webp",
+          tag: "REWARD"
+        }
+      ]
+    };
+
+    function renderQuests(category) {
+      const grid = document.getElementById('quest-grid');
+      grid.innerHTML = QUEST_DATA[category].map(item => `
+        <article class="visual-card">
+          <div class="card-image-box">
+            <img src="${item.image}" alt="${item.title}" onerror="this.src='https://static.inven.co.kr/column/2026/02/08/news/i1779810777.webp'">
+            <span class="badge" style="position: absolute; top: 1rem; right: 1rem; background: var(--gold-gradient); color: #000;">${item.tag}</span>
+          </div>
+          <div class="card-details">
+            <h3>${item.title}</h3>
+            <p>${item.desc}</p>
+            <div class="card-footer">
+              <span class="badge">퀘스트 가이드</span>
+              <i data-lucide="chevron-right" style="color:var(--primary);"></i>
+            </div>
+          </div>
+        </article>
+      `).join('');
+      lucide.createIcons();
+    }
+
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.onclick = () => {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        renderQuests(btn.dataset.category);
+      };
+    });
+
+    renderQuests('level');
+    lucide.createIcons();
+  </script>
+</body>
+</html>

@@ -5,8 +5,7 @@ class LineageApp {
     this.currentCategory = 'items';
     this.searchQuery = '';
     this.expandedRows = new Set();
-    this.data = DATA;
-
+    this.data = DATA || { items: [], spells: [], monsters: [], crafting: [] };
     this.init();
   }
 
@@ -14,7 +13,6 @@ class LineageApp {
     this.cacheDOM();
     this.bindEvents();
     this.render();
-    lucide.createIcons();
   }
 
   cacheDOM() {
@@ -27,19 +25,21 @@ class LineageApp {
 
   bindEvents() {
     this.tabBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
+      btn.onclick = () => {
         this.tabBtns.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
-        this.currentCategory = btn.dataset.category;
+        this.currentCategory = btn.getAttribute('data-category');
         this.expandedRows.clear();
         this.render();
-      });
+      };
     });
 
-    this.searchInput.addEventListener('input', (e) => {
-      this.searchQuery = e.target.value.toLowerCase().trim();
-      this.render();
-    });
+    if (this.searchInput) {
+      this.searchInput.oninput = (e) => {
+        this.searchQuery = e.target.value.toLowerCase().trim();
+        this.render();
+      };
+    }
   }
 
   getFilteredData() {
@@ -47,10 +47,9 @@ class LineageApp {
     if (!this.searchQuery) return categoryData;
 
     return categoryData.filter(item => {
-      return (
-        item.name.toLowerCase().includes(this.searchQuery) ||
-        (item.stats && item.stats.toLowerCase().includes(this.searchQuery))
-      );
+      const name = (item.name || "").toLowerCase();
+      const stats = (item.stats || "").toLowerCase();
+      return name.includes(this.searchQuery) || stats.includes(this.searchQuery);
     });
   }
 
@@ -65,53 +64,55 @@ class LineageApp {
       this.noResults.classList.add('hidden');
     }
 
-    lucide.createIcons();
+    if (window.lucide) lucide.createIcons();
   }
 
   renderHeader() {
+    if (!this.tableHeader) return;
     const headers = {
       items: ['이름 / 분류', '인벤 상세 정보 (능력치/클래스/무게/드롭)'],
       spells: ['마법 이름', '마법 상세 정보 (소모MP/효과)'],
-      monsters: ['몬스터 이름', '레벨 / 속성 / 지역 / 드롭템']
+      monsters: ['몬스터 이름', '레벨 / 속성 / 지역 / 드롭템'],
+      crafting: ['아이템 이름', 'NPC / 제작 재료']
     };
 
-    this.tableHeader.innerHTML = headers[this.currentCategory]
+    const currentHeaders = headers[this.currentCategory] || headers.items;
+    this.tableHeader.innerHTML = currentHeaders
       .map(h => `<th>${h}</th>`)
       .join('');
   }
 
   renderBody(data) {
+    if (!this.tableBody) return;
     this.tableBody.innerHTML = '';
     const fragment = document.createDocumentFragment();
     
     data.forEach(item => {
       const row = document.createElement('tr');
       row.className = 'expandable-row';
-      
-      const isExpanded = this.expandedRows.has(item.id);
       row.innerHTML = this.getRowHTML(item);
       
-      row.addEventListener('click', () => {
+      row.onclick = () => {
         if (this.expandedRows.has(item.id)) this.expandedRows.delete(item.id);
         else this.expandedRows.add(item.id);
         this.render();
-      });
+      };
       
       fragment.appendChild(row);
 
-      if (isExpanded) {
+      if (this.expandedRows.has(item.id)) {
         const detailsRow = document.createElement('tr');
         detailsRow.className = 'details-row';
         detailsRow.innerHTML = `
-          <td colspan="2">
-            <div class="details-content">
-              <div class="detail-item">
-                <h4>상세 속성</h4>
-                <p>${item.stats || '정보 없음'}</p>
+          <td colspan="2" style="background: rgba(0,0,0,0.2); padding: 2rem;">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+              <div>
+                <h4 style="color:var(--primary); margin-bottom:0.5rem; font-size:0.9rem;">상세 정보</h4>
+                <p style="font-size:1rem;">${item.stats || '정보 없음'}</p>
               </div>
-              <div class="detail-item">
-                <h4>분류</h4>
-                <p>${item.category}</p>
+              <div>
+                <h4 style="color:var(--primary); margin-bottom:0.5rem; font-size:0.9rem;">분류</h4>
+                <p style="font-size:1rem;">${item.category}</p>
               </div>
             </div>
           </td>
@@ -127,35 +128,38 @@ class LineageApp {
     const defaultIcon = {
       items: 'sword',
       spells: 'wand-2',
-      monsters: 'ghost'
+      monsters: 'ghost',
+      crafting: 'hammer'
     }[this.currentCategory] || 'shield';
 
-    // referrerpolicy="no-referrer"가 핵심입니다.
-    const imageHTML = `
-      <div class="image-container">
-        <img src="${item.image}" 
-             referrerpolicy="no-referrer" 
-             alt="${item.name}" 
-             class="item-image" 
-             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-        <div class="default-icon-placeholder" style="display:none;"><i data-lucide="${defaultIcon}"></i></div>
-      </div>`;
-
+    const hasImage = item.image && item.image.length > 10;
+    
     return `
       <td>
         <div class="item-info">
-          ${imageHTML}
+          <div style="width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.05); border-radius: 8px;">
+            ${hasImage ? `
+              <img src="${item.image}" 
+                   referrerpolicy="no-referrer" 
+                   alt="${item.name}" 
+                   style="width: 32px; height: 32px; object-fit: contain;"
+                   onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+              <div class="default-icon-placeholder" style="display:none;"><i data-lucide="${defaultIcon}"></i></div>
+            ` : `
+              <div class="default-icon-placeholder"><i data-lucide="${defaultIcon}"></i></div>
+            `}
+          </div>
           <div>
-            <div class="item-name">${item.name}</div>
-            <span class="category-badge">${item.category}</span>
+            <div style="font-weight: 800; font-size: 1.1rem;">${item.name}</div>
+            <span class="category-badge" style="font-size: 0.75rem; background: rgba(255,255,255,0.1); padding: 0.1rem 0.5rem; border-radius: 4px; color: var(--text-dim);">${item.category}</span>
           </div>
         </div>
       </td>
-      <td class="stats-text">${item.stats}</td>
+      <td style="color: var(--text-dim); font-size: 0.95rem;">${item.stats}</td>
     `;
   }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+window.onload = () => {
   new LineageApp();
-});
+};

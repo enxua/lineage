@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="referrer" content="no-referrer">
+  <title>Lineage Classic - 월드맵</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+  <div class="app-container">
+    <header class="main-header">
+      <a href="index.html" class="logo-link">
+        <i data-lucide="shield-check" size="48" style="color: var(--primary);"></i>
+        <div class="logo-text">
+          <span class="line1">LINEAGE CLASSIC</span>
+          <span class="line2">KNOWLEDGE BASE</span>
+        </div>
+      </a>
+      <nav class="nav-menu">
+        <a href="index.html" class="nav-item">
+          <i data-lucide="book-open"></i>
+          <span>사전</span>
+        </a>
+        <a href="quests.html" class="nav-item">
+          <i data-lucide="scroll"></i>
+          <span>퀘스트</span>
+        </a>
+        <a href="map.html" class="nav-item active">
+          <i data-lucide="map"></i>
+          <span>지도</span>
+        </a>
+        <a href="simulation.html" class="nav-item">
+          <i data-lucide="flask-conical"></i>
+          <span>모의실험</span>
+        </a>
+      </nav>
+    </header>
+
+    <div class="dictionary-controls">
+      <nav class="category-tabs">
+        <button class="tab-btn active" data-category="village">
+          <i data-lucide="home"></i> 마을
+        </button>
+        <button class="tab-btn" data-category="field">
+          <i data-lucide="map-pin"></i> 사냥터
+        </button>
+        <button class="tab-btn" data-category="dungeon">
+          <i data-lucide="mountain"></i> 던전
+        </button>
+      </nav>
+    </div>
+
+    <main id="map-grid" class="content-grid"></main>
+  </div>
+
+  <script>
+    const MAP_DATA = {
+      village: [
+        {
+          title: "기란 마을",
+          desc: "아덴 대륙 최대의 상업 도시이자 모든 모험가들이 교류하는 중심지입니다.",
+          image: "https://fizz-download.playnccdn.com/download/v2/buckets/conti-upload/files/19bfd25ee0e-5897c344-0c3d-4ce7-b675-f7825d755e92",
+          tag: "CITY"
+        },
+        {
+          title: "말하는 섬",
+          desc: "초보자들이 시작하는 섬으로 바포메트가 군림하는 상징적인 장소입니다.",
+          image: "https://fizz-download.playnccdn.com/download/v2/buckets/conti-upload/files/19bfd25ee0e-5897c344-0c3d-4ce7-b675-f7825d755e93",
+          tag: "START"
+        },
+        {
+          title: "은기사 마을",
+          desc: "기사들의 수련지이자 용맹한 자들이 모여 모험을 준비하는 전통적인 마을입니다.",
+          image: "https://static.plaync.com/ingame/lineageclassic/guide/img/map_silverknight.jpg",
+          tag: "KNIGHT"
+        },
+        {
+          title: "글루딘 마을",
+          desc: "항구 도시로 다른 지역으로 이동하기 위한 교통의 요충지입니다.",
+          image: "https://static.inven.co.kr/column/2026/02/08/news/i1490153021.webp",
+          tag: "PORT"
+        }
+      ],
+      field: [
+        {
+          title: "용의 계곡",
+          desc: "강력한 드레이크와 언데드가 도사리는 고레벨 모험가를 위한 사냥터입니다.",
+          image: "https://fizz-download.playnccdn.com/download/v2/buckets/conti-upload/files/19bfd25ee0e-5897c344-0c3d-4ce7-b675-f7825d755e96",
+          tag: "ELITE"
+        },
+        {
+          title: "필드 보스 구역",
+          desc: "강력한 필드 보스들이 등장하여 연합 전투가 벌어지는 핵심 구역입니다.",
+          image: "https://fizz-download.playnccdn.com/download/v2/buckets/conti-upload/files/19bfd25ee0e-5897c344-0c3d-4ce7-b675-f7825d755e97",
+          tag: "BOSS"
+        },
+        {
+          title: "화룡의 둥지",
+          desc: "불타는 대지에서 강력한 불 속성 몬스터들과 안타라스의 위협에 맞서야 합니다.",
+          image: "https://static.inven.co.kr/column/2026/02/08/news/i1490153021.webp",
+          tag: "HARD"
+        }
+      ],
+      dungeon: [
+        {
+          title: "글루디오 던전 (본던)",
+          desc: "지하 7층의 거대한 구조로 데스나이트가 군림하는 상징적인 장소입니다.",
+          image: "https://fizz-download.playnccdn.com/download/v2/buckets/conti-upload/files/19bfd25ee0e-5897c344-0c3d-4ce7-b675-f7825d755e90",
+          tag: "LEGEND"
+        },
+        {
+          title: "개미굴 던전",
+          desc: "윈다우드 사막 지하의 거대 미로이며 여왕 개미가 서식하고 있습니다.",
+          image: "https://fizz-download.playnccdn.com/download/v2/buckets/conti-upload/files/19bfd25ee0e-5897c344-0c3d-4ce7-b675-f7825d755e91",
+          tag: "NEST"
+        },
+        {
+          title: "상아탑",
+          desc: "마법사들의 성지로 층별로 다양한 차원의 몬스터들이 출현합니다.",
+          image: "https://static.inven.co.kr/column/2026/02/08/news/i1490153021.webp",
+          tag: "TOWER"
+        }
+      ]
+    };
+
+    function renderMaps(category) {
+      const grid = document.getElementById('map-grid');
+      grid.innerHTML = MAP_DATA[category].map(item => `
+        <article class="visual-card">
+          <div class="card-image-box" style="position: relative;">
+            <img src="${item.image}" alt="${item.title}" onerror="this.src='https://static.inven.co.kr/column/2026/02/08/news/i1490153021.webp'">
+            <span class="badge" style="position: absolute; top: 1rem; right: 1rem; background: var(--gold-gradient); color: #000;">${item.tag}</span>
+          </div>
+          <div class="card-details">
+            <h3>${item.title}</h3>
+            <p>${item.desc}</p>
+            <div class="card-footer">
+              <span class="badge">월드맵 정보</span>
+              <i data-lucide="map" size="18" style="color:var(--primary);"></i>
+            </div>
+          </div>
+        </article>
+      `).join('');
+      lucide.createIcons();
+    }
+
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.onclick = () => {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        renderMaps(btn.dataset.category);
+      };
+    });
+
+    renderMaps('village');
+    lucide.createIcons();
+  </script>
+</body>
+</html>

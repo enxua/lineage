@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="referrer" content="no-referrer">
+  <title>Lineage Classic - 시뮬레이션</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+  <div class="app-container">
+    <header class="main-header">
+      <a href="index.html" class="logo-link">
+        <i data-lucide="shield-check" size="48" style="color: var(--primary);"></i>
+        <div class="logo-text">
+          <span class="line1">LINEAGE CLASSIC</span>
+          <span class="line2">KNOWLEDGE BASE</span>
+        </div>
+      </a>
+      <nav class="nav-menu">
+        <a href="index.html" class="nav-item">
+          <i data-lucide="book-open"></i>
+          <span>사전</span>
+        </a>
+        <a href="quests.html" class="nav-item">
+          <i data-lucide="scroll"></i>
+          <span>퀘스트</span>
+        </a>
+        <a href="map.html" class="nav-item">
+          <i data-lucide="map"></i>
+          <span>지도</span>
+        </a>
+        <a href="simulation.html" class="nav-item active">
+          <i data-lucide="flask-conical"></i>
+          <span>모의실험</span>
+        </a>
+      </nav>
+    </header>
+
+    <main style="text-align: center; padding: 10rem 0;">
+      <div class="visual-card" style="display:inline-block; padding: 4rem; max-width: 600px;">
+        <i data-lucide="flask-conical" size="80" style="color: var(--primary); margin-bottom: 2rem;"></i>
+        <h2 style="color: var(--primary); font-size: 2.2rem; margin-bottom: 1.5rem; font-family: 'Cinzel', serif;">LABORATORY</h2>
+        <p style="color: var(--text-dim); font-size: 1.1rem;">강화 시뮬레이터 및 스탯 계산기가 곧 추가됩니다.</p>
+      </div>
+    </main>
+  </div>
+  <script>lucide.createIcons();</script>
+</body>
+</html>
