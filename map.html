@@ -4,9 +4,34 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="referrer" content="no-referrer">
-  <title>Lineage Classic - 지도</title>
+  <title>Lineage Classic - 지도 가이드</title>
   <link rel="stylesheet" href="style.css">
   <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    .map-container { display: flex; gap: 2rem; }
+    .map-nav { width: 220px; flex-shrink: 0; display: flex; flex-direction: column; gap: 0.5rem; }
+    .map-nav button { padding: 1rem; border-radius: 8px; background: var(--bg-card); border: 1px solid var(--border); color: var(--text-dim); text-align: left; cursor: pointer; transition: all 0.2s; font-weight: 700; display: flex; align-items: center; gap: 0.8rem; }
+    .map-nav button:hover, .map-nav button.active { background: var(--gold-gradient); color: #000; border-color: transparent; }
+    
+    .map-content { flex-grow: 1; display: grid; grid-template-columns: 1fr; gap: 2rem; }
+    
+    .map-header { background: var(--bg-card); padding: 2rem; border-radius: 12px; border: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; background-size: cover; background-position: center; position: relative; overflow: hidden; height: 250px; }
+    .map-header::before { content: ''; position: absolute; inset: 0; background: linear-gradient(to right, #000 30%, transparent); z-index: 1; }
+    .map-title { position: relative; z-index: 2; max-width: 60%; }
+    .map-title h2 { font-family: 'Cinzel', serif; font-size: 2.5rem; color: var(--primary); margin-bottom: 0.5rem; }
+    .map-title p { font-size: 1.1rem; color: #ccc; }
+
+    .info-section { background: var(--bg-card); padding: 2rem; border-radius: 12px; border: 1px solid var(--border); }
+    .info-section h3 { color: #fff; border-bottom: 1px solid var(--border); padding-bottom: 1rem; margin-bottom: 1.5rem; font-size: 1.3rem; }
+    
+    .data-table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+    .data-table th { text-align: left; color: var(--text-dim); padding: 0.8rem; border-bottom: 1px solid var(--border); font-size: 0.9rem; }
+    .data-table td { padding: 1rem 0.8rem; border-bottom: 1px solid rgba(255,255,255,0.05); color: #eee; font-size: 0.95rem; }
+    .data-table tr:last-child td { border-bottom: none; }
+    
+    .drop-item { display: inline-block; background: rgba(0,0,0,0.3); padding: 4px 10px; border-radius: 4px; margin: 2px; font-size: 0.85rem; border: 1px solid #333; }
+    .boss-badge { background: #8b0000; color: #fff; padding: 2px 6px; border-radius: 4px; font-size: 0.75rem; font-weight: bold; margin-right: 5px; }
+  </style>
 </head>
 <body>
   <div class="app-container">
@@ -15,100 +40,188 @@
         <i data-lucide="shield-check" size="48" style="color: var(--primary);"></i>
         <div class="logo-text">
           <span class="line1">LINEAGE CLASSIC</span>
-          <span class="line2">KNOWLEDGE BASE</span>
+          <span class="line2">WORLD MAP</span>
         </div>
       </a>
       <nav class="nav-menu">
-        <a href="index.html" class="nav-item">
-          <i data-lucide="book-open"></i><span>사전</span>
-        </a>
-        <a href="quests.html" class="nav-item">
-          <i data-lucide="scroll"></i><span>퀘스트</span>
-        </a>
-        <a href="map.html" class="nav-item active">
-          <i data-lucide="map"></i><span>지도</span>
-        </a>
-        <a href="simulation.html" class="nav-item">
-          <i data-lucide="flask-conical"></i><span>모의실험</span>
-        </a>
+        <a href="index.html" class="nav-item"><i data-lucide="book-open"></i><span>사전</span></a>
+        <a href="quests.html" class="nav-item"><i data-lucide="scroll"></i><span>퀘스트</span></a>
+        <a href="map.html" class="nav-item active"><i data-lucide="map"></i><span>지도</span></a>
+        <a href="simulation.html" class="nav-item"><i data-lucide="flask-conical"></i><span>모의실험</span></a>
       </nav>
     </header>
 
-    <div class="dictionary-controls">
-      <nav class="category-tabs">
-        <button class="tab-btn active" data-category="village">마을</button>
-        <button class="tab-btn" data-category="field">사냥터</button>
-        <button class="tab-btn" data-category="dungeon">던전</button>
+    <div class="map-container">
+      <nav class="map-nav">
+        <div style="font-size:0.9rem; color:var(--text-dim); margin: 0.5rem 0 0.5rem 0.5rem;">마을 (Town)</div>
+        <button class="active" onclick="renderMap('talking_island')"><i data-lucide="home"></i> 말하는 섬</button>
+        <button onclick="renderMap('giran')"><i data-lucide="home"></i> 기란 마을</button>
+        <button onclick="renderMap('silver')"><i data-lucide="home"></i> 은기사 마을</button>
+        
+        <div style="font-size:0.9rem; color:var(--text-dim); margin: 1.5rem 0 0.5rem 0.5rem;">사냥터 (Field)</div>
+        <button onclick="renderMap('dragon')"><i data-lucide="mountain"></i> 용의 계곡</button>
+        <button onclick="renderMap('orc')"><i data-lucide="tree-pine"></i> 오크 숲</button>
+        
+        <div style="font-size:0.9rem; color:var(--text-dim); margin: 1.5rem 0 0.5rem 0.5rem;">던전 (Dungeon)</div>
+        <button onclick="renderMap('gludio_dungeon')"><i data-lucide="skull"></i> 글루디오 던전</button>
+        <button onclick="renderMap('ant_cave')"><i data-lucide="skull"></i> 개미굴</button>
       </nav>
-    </div>
 
-    <main id="map-content" class="content-grid"></main>
+      <main id="map-detail" class="map-content">
+        <!-- Content loaded via JS -->
+      </main>
+    </div>
   </div>
 
   <script>
-    const MAP_DATA = {
-      village: [
-        {
-          title: "마을 소개 (기란, 은기사, 말하는 섬 등)",
-          images: [
-            "https://fizz-download.playnccdn.com/download/v2/buckets/conti-upload/files/19bfd25ee0e-5897c344-0c3d-4ce7-b675-f7825d755e92",
-            "https://fizz-download.playnccdn.com/download/v2/buckets/conti-upload/files/19bfd25ee0e-5897c344-0c3d-4ce7-b675-f7825d755e93"
-          ],
-          desc: "아덴 대륙의 주요 마을 정보입니다. 각 마을별 퀘스트 NPC와 편의 시설을 확인하세요.",
-          info: "기란: 상업 중심 / 은기사: 기사 수련 / 말섬: 시작의 땅"
-        }
-      ],
-      field: [
-        {
-          title: "필드 사냥터 가이드",
-          images: [
-            "https://fizz-download.playnccdn.com/download/v2/buckets/conti-upload/files/19bfd25ee0e-5897c344-0c3d-4ce7-b675-f7825d755e96",
-            "https://fizz-download.playnccdn.com/download/v2/buckets/conti-upload/files/19bfd25ee0e-5897c344-0c3d-4ce7-b675-f7825d755e97"
-          ],
-          desc: "용의 계곡, 요정 숲, 거울의 숲 등 아덴 대륙의 광활한 필드 사냥터입니다.",
-          info: "주요 사냥터: 용의 계곡, 화룡의 둥지, 오크 숲"
-        }
-      ],
-      dungeon: [
-        {
-          title: "던전 가이드 (본던, 개미굴 등)",
-          images: [
-            "https://fizz-download.playnccdn.com/download/v2/buckets/conti-upload/files/19bfd25ee0e-5897c344-0c3d-4ce7-b675-f7825d755e90",
-            "https://fizz-download.playnccdn.com/download/v2/buckets/conti-upload/files/19bfd25ee0e-5897c344-0c3d-4ce7-b675-f7825d755e91"
-          ],
-          desc: "글루디오 던전, 상아탑, 개미굴 등 리니지의 핵심 던전 내부 정보입니다.",
-          info: "주요 던전: 글루디오 던전(본던), 상아탑, 개미굴"
-        }
-      ]
+    const MAP_DB = {
+      talking_island: {
+        title: "말하는 섬 마을 (Talking Island)",
+        desc: "모든 모험가들의 고향. 기초적인 전투를 익히고 본토로 나아갈 준비를 하는 곳입니다.",
+        bg: "https://static.plaync.com/ingame/lineageclassic/guide/img/town_talkingisland.jpg",
+        npcs: [
+          { name: "건", role: "군주 퀘스트 수행", loc: "마을 중앙" },
+          { name: "제이", role: "마법사 퀘스트 수행", loc: "마을 동쪽" },
+          { name: "판도라", role: "잡화 상인", loc: "마을 서쪽" },
+          { name: "루카스", role: "치유사", loc: "광장" }
+        ],
+        monsters: [
+          { name: "허수아비", level: 1, drop: "없음" },
+          { name: "오크", level: 3, drop: "오크족 단검, 아데나" },
+          { name: "라이칸스로프", level: 15, drop: "초록 물약" }
+        ]
+      },
+      giran: {
+        title: "기란 마을 (Giran)",
+        desc: "아덴 대륙 최대의 상업 도시. 수많은 상점과 유저들이 모여 거래를 하는 경제의 중심지입니다.",
+        bg: "https://static.plaync.com/ingame/lineageclassic/guide/img/town_giran.jpg",
+        npcs: [
+          { name: "마법 주문서 상인", role: "마법서 판매", loc: "상점가" },
+          { name: "무기/방어구 상인", role: "장비 판매", loc: "상점가" },
+          { name: "아지트 관리인", role: "혈맹 아지트 경매", loc: "광장" }
+        ],
+        monsters: []
+      },
+      silver: {
+        title: "은기사 마을 (Silver Knight)",
+        desc: "사막 근처에 위치한 기사들의 훈련소. 거친 환경에서 살아남는 법을 배웁니다.",
+        bg: "https://static.plaync.com/ingame/lineageclassic/guide/img/town_silverknight.jpg",
+        npcs: [
+          { name: "리키", role: "기사 퀘스트 (15/30Lv)", loc: "수련장" },
+          { name: "대장장이", role: "장비 수리 및 제작", loc: "마을 입구" }
+        ],
+        monsters: []
+      },
+      dragon: {
+        title: "용의 계곡 (Dragon Valley)",
+        desc: "강력한 드레이크와 거대 해골들이 배회하는 죽음의 계곡. 고레벨 유저들의 주 사냥터입니다.",
+        bg: "https://static.plaync.com/ingame/lineageclassic/guide/img/field_dragonvalley.jpg",
+        npcs: [],
+        monsters: [
+          { name: "드레이크", level: 50, drop: "용의 비늘, 희귀 주문서", boss: true },
+          { name: "거대 해골", level: 35, drop: "철괴, 아데나" },
+          { name: "코카트리스", level: 38, drop: "보석류" },
+          { name: "오우거", level: 40, drop: "오우거의 벨트" }
+        ]
+      },
+      orc: {
+        title: "오크 숲 (Orc Forest)",
+        desc: "다양한 오크 부족들이 영역 다툼을 벌이는 숲. 토템 퀘스트를 위한 최적의 장소입니다.",
+        bg: "https://static.plaync.com/ingame/lineageclassic/guide/img/field_orcforest.jpg",
+        npcs: [],
+        monsters: [
+          { name: "간디 오크", level: 18, drop: "간디 오크 토템" },
+          { name: "네루가 오크", level: 20, drop: "네루가 오크 토템 (주문서 교환)" },
+          { name: "아투바 오크", level: 24, drop: "아투바 오크 토템" }
+        ]
+      },
+      gludio_dungeon: {
+        title: "글루디오 던전 (Main Dungeon)",
+        desc: "지하 7층으로 이루어진 거대한 던전. 층이 내려갈수록 강력한 언데드가 출현하며 7층에는 데스나이트가 군림합니다.",
+        bg: "https://static.plaync.com/ingame/lineageclassic/guide/img/dungeon_gludio.jpg",
+        npcs: [
+          { name: "오림", role: "비밀 상인 (7층)", loc: "7층 구석" }
+        ],
+        monsters: [
+          { name: "데스나이트", level: 52, drop: "데스나이트의 불검, 투명 망토", boss: true },
+          { name: "버그베어", level: 26, drop: "갑옷 마법 주문서" },
+          { name: "킹 버그베어", level: 30, drop: "축복받은 주문서" },
+          { name: "켈베로스", level: 35, drop: "용기의 물약" }
+        ]
+      },
+      ant_cave: {
+        title: "개미굴 (Ant Cave)",
+        desc: "윈다우드 사막 지하에 위치한 개미들의 왕국. 복잡한 미로 구조로 되어 있으며 여왕 개미를 보호하는 병정 개미들이 가득합니다.",
+        bg: "https://static.plaync.com/ingame/lineageclassic/guide/img/dungeon_antcave.jpg",
+        npcs: [
+          { name: "개미굴 관리인", role: "입장 안내", loc: "입구" }
+        ],
+        monsters: [
+          { name: "여왕 개미", level: 45, drop: "고대의 주문서, 흑정령의 수정", boss: true },
+          { name: "거대 병정 개미", level: 32, drop: "보석" },
+          { name: "거대 수호 개미", level: 30, drop: "축복받은 주문서" }
+        ]
+      }
     };
 
-    function renderMaps(category) {
-      const container = document.getElementById('map-content');
-      container.innerHTML = MAP_DATA[category].map(m => `
-        <article class="visual-card">
-          <div class="card-image-box" style="height: auto; display: flex; flex-direction: column; gap: 5px;">
-            ${m.images.map(img => `<img src="${img}" style="width:100%; object-fit: cover;" onerror="this.style.display='none'">`).join('')}
+    function renderMap(key) {
+      const data = MAP_DB[key];
+      const html = `
+        <div class="map-header" style="background-image: url('${data.bg}'), url('https://assets.playnccdn.com/common/lineageclassic.png');">
+          <div class="map-title">
+            <h2>${data.title}</h2>
+            <p>${data.desc}</p>
           </div>
-          <div class="card-details">
-            <h3>${m.title}</h3>
-            <p>${m.desc}</p>
-            <div style="margin-top: 1rem; color:var(--primary); font-size: 0.9rem;">
-               <strong>특이사항:</strong> ${m.info}
-            </div>
-          </div>
-        </article>
-      `).join('');
+        </div>
+
+        <div class="info-section">
+          <h3><i data-lucide="map-pin"></i> 주요 정보</h3>
+          ${data.npcs.length > 0 ? `
+            <h4 style="color:var(--primary); margin-top:1rem;">주요 NPC</h4>
+            <table class="data-table">
+              <thead><tr><th width="30%">이름</th><th width="40%">역할</th><th>위치</th></tr></thead>
+              <tbody>
+                ${data.npcs.map(npc => `<tr><td><strong>${npc.name}</strong></td><td>${npc.role}</td><td>${npc.loc}</td></tr>`).join('')}
+              </tbody>
+            </table>
+          ` : ''}
+
+          ${data.monsters.length > 0 ? `
+            <h4 style="color:var(--primary); margin-top:2rem;">출현 몬스터</h4>
+            <table class="data-table">
+              <thead><tr><th width="30%">이름 (레벨)</th><th>주요 드롭 아이템</th></tr></thead>
+              <tbody>
+                ${data.monsters.map(m => `
+                  <tr>
+                    <td>${m.boss ? '<span class="boss-badge">BOSS</span>' : ''} <strong>${m.name}</strong> <span style="color:#888;">(Lv.${m.level})</span></td>
+                    <td>
+                      ${m.drop.split(',').map(item => `<span class="drop-item">${item.trim()}</span>`).join('')}
+                    </td>
+                  </tr>
+                `).join('')}
+              </tbody>
+            </table>
+          ` : '<p style="color:#666; padding:1rem;">이 지역에는 몬스터가 출현하지 않습니다.</p>'}
+        </div>
+      `;
+      
+      document.getElementById('map-detail').innerHTML = html;
+      
+      document.querySelectorAll('.map-nav button').forEach(btn => btn.classList.remove('active'));
+      // Find button by onclick attribute containing the key
+      const buttons = document.querySelectorAll('.map-nav button');
+      for (let btn of buttons) {
+        if (btn.getAttribute('onclick').includes(key)) {
+          btn.classList.add('active');
+          break;
+        }
+      }
+      
+      lucide.createIcons();
     }
 
-    document.querySelectorAll('.tab-btn').forEach(btn => {
-      btn.onclick = () => {
-        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        renderMaps(btn.dataset.category);
-      };
-    });
-    renderMaps('village');
-    lucide.createIcons();
+    // 초기 로드
+    renderMap('talking_island');
   </script>
 </body>
 </html>
