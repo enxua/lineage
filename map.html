@@ -27,8 +27,18 @@
 
   <title>리니지 클래식 지도 - 월드맵/던전/사냥터 가이드 요약</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="canonical" href="https://enxua.github.io/lineage/map.html">
   <script src="https://unpkg.com/lucide@latest"></script>
   
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="리니지 클래식 지도 - 월드맵 & 던전 정보">
+  <meta property="og:description" content="마을, 사냥터, 던전 완전 정복. 층별 상세 지도와 주요 드롭 아이템 정보를 확인하세요.">
+  <meta property="og:image" content="https://static.plaync.com/ingame/lineageclassic/guide/img/town_giran.jpg">
+  <meta property="og:url" content="https://enxua.github.io/lineage/map.html">
+  <meta property="og:site_name" content="Lineage Classic Knowledge Base">
+
   <!-- GEO Structured Data -->
   <script type="application/ld+json">
   {
@@ -40,7 +50,6 @@
   </script>
 
   <style>
-    /* GEO Summary Box */
     .geo-summary { background: linear-gradient(135deg, rgba(227, 192, 141, 0.15) 0%, rgba(0,0,0,0) 100%); border: 1px solid var(--primary); padding: 1.5rem; border-radius: 12px; margin-bottom: 2rem; }
     .geo-summary h2 { font-size: 1.2rem !important; color: var(--primary) !important; margin-bottom: 1rem !important; border: none !important; padding: 0 !important; }
     .geo-summary p { font-size: 0.95rem; color: #eee; line-height: 1.6; }
@@ -77,30 +86,10 @@
     .gallery-item img { width: 100%; height: auto; display: block; }
     .gallery-item span { display: block; padding: 0.5rem; text-align: center; font-size: 0.85rem; color: var(--text-dim); background: rgba(0,0,0,0.5); }
 
-    /* Modal Style */
     #image-modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 1000; justify-content: center; align-items: center; padding: 2rem; cursor: zoom-out; }
     #modal-img { max-width: 95%; max-height: 95%; object-fit: contain; border: 2px solid var(--primary); border-radius: 8px; box-shadow: 0 0 50px rgba(0,0,0,1); }
     #modal-close { position: absolute; top: 2rem; right: 2rem; color: #fff; cursor: pointer; background: rgba(255,255,255,0.1); padding: 0.5rem; border-radius: 50%; }
   </style>
-
-  <!-- Structured Data (JSON-LD) -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [{
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Home",
-      "item": "https://enxua.github.io/lineage/"
-    },{
-      "@type": "ListItem",
-      "position": 2,
-      "name": "Maps",
-      "item": "https://enxua.github.io/lineage/map.html"
-    }]
-  }
-  </script>
 </head>
 <body>
   <div class="app-container">
@@ -156,7 +145,6 @@
     </div>
   </div>
 
-  <!-- Image Modal -->
   <div id="image-modal" onclick="this.style.display='none'">
     <i data-lucide="x" id="modal-close"></i>
     <img id="modal-img" src="" alt="Enlarged view">
