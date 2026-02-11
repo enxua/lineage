@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://enxua.github.io/lineage/sitemap.xml
