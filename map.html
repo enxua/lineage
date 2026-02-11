@@ -32,6 +32,11 @@
     
     .drop-item { display: inline-block; background: rgba(0,0,0,0.3); padding: 3px 8px; border-radius: 4px; margin: 2px; font-size: 0.8rem; border: 1px solid #333; }
     .boss-badge { background: #8b0000; color: #fff; padding: 2px 6px; border-radius: 4px; font-size: 0.75rem; font-weight: bold; margin-right: 5px; }
+
+    .image-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
+    .gallery-item { border-radius: 12px; overflow: hidden; border: 1px solid var(--border); background: #000; }
+    .gallery-item img { width: 100%; height: auto; display: block; }
+    .gallery-item span { display: block; padding: 0.5rem; text-align: center; font-size: 0.85rem; color: var(--text-dim); background: rgba(0,0,0,0.5); }
   </style>
 </head>
 <body>
@@ -73,8 +78,13 @@
         <button onclick="renderMap('dragon')"><i data-lucide="mountain"></i> 용의 계곡</button>
         
         <div class="map-nav-group">주요 던전</div>
+        <button onclick="renderMap('dungeon_talking')"><i data-lucide="skull"></i> 말하는 섬 던전</button>
+        <button onclick="renderMap('dungeon_fairy')"><i data-lucide="skull"></i> 요정 숲 던전</button>
         <button onclick="renderMap('gludio_dungeon')"><i data-lucide="skull"></i> 글루디오 던전</button>
+        <button onclick="renderMap('dungeon_samak')"><i data-lucide="skull"></i> 사막 던전</button>
         <button onclick="renderMap('ant_cave')"><i data-lucide="skull"></i> 개미굴</button>
+        <button onclick="renderMap('dungeon_giran')"><i data-lucide="skull"></i> 기란 던전</button>
+        <button onclick="renderMap('dungeon_dragon')"><i data-lucide="skull"></i> 용의 계곡 던전</button>
       </nav>
 
       <main id="map-detail" class="map-content">
@@ -180,7 +190,6 @@
         desc: "초보 모험가들을 위한 사냥터입니다. 고블린, 오크 등이 출현하며 안전하게 성장할 수 있습니다.",
         bg: "https://static.plaync.com/ingame/lineageclassic/guide/img/field_talkingisland.jpg",
         town_img: "image/field_talkingisland.png",
-        npcs: [],
         monsters: [
           { name: "고블린", level: 2, drop: "빨간 물약, 아데나" },
           { name: "오크", level: 3, drop: "오크족 단검, 아데나" },
@@ -192,7 +201,6 @@
         desc: "본토 사냥의 시작점입니다. 언데드 몬스터들이 많이 출몰하여 은 무기를 사용하기 좋습니다.",
         bg: "https://static.plaync.com/ingame/lineageclassic/guide/img/field_gludio.jpg",
         town_img: "image/field_gludin.png",
-        npcs: [],
         monsters: [
           { name: "늑대인간", level: 12, drop: "초록 물약, 마법서" },
           { name: "해골", level: 12, drop: "철괴, 아데나" },
@@ -204,7 +212,6 @@
         desc: "요정들을 위한 풍요로운 숲입니다. 제작 재료를 모으기에 최적의 장소입니다.",
         bg: "https://static.plaync.com/ingame/lineageclassic/guide/img/field_fairyforest.jpg",
         town_img: "image/field_fairy.png",
-        npcs: [],
         monsters: [
           { name: "엔트", level: 20, drop: "엔트의 줄기, 껍질" },
           { name: "판", level: 20, drop: "판의 뿔" },
@@ -216,7 +223,6 @@
         desc: "광활한 사막 지대입니다. 모래 속에 숨은 위험한 생물들이 모험가를 위협합니다.",
         bg: "https://static.plaync.com/ingame/lineageclassic/guide/img/field_windawood.jpg",
         town_img: "image/field_windawood.png",
-        npcs: [],
         monsters: [
           { name: "바실리스크", level: 32, drop: "바실리스크의 뿔" },
           { name: "하피", level: 26, drop: "마법서(헤이스트)" },
@@ -228,7 +234,6 @@
         desc: "황무지와 바위가 가득한 척박한 지역입니다. 강력한 오크 전사들이 서식합니다.",
         bg: "https://static.plaync.com/ingame/lineageclassic/guide/img/field_silverknight.jpg",
         town_img: "image/field_silverknight.png",
-        npcs: [],
         monsters: [
           { name: "오크 전사", level: 15, drop: "오크족 창" },
           { name: "버그베어", level: 24, drop: "갑옷 마법 주문서" }
@@ -239,41 +244,134 @@
         desc: "드레이크와 언데드가 출몰하는 최고 난이도의 사냥터입니다. 희귀한 주문서와 재료를 얻을 수 있습니다.",
         bg: "https://static.plaync.com/ingame/lineageclassic/guide/img/field_dragonvalley.jpg",
         town_img: "image/field_dragon.png",
-        npcs: [],
         monsters: [
           { name: "드레이크", level: 50, drop: "용의 비늘, 희귀 주문서", boss: true },
           { name: "코카트리스", level: 38, drop: "보석류" },
           { name: "오우거", level: 40, drop: "오우거의 벨트" }
         ]
       },
-      orc: {
-        title: "오크 숲 (Orc Forest)",
-        desc: "부족별 오크들이 영역 싸움을 벌이는 숲입니다. 토템 퀘스트를 통한 아데나 파밍의 명소입니다.",
-        bg: "https://static.plaync.com/ingame/lineageclassic/guide/img/field_orcforest.jpg",
-        npcs: [],
+      dungeon_talking: {
+        title: "말하는 섬 던전",
+        desc: "지하 2층으로 구성된 초보자용 던전입니다. 바포메트가 출현하는 곳으로 유명합니다.",
+        bg: "https://static.plaync.com/ingame/lineageclassic/guide/img/dungeon_talkingisland.jpg",
+        gallery: [
+          { img: "image/dungen_talkingisland_0.png", label: "던전 입구" },
+          { img: "image/dungen_talkingisland_1.jpg", label: "지하 1층" },
+          { img: "image/dungen_talkingisland_2.jpg", label: "지하 2층 (바포메트)" }
+        ],
         monsters: [
-          { name: "네루가 오크", level: 20, drop: "네루가 오크 토템" },
-          { name: "아투바 오크", level: 24, drop: "아투바 오크 토템" }
+          { name: "바포메트", level: 45, drop: "바포메트의 지팡이", boss: true },
+          { name: "좀비", level: 6, drop: "마법서(뱀파이어릭 터치)" },
+          { name: "해골", level: 12, drop: "철괴, 아데나" }
+        ]
+      },
+      dungeon_fairy: {
+        title: "요정 숲 던전",
+        desc: "요정들을 위한 제작 재료 수급용 던전입니다. 미스릴 원석 노가다의 성지입니다.",
+        bg: "https://static.plaync.com/ingame/lineageclassic/guide/img/dungeon_fairyforest.jpg",
+        gallery: [
+          { img: "image/dungen_fairy_0.png", label: "던전 입구" },
+          { img: "image/dungen_fairy_1.jpg", label: "지하 1층" },
+          { img: "image/dungen_fairy_2.jpg", label: "지하 2층" },
+          { img: "image/dungen_fairy_3.jpg", label: "지하 3층" }
+        ],
+        monsters: [
+          { name: "브롭", level: 15, drop: "엔트의 줄기, 껍질" },
+          { name: "오크 전사", level: 15, drop: "미스릴 원석" }
         ]
       },
       gludio_dungeon: {
         title: "글루디오 던전 (Main Dungeon)",
         desc: "7층 규모의 거대 지하 미로. 최하층에는 전설적인 보스 데스나이트가 군림합니다.",
         bg: "https://static.plaync.com/ingame/lineageclassic/guide/img/dungeon_gludio.jpg",
-        npcs: [{ name: "오림", role: "비밀 상인", loc: "7층" }],
+        gallery: [
+          { img: "image/dungen_gludin_0.png", label: "던전 입구" },
+          { img: "image/dungen_gludin_1.jpg", label: "지하 1층" },
+          { img: "image/dungen_gludin_2.jpg", label: "지하 2층" },
+          { img: "image/dungen_gludin_3.jpg", label: "지하 3층" },
+          { img: "image/dungen_gludin_4.jpg", label: "지하 4층" },
+          { img: "image/dungen_gludin_5.jpg", label: "지하 5층" },
+          { img: "image/dungen_gludin_6.jpg", label: "지하 6층" },
+          { img: "image/dungen_gludin_7.jpg", label: "지하 7층 (데스나이트)" }
+        ],
         monsters: [
           { name: "데스나이트", level: 52, drop: "데스나이트의 불검", boss: true },
-          { name: "버그베어", level: 26, drop: "갑옷 마법 주문서" }
+          { name: "버그베어", level: 26, drop: "갑옷 마법 주문서" },
+          { name: "카스파 패밀리", level: 42, drop: "마법서(헤이스트)", boss: true }
+        ]
+      },
+      dungeon_samak: {
+        title: "사막 던전",
+        desc: "윈다우드 사막에 위치한 초보자용 던전입니다. 사악한 몬스터들이 출현합니다.",
+        bg: "https://static.plaync.com/ingame/lineageclassic/guide/img/dungeon_desert.jpg",
+        gallery: [
+          { img: "image/dungen_samak_0.png", label: "던전 입구" },
+          { img: "image/dungen_samak_1.jpg", label: "지하 1층" },
+          { img: "image/dungen_samak_2.jpg", label: "지하 2층" },
+          { img: "image/dungen_samak_3.jpg", label: "지하 3층" },
+          { img: "image/dungen_samak_4.jpg", label: "지하 4층" }
+        ],
+        monsters: [
+          { name: "사악한 해골", level: 18, drop: "철괴" },
+          { name: "사악한 구울", level: 20, drop: "마력의 돌" }
         ]
       },
       ant_cave: {
         title: "개미굴 (Ant Cave)",
         desc: "윈다우드 지하의 여왕 개미가 지배하는 개미 왕국입니다. 보석과 주문서 파밍에 좋습니다.",
         bg: "https://static.plaync.com/ingame/lineageclassic/guide/img/dungeon_antcave.jpg",
-        npcs: [],
+        gallery: [
+          { img: "image/dungen_ant_0.jpg", label: "개미굴 입구" },
+          { img: "image/dungen_ant_1.jpg", label: "지하 1-1층" },
+          { img: "image/dungen_ant_2.jpg", label: "지하 1-2층" },
+          { img: "image/dungen_ant_3.jpg", label: "지하 1-3층" },
+          { img: "image/dungen_ant_4.jpg", label: "지하 2-1층" },
+          { img: "image/dungen_ant_5.jpg", label: "지하 2-2층" },
+          { img: "image/dungen_ant_6.jpg", label: "지하 3-1층" },
+          { img: "image/dungen_ant_7.jpg", label: "지하 3-2층" },
+          { img: "image/dungen_ant_8.jpg", label: "지하 3-3층" },
+          { img: "image/dungen_ant_9.jpg", label: "지하 3-4층" },
+          { img: "image/dungen_ant_10.jpg", label: "지하 3-5층" },
+          { img: "image/dungen_ant_11.jpg", label: "여왕 개미 산란장" }
+        ],
         monsters: [
           { name: "여왕 개미", level: 45, drop: "고대의 주문서", boss: true },
           { name: "거대 병정 개미", level: 32, drop: "보석류" }
+        ]
+      },
+      dungeon_giran: {
+        title: "기란 던전",
+        desc: "높은 경험치를 자랑하는 인기 던전입니다. 에바의 축복이 필요한 수중 구역도 존재합니다.",
+        bg: "https://static.plaync.com/ingame/lineageclassic/guide/img/dungeon_giran.jpg",
+        gallery: [
+          { img: "image/dungen_giran_0.png", label: "던전 입구" },
+          { img: "image/dungen_giran_1.jpg", label: "지하 1층" },
+          { img: "image/dungen_giran_2.jpg", label: "지하 2층" },
+          { img: "image/dungen_giran_3.jpg", label: "지하 3층" },
+          { img: "image/dungen_giran_4.jpg", label: "지하 4층" }
+        ],
+        monsters: [
+          { name: "라히칸스로프", level: 30, drop: "무기 마법 주문서" },
+          { name: "사악한 다크엘프", level: 35, drop: "마법서" }
+        ]
+      },
+      dungeon_dragon: {
+        title: "용의 계곡 던전",
+        desc: "최상위 모험가들을 위한 고난이도 던전. 지룡 안타라스의 기운이 감도는 곳입니다.",
+        bg: "https://static.plaync.com/ingame/lineageclassic/guide/img/dungeon_dragonvalley.jpg",
+        gallery: [
+          { img: "image/dungen_dragon_0.png", label: "던전 입구" },
+          { img: "image/dungen_dragon_1.jpg", label: "지하 1층" },
+          { img: "image/dungen_dragon_2.jpg", label: "지하 2층" },
+          { img: "image/dungen_dragon_3.jpg", label: "지하 3층" },
+          { img: "image/dungen_dragon_4.jpg", label: "지하 4층" },
+          { img: "image/dungen_dragon_5.jpg", label: "지하 5층" },
+          { img: "image/dungen_dragon_6.jpg", label: "지하 6층" },
+          { img: "image/dungen_dragon_7.jpg", label: "지하 7층 (안타라스 구역)" }
+        ],
+        monsters: [
+          { name: "지룡의 졸개", level: 45, drop: "희귀 제작 비법서" },
+          { name: "해골 근위병", level: 40, drop: "혹한의 창" }
         ]
       }
     };
@@ -291,6 +389,17 @@
         ${data.town_img ? `<div style="margin-bottom: 2rem; border-radius: 12px; overflow: hidden; border: 1px solid var(--border);">
           <img src="${data.town_img}" style="width: 100%; height: auto; display: block;" onerror="this.style.display='none'">
         </div>` : ''}
+
+        ${data.gallery ? `
+          <div class="image-gallery">
+            ${data.gallery.map(item => `
+              <div class="gallery-item">
+                <img src="${item.img}" onerror="this.parentElement.style.display='none'">
+                <span>${item.label}</span>
+              </div>
+            `).join('')}
+          </div>
+        ` : ''}
 
         <div class="info-section">
           <h3><i data-lucide="map-pin"></i> 주요 정보</h3>
