@@ -5523,186 +5523,480 @@
   ],
   "crafting": [
     {
-      "id": "c1",
-      "name": "뼈 갑옷",
-      "category": "갑옷(공통)",
-      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1437233137.webp",
-      "stats": "NPC 라다르(말섬), 줄리(은기사), 빈센트(기란) | 재료: 뼈 조각 30, 가죽 10, 2000 아데나"
+      "id": "c_0",
+      "name": "가죽모자",
+      "category": "제작",
+      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1162643104.webp",
+      "stats": "NPC: 말하는 섬 마을 - 라다르 / 은기사 마을 - 줄리 / 기란 마을 - 빈센트 | 재료: 동물가죽 x5 / 철괴 x1"
     },
     {
-      "id": "c2",
-      "name": "뼈 투구",
-      "category": "투구(공통)",
-      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1102119580.webp",
-      "stats": "NPC 라다르(말섬), 줄리(은기사), 빈센트(기란) | 재료: 뼈 조각 15, 가죽 5, 1000 아데나"
+      "id": "c_1",
+      "name": "가죽방패",
+      "category": "제작",
+      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1223515011.webp",
+      "stats": "NPC: 말하는 섬 마을 - 라다르 / 은기사 마을 - 줄리 / 기란 마을 - 빈센트 | 재료: 동물가죽 x7"
     },
     {
-      "id": "c3",
-      "name": "뼈 방패",
-      "category": "방패(공통)",
-      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1102119580.webp",
-      "stats": "NPC 라다르(말섬), 줄리(은기사), 빈센트(기란) | 재료: 뼈 조각 20, 가죽 8, 1500 아데나"
+      "id": "c_2",
+      "name": "가죽부츠",
+      "category": "제작",
+      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1832044476.webp",
+      "stats": "NPC: 말하는 섬 마을 - 라다르 / 은기사 마을 - 줄리 / 기란 마을 - 빈센트 | 재료: 징박은 가죽샌달 x1 / 철괴 x10 / 고급피혁 x10 / 아데나 x300"
     },
     {
-      "id": "c4",
+      "id": "c_3",
+      "name": "가죽샌달",
+      "category": "제작",
+      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1316211725.webp",
+      "stats": "NPC: 말하는 섬 마을 - 라다르 / 은기사 마을 - 줄리 / 기란 마을 - 빈센트 | 재료: 동물가죽 x6 / 철괴 x2"
+    },
+    {
+      "id": "c_4",
+      "name": "가죽조끼",
+      "category": "제작",
+      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1504945419.webp",
+      "stats": "NPC: 말하는 섬 마을 - 라다르 / 은기사 마을 - 줄리 / 기란 마을 - 빈센트 | 재료: 동물가죽 x10"
+    },
+    {
+      "id": "c_5",
+      "name": "가죽투구",
+      "category": "제작",
+      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1461249382.webp",
+      "stats": "NPC: 말하는 섬 마을 - 라다르 / 은기사 마을 - 줄리 / 기란 마을 - 빈센트 | 재료: 투구 x1 / 가죽모자 x1 / 철괴 x5 / 고급피혁 x5"
+    },
+    {
+      "id": "c_6",
       "name": "강철 면갑",
-      "category": "투구(기사)",
-      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1490153021.webp",
-      "stats": "NPC 헥터(기란) | 재료: 기사의 면갑 1, 철괴 120, 16,500 아데나"
+      "category": "제작",
+      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1673512211.webp",
+      "stats": "NPC: 기란 마을 - 헥터 | 재료: 철괴 x120 / 기사의 면갑 x1 / 아데나 x16,500"
     },
     {
-      "id": "c5",
-      "name": "강철 판금 갑옷",
-      "category": "갑옷(기사)",
-      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1490153021.webp",
-      "stats": "NPC 헥터(기란) | 재료: 판금 갑옷 1, 철괴 200, 30,000 아데나"
-    },
-    {
-      "id": "c6",
-      "name": "강철 장갑",
-      "category": "장갑(기사)",
-      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1490153021.webp",
-      "stats": "NPC 헥터(기란) | 재료: 파워 글로브 1, 철괴 80, 12,000 아데나"
-    },
-    {
-      "id": "c7",
-      "name": "강철 부츠",
-      "category": "부츠(기사)",
-      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1490153021.webp",
-      "stats": "NPC 헥터(기란) | 재료: 강철 부츠 1, 철괴 80, 12,000 아데나"
-    },
-    {
-      "id": "c8",
+      "id": "c_7",
       "name": "강철 방패",
-      "category": "방패(기사)",
-      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1490153021.webp",
-      "stats": "NPC 헥터(기란) | 재료: 대형 방패 1, 철괴 100, 15,000 아데나"
+      "category": "제작",
+      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1749744824.webp",
+      "stats": "NPC: 기란 마을 - 헥터 | 재료: 철괴 x200 / 사각 방패 x1 / 아데나 x16,000"
     },
     {
-      "id": "c9",
-      "name": "요정족 판금 갑옷",
-      "category": "갑옷(요정)",
-      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1437233137.webp",
-      "stats": "NPC 네루파(요정숲) | 재료: 오리하루콘 판금 8, 미스릴 실 20, 최고급 다이아몬드 1"
+      "id": "c_8",
+      "name": "강철 부츠",
+      "category": "제작",
+      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1866802663.webp",
+      "stats": "NPC: 기란 마을 - 헥터 | 재료: 철괴 x160 / 부츠 x1 / 아데나 x8,000"
     },
     {
-      "id": "c10",
-      "name": "요정족 사슬 갑옷",
-      "category": "갑옷(요정)",
-      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1437233137.webp",
-      "stats": "NPC 네루파(요정숲) | 재료: 미스릴 실 15, 고급 피혁 2, 아데나 5,000"
+      "id": "c_9",
+      "name": "강철 장갑",
+      "category": "제작",
+      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1475005716.webp",
+      "stats": "NPC: 기란 마을 - 헥터 | 재료: 철괴 x150 / 장갑 x1 / 아데나 x25,000"
     },
     {
-      "id": "c11",
-      "name": "엘름의 축복",
-      "category": "투구(요정)",
-      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1102119580.webp",
-      "stats": "NPC 네루파(요정숲) | 재료: 미스릴 원석 100, 아라크네의 거미줄 20, 고급 피혁 5"
+      "id": "c_10",
+      "name": "강철 판금 갑옷",
+      "category": "제작",
+      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1837978188.webp",
+      "stats": "NPC: 기란 마을 - 헥터 | 재료: 철괴 x450 / 판금 갑옷 x1 / 아데나 x30,000"
     },
     {
-      "id": "c12",
-      "name": "활골무",
-      "category": "장갑(요정)",
-      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1102119580.webp",
-      "stats": "NPC 네루파(요정숲) | 재료: 미스릴 원석 30, 가죽 10, 정령의 돌 5"
+      "id": "c_11",
+      "name": "고급피혁",
+      "category": "제작",
+      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1283734951.webp",
+      "stats": "NPC: 말하는 섬 마을 - 라다르 / 은기사 마을 - 줄리 / 기란 마을 - 빈센트 | 재료: 동물가죽 x20"
     },
     {
-      "id": "c13",
-      "name": "크로스보우",
-      "category": "무기(요정)",
-      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1514765686.webp",
-      "stats": "NPC 네루파(요정숲) | 재료: 미스릴 실 20, 아라크네의 거미줄 30, 오리하루콘 판금 3, 페어리의 날개 8"
+      "id": "c_12",
+      "name": "골각방패",
+      "category": "제작",
+      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1138532561.webp",
+      "stats": "NPC: 말하는 섬 마을 - 라이엔 / 은기사 마을 - 죠엘 | 재료: 징박은 가죽방패 x1 / 뼈조각 x15 / 아데나 x800"
     },
     {
-      "id": "c14",
-      "name": "요정족 방패",
-      "category": "방패(요정)",
-      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1102119580.webp",
-      "stats": "NPC 네루파(요정숲) | 재료: 미스릴 원석 50, 판의 갈기털 10"
+      "id": "c_13",
+      "name": "귀사름",
+      "category": "제작",
+      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1728530750.webp",
+      "stats": "NPC: 요정 숲 마을 - 네루파 | 재료: 단검신 x1 / 엔트의 줄기 x10 / 아라크네의 거미줄 x10 / 미스릴 x90"
     },
     {
-      "id": "c15",
-      "name": "가죽 모자",
-      "category": "투구(공통)",
-      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1102119580.webp",
-      "stats": "NPC 라다르(말섬), 줄리(은기사), 빈센트(기란) | 재료: 동물가죽 5, 철괴 1"
+      "id": "c_14",
+      "name": "나무 갑옷",
+      "category": "제작",
+      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1959301295.webp",
+      "stats": "NPC: 요정 숲 마을 - 네루파 | 재료: 엔트의 껍질 x2 / 판의 갈기털 x5"
     },
     {
-      "id": "c16",
-      "name": "가죽 부츠",
-      "category": "부츠(공통)",
-      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1102119580.webp",
-      "stats": "NPC 라다르(말섬), 줄리(은기사), 빈센트(기란) | 재료: 동물가죽 8, 철괴 1"
+      "id": "c_15",
+      "name": "나무 줄기 옷",
+      "category": "제작",
+      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1227104875.webp",
+      "stats": "NPC: 요정 숲 마을 - 네루파 | 재료: 엔트의 줄기 x10 / 실 x6"
     },
     {
-      "id": "c17",
-      "name": "가죽 방패",
-      "category": "방패(공통)",
-      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1102119580.webp",
-      "stats": "NPC 라다르(말섬), 줄리(은기사), 빈센트(기란) | 재료: 동물가죽 10, 철괴 2"
+      "id": "c_16",
+      "name": "나무방패",
+      "category": "제작",
+      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1736135944.webp",
+      "stats": "NPC: 요정 숲 마을 - 네루파 | 재료: 엔트의 껍질 x1 / 아라크네의 거미줄 x5 / 엔트의 줄기 x5"
     },
     {
-      "id": "c18",
+      "id": "c_17",
       "name": "레이피어",
-      "category": "무기(기사/요정)",
-      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1437233137.webp",
-      "stats": "NPC 줄리(은기사), 빈센트(기란) | 재료: 철괴 100, 고급 피혁 2, 10,000 아데나"
+      "category": "제작",
+      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1117949147.webp",
+      "stats": "NPC: 요정 숲 마을 - 네루파 | 재료: 오리하루콘 검신 x1 / 페어리의 날개 x2 / 오리하루콘 x50 / 고급 루비 x1 / 아라크네의 거미줄 x25"
     },
     {
-      "id": "c19",
-      "name": "은기사의 검",
-      "category": "무기(기사)",
-      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1437233137.webp",
-      "stats": "NPC 줄리(은기사) | 재료: 철괴 120, 은광석 50, 15,000 아데나"
+      "id": "c_18",
+      "name": "마법 망토",
+      "category": "제작",
+      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1129358131.webp",
+      "stats": "NPC: 기란 마을 - 허버트 | 재료: 하얀 옷감 x1 / 파란 옷감 x2 / 붉은 옷감 x10 / 아데나 1,000"
     },
     {
-      "id": "c20",
-      "name": "양손검",
-      "category": "무기(기사)",
-      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1437233137.webp",
-      "stats": "NPC 빈센트(기란) | 재료: 철괴 150, 아데나 20,000"
+      "id": "c_19",
+      "name": "마법사 모자",
+      "category": "제작",
+      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1937867471.webp",
+      "stats": "NPC: 기란 마을 - 모리아 | 재료: 마력의 돌 x20 / 고급 에메랄드 x2 / 하얀 옷감 x1 / 파란 옷감 x1 / 붉은 옷감 x1"
     },
     {
-      "id": "c21",
-      "name": "마나 망토",
-      "category": "망토(법사)",
-      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1150989084.webp",
-      "stats": "NPC 마샤(웰던) | 재료: 천 50, 마력의 돌 20, 10,000 아데나"
+      "id": "c_20",
+      "name": "마법사 옷",
+      "category": "제작",
+      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1693628219.webp",
+      "stats": "NPC: 기란 마을 - 모리아 | 재료: 마력의 돌 x25 / 최고급 사파이어 x1 / 하얀 옷감 x2 / 파란 옷감 x4"
     },
     {
-      "id": "c22",
-      "name": "보호 망토",
-      "category": "망토(공통)",
-      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1150989084.webp",
-      "stats": "NPC 빈센트(기란) | 재료: 천 30, 가죽 5, 3,000 아데나"
+      "id": "c_21",
+      "name": "마법의 플룻",
+      "category": "제작",
+      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1328982168.webp",
+      "stats": "NPC: 요정 숲 마을 - 나르엔 | 재료: 오리하루콘 x10 / 엔트의 껍질 x1"
     },
     {
-      "id": "c23",
-      "name": "소환 조종 반지",
-      "category": "반지",
-      "image": "https://static.inven.co.kr/column/2026/02/08/news/i123_acc.webp",
-      "stats": "NPC 레이더(수련던전 1층) | 재료: 금 원석 50, 마력의 돌 100, 50,000 아데나"
+      "id": "c_22",
+      "name": "메일 브레이커",
+      "category": "제작",
+      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1382576802.webp",
+      "stats": "NPC: 요정 숲 마을 - 네루파 | 재료: 미스릴 도금 뿔 x1 / 엔트의 줄기 x10 / 단검신 x1 / 다이아몬드 x1 / 아라크네의 거미줄 x50"
     },
     {
-      "id": "c24",
-      "name": "철괴",
-      "category": "재료",
-      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1490153021.webp",
-      "stats": "NPC 대장장이 | 재료: 철광석 10, 500 아데나"
+      "id": "c_23",
+      "name": "몽둥이",
+      "category": "제작",
+      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1971816769.webp",
+      "stats": "NPC: 요정 숲 마을 - 네루파 | 재료: 엔트의 줄기 x10 / 아라크네의 거미줄 x5"
     },
     {
-      "id": "c25",
-      "name": "고급 피혁",
-      "category": "재료",
-      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1102119580.webp",
-      "stats": "NPC 가죽 세공사 | 재료: 가죽 10, 1,000 아데나"
+      "id": "c_24",
+      "name": "미스릴",
+      "category": "제작",
+      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1957559755.webp",
+      "stats": "NPC: 요정 숲 마을 - 페어리, 페어리 퀸 | 재료: 미스릴 원석 x1"
     },
     {
-      "id": "c26",
+      "id": "c_25",
       "name": "미스릴 실",
-      "category": "재료",
+      "category": "제작",
+      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1371059461.webp",
+      "stats": "NPC: 요정 숲 마을 - 아라크네 | 재료: 미스릴 x5 / 실 x1"
+    },
+    {
+      "id": "c_26",
+      "name": "미스릴 판금",
+      "category": "제작",
+      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1846363874.webp",
+      "stats": "NPC: 요정 숲 마을 - 판 | 재료: 아라크네의 허물 x1 / 미스릴 x50"
+    },
+    {
+      "id": "c_27",
+      "name": "미스릴 화살",
+      "category": "제작",
+      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1817682196.webp",
+      "stats": "NPC: 요정 숲 마을 - 네루파 | 재료: 엔트의 줄기 x1 / 미스릴 x1"
+    },
+    {
+      "id": "c_28",
+      "name": "벨트",
+      "category": "제작",
+      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1484139936.webp",
+      "stats": "NPC: 말하는 섬 마을 - 라다르 / 은기사 마을 - 줄리 / 기란 마을 - 빈센트 | 재료: 철괴 x2 / 고급피혁 x5"
+    },
+    {
+      "id": "c_29",
+      "name": "벨트달린 가죽조끼",
+      "category": "제작",
+      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1977239970.webp",
+      "stats": "NPC: 말하는 섬 마을 - 라다르 / 은기사 마을 - 줄리 / 기란 마을 - 빈센트 | 재료: 가죽조끼 x1 / 벨트 x1"
+    },
+    {
+      "id": "c_30",
+      "name": "보호 망토",
+      "category": "제작",
+      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1293826018.webp",
+      "stats": "NPC: 기란 마을 - 허버트 | 재료: 하얀 옷감 x10 / 파란 옷감 x5 / 붉은 옷감 x5 / 아데나 20,000"
+    },
+    {
+      "id": "c_31",
+      "name": "부츠",
+      "category": "제작",
+      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1738828062.webp",
+      "stats": "NPC: 요정 숲 마을 - 네루파 | 재료: 아라크네의 허물 x2 / 실 x10"
+    },
+    {
+      "id": "c_32",
+      "name": "뼈갑옷",
+      "category": "제작",
+      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1419022332.webp",
+      "stats": "NPC: 말하는 섬 마을 - 라이엔 / 은기사 마을 - 죠엘 | 재료: 중갑가죽조끼 x1 / 뼈조각 x20 / 아데나 x500"
+    },
+    {
+      "id": "c_33",
+      "name": "실",
+      "category": "제작",
+      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1912178980.webp",
+      "stats": "NPC: 요정 숲 마을 - 아라크네 | 재료: 판의 갈기털 x1"
+    },
+    {
+      "id": "c_34",
+      "name": "아라크네의 허물",
+      "category": "제작",
+      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1848207389.webp",
+      "stats": "NPC: 요정 숲 마을 - 아라크네 | 재료: 엔트의 껍질 x3"
+    },
+    {
+      "id": "c_35",
+      "name": "엘름의 축복",
+      "category": "제작",
+      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1333436101.webp",
+      "stats": "NPC: 요정 숲 마을 - 네루파 | 재료: 요정족 가죽 투구 x1 / 고급 다이아몬드 x1 / 고급 에메랄드 x1 / 고급 사파이아 x1 / 마력의 돌 x5 / 오리하루콘 판금 x3 / 미스릴 실 x150"
+    },
+    {
+      "id": "c_36",
+      "name": "엘븐 와퍼",
+      "category": "제작",
+      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1508085877.webp",
+      "stats": "NPC: 요정 숲 마을 - 루디엘 | 재료: 엔트의 열매 x1 / 페어리 더스트 x5"
+    },
+    {
+      "id": "c_37",
+      "name": "오리하루콘",
+      "category": "제작",
+      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1292059766.webp",
+      "stats": "NPC: 요정 숲 마을 - 페어리 퀸 | 재료: 미스릴 x10"
+    },
+    {
+      "id": "c_38",
+      "name": "오리하루콘 판금",
+      "category": "제작",
+      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1661010634.webp",
+      "stats": "NPC: 요정 숲 마을 - 판 | 재료: 아라크네의 허물 x1 / 오리하루콘 x30"
+    },
+    {
+      "id": "c_39",
+      "name": "요정족 가죽 투구",
+      "category": "제작",
+      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1308865688.webp",
+      "stats": "NPC: 요정 숲 마을 - 네루파 | 재료: 페어리의 날개 x1 / 엔트의 껍질 x2 / 판의 갈기털 x10 / 아라크네의 거미줄 x20"
+    },
+    {
+      "id": "c_40",
+      "name": "요정족 검",
+      "category": "제작",
+      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1395629653.webp",
+      "stats": "NPC: 요정 숲 마을 - 네루파 | 재료: 장검신 x1 / 엔트의 줄기 x5 / 미스릴 x150 / 아라크네의 거미줄 x50"
+    },
+    {
+      "id": "c_41",
+      "name": "요정족 단검",
+      "category": "제작",
+      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1298232503.webp",
+      "stats": "NPC: 요정 숲 마을 - 네루파 | 재료: 엔트의 줄기 x5 / 미스릴 원석 x1"
+    },
+    {
+      "id": "c_42",
+      "name": "요정족 망토",
+      "category": "제작",
+      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1709511700.webp",
+      "stats": "NPC: 요정 숲 마을 - 네루파 | 재료: 마력의 돌 x2 / 정령의 돌 x6 / 미스릴 실 x10"
+    },
+    {
+      "id": "c_43",
+      "name": "요정족 방패",
+      "category": "제작",
+      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1462265298.webp",
+      "stats": "NPC: 요정 숲 마을 - 네루파 | 재료: 나무방패 x1 / 미스릴 판금 x2 / 아라크네의 거미줄 x5"
+    },
+    {
+      "id": "c_44",
+      "name": "요정족 사슬 갑옷",
+      "category": "제작",
+      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1296778533.webp",
+      "stats": "NPC: 요정 숲 마을 - 네루파 | 재료: 미스릴 실 x80 / 미스릴 판금 x4"
+    },
+    {
+      "id": "c_45",
+      "name": "요정족 창",
+      "category": "제작",
+      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1846496608.webp",
+      "stats": "NPC: 요정 숲 마을 - 네루파 | 재료: 미스릴 도금 뿔 x1 / 엔트의 줄기 x10 / 아라크네의 거미줄 x30"
+    },
+    {
+      "id": "c_46",
+      "name": "요정족 판금 갑옷",
+      "category": "제작",
+      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1548755266.webp",
+      "stats": "NPC: 요정 숲 마을 - 네루파 | 재료: 오리하루콘 판금 x8 / 미스릴 실 x20 / 최고급 다이아몬드 x1"
+    },
+    {
+      "id": "c_47",
+      "name": "요정족 활",
+      "category": "제작",
+      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1437233137.webp",
+      "stats": "NPC: 요정 숲 마을 - 네루파 | 재료: 엔트의 줄기 x10 / 미스릴 원석 x1 / 실 x2 / 아라크네의 허물 x2"
+    },
+    {
+      "id": "c_48",
+      "name": "요정족 흉갑",
+      "category": "제작",
+      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1590806290.webp",
+      "stats": "NPC: 요정 숲 마을 - 네루파 | 재료: 아라크네의 허물 x2 / 실 x10"
+    },
+    {
+      "id": "c_49",
+      "name": "장궁",
+      "category": "제작",
+      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1150989084.webp",
+      "stats": "NPC: 요정 숲 마을 - 네루파 | 재료: 오리하루콘 도금 뿔 x1 / 오리하루콘 판금 x6 / 고급 에메랄드 x2 / 고급 다이아몬드 x1 / 미스릴 실 x40 / 아라크네의 허물 x5"
+    },
+    {
+      "id": "c_50",
+      "name": "전투 도끼",
+      "category": "제작",
+      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1948014492.webp",
+      "stats": "NPC: 요정 숲 마을 - 네루파 | 재료: 단검신 x1 / 아라크네의 거미줄 x5 / 엔트의 줄기 x10 / 미스릴 원석 x3"
+    },
+    {
+      "id": "c_51",
+      "name": "중갑가죽조끼",
+      "category": "제작",
+      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1213122708.webp",
+      "stats": "NPC: 말하는 섬 마을 - 라다르 / 은기사 마을 - 줄리 / 기란 마을 - 빈센트 | 재료: 징박은 가죽조끼 x1 / 철괴 x15 / 고급피혁 x15"
+    },
+    {
+      "id": "c_52",
+      "name": "징박은 가죽모자",
+      "category": "제작",
+      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1502552699.webp",
+      "stats": "NPC: 말하는 섬 마을 - 파린 / 은기사 마을 - 핀 | 재료: 가죽모자 x1 / 철괴 x10 / 고급피혁 x2"
+    },
+    {
+      "id": "c_53",
+      "name": "징박은 가죽방패",
+      "category": "제작",
+      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1549062980.webp",
+      "stats": "NPC: 말하는 섬 마을 - 파린 / 은기사 마을 - 핀 | 재료: 가죽방패 x1 / 철괴 x20 / 고급피혁 x5"
+    },
+    {
+      "id": "c_54",
+      "name": "징박은 가죽샌달",
+      "category": "제작",
+      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1929904809.webp",
+      "stats": "NPC: 말하는 섬 마을 - 파린 / 은기사 마을 - 핀 | 재료: 가죽샌달 x1 / 철괴 x12 / 고급피혁 x3"
+    },
+    {
+      "id": "c_55",
+      "name": "징박은 가죽조끼",
+      "category": "제작",
+      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1448689663.webp",
+      "stats": "NPC: 말하는 섬 마을 - 파린 / 은기사 마을 - 핀 | 재료: 가죽조끼 x1 / 철괴 x10 / 고급피혁 x2"
+    },
+    {
+      "id": "c_56",
+      "name": "짧은 부츠",
+      "category": "제작",
+      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1955738481.webp",
+      "stats": "NPC: 요정 숲 마을 - 네루파 | 재료: 엔트의 껍질 x2 / 실 x4"
+    },
+    {
+      "id": "c_57",
+      "name": "크로스 보우",
+      "category": "제작",
+      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1514765686.webp",
+      "stats": "NPC: 요정 숲 마을 - 네루파 | 재료: 페어리의 날개 x8 / 오리하루콘 판금 x3 / 미스릴 실 x20 / 아라크네의 거미줄 x30"
+    },
+    {
+      "id": "c_58",
+      "name": "티셔츠",
+      "category": "제작",
+      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1666669886.webp",
+      "stats": "NPC: 기란 마을 - 허버트 | 재료: 하얀 옷감 x10 / 파란 옷감 x2 / 붉은 옷감 x3 / 아데나 30,000"
+    },
+    {
+      "id": "c_59",
+      "name": "파워 글로브",
+      "category": "제작",
+      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1512386348.webp",
+      "stats": "NPC: 요정 숲 마을 - 네루파 | 재료: 아라크네의 허물 x5 / 미스릴 실 x20 / 오우거의 피 x1 / 고급 다이아몬드 x1"
+    },
+    {
+      "id": "c_60",
+      "name": "판의 뿔",
+      "category": "제작",
+      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1473168011.webp",
+      "stats": "NPC: 요정 숲 마을 - 판 | 재료: 마법의 플룻"
+    },
+    {
+      "id": "c_61",
+      "name": "페어리 더스트",
+      "category": "제작",
+      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1286338680.webp",
+      "stats": "NPC: 요정 숲 마을 - 네루파 | 재료: 정령의 돌 x1"
+    },
+    {
+      "id": "c_62",
+      "name": "페어리의 날개",
+      "category": "제작",
+      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1943106878.webp",
+      "stats": "NPC: 요정 숲 마을 - 페어리, 페어리 퀸 | 재료: 미스릴 실 x5 / 정령의 돌 x2"
+    },
+    {
+      "id": "c_63",
+      "name": "포챠드",
+      "category": "제작",
+      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1702036439.webp",
+      "stats": "NPC: 요정 숲 마을 - 네루파 | 재료: 요정족 창 x1 / 오리하루콘 도금 뿔 x1 / 아라크네의 거미줄 x50 / 오리하루콘 x60 / 고급 루비 x1"
+    },
+    {
+      "id": "c_64",
+      "name": "해골투구",
+      "category": "제작",
+      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1681254651.webp",
+      "stats": "NPC: 말하는 섬 마을 - 라이엔 / 은기사 마을 - 죠엘 | 재료: 가죽투구 x1 / 뼈조각 x10 / 아데나 x800"
+    },
+    {
+      "id": "c_65",
+      "name": "화살",
+      "category": "제작",
+      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1791373747.webp",
+      "stats": "NPC: 요정 숲 마을 - 네루파 | 재료: 엔트의 줄기 x1"
+    },
+    {
+      "id": "c_66",
+      "name": "활",
+      "category": "제작",
       "image": "https://static.inven.co.kr/column/2026/02/08/news/i1102119580.webp",
-      "stats": "NPC 네루파(요정숲 가디언) | 재료: 미스릴 원석 10"
+      "stats": "NPC: 요정 숲 마을 - 네루파 | 재료: 엔트의 줄기 x1 / 실 x5"
+    },
+    {
+      "id": "c_67",
+      "name": "활 골무",
+      "category": "제작",
+      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1363740998.webp",
+      "stats": "NPC: 요정 숲 마을 - 네루파 | 재료: 미스릴 실 x20 / 엔트의 껍질 x3"
     }
   ]
 }
