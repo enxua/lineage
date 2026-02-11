@@ -131,7 +131,7 @@ body {
 
 .search-box { position: relative; width: 320px; max-width: 100%; }
 .search-box i { position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: var(--primary); pointer-events: none; }
-.search-box input { width: 100%; padding: 0.7rem 1rem 0.7rem 2.8rem; border-radius: 10px; background: var(--bg-deep); border: 1px solid var(--border); color: #fff; outline: none; }
+.search-box input { width: 100%; padding: 0.7rem 1rem; border-radius: 10px; background: var(--bg-deep); border: 1px solid var(--border); color: #fff; outline: none; }
 
 /* --- Data Table --- */
 .table-wrapper, .table-responsive, .reward-table-wrapper {
