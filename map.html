@@ -51,45 +51,57 @@
   </script>
 
   <style>
-    .geo-summary { background: linear-gradient(135deg, rgba(227, 192, 141, 0.15) 0%, rgba(0,0,0,0) 100%); border: 1px solid var(--primary); padding: 1.5rem; border-radius: 12px; margin-bottom: 2rem; }
+    .geo-summary { background: linear-gradient(135deg, rgba(227, 192, 141, 0.1) 0%, rgba(0,0,0,0) 100%); border: 1px solid var(--border); padding: 1.5rem; border-radius: 12px; margin-bottom: 2rem; }
     .geo-summary h2 { font-size: 1.2rem !important; color: var(--primary) !important; margin-bottom: 1rem !important; border: none !important; padding: 0 !important; }
     .geo-summary p { font-size: 0.95rem; color: #eee; line-height: 1.6; }
     .geo-summary b { color: var(--primary); }
 
-    .map-container { display: flex; gap: 2rem; }
-    .map-nav { width: 220px; flex-shrink: 0; display: flex; flex-direction: column; gap: 0.5rem; }
+    .map-container { display: flex; gap: 2rem; align-items: flex-start; }
+    .map-nav { width: 220px; flex-shrink: 0; display: flex; flex-direction: column; gap: 0.5rem; position: sticky; top: 2rem; }
     .map-nav-group { font-size:0.85rem; color:var(--text-dim); margin: 1rem 0 0.3rem 0.5rem; text-transform: uppercase; letter-spacing: 1px; }
     .map-nav button { padding: 0.8rem 1rem; border-radius: 8px; background: var(--bg-card); border: 1px solid var(--border); color: var(--text-dim); text-align: left; cursor: pointer; transition: all 0.2s; font-weight: 700; display: flex; align-items: center; gap: 0.8rem; font-size: 0.9rem; }
     .map-nav button:hover, .map-nav button.active { background: var(--gold-gradient); color: #000; border-color: transparent; }
     
-    .map-content { flex-grow: 1; display: grid; grid-template-columns: 1fr; gap: 2rem; }
+    .map-content { flex-grow: 1; display: flex; flex-direction: column; gap: 2rem; width: 100%; }
     
-    .map-header { background: var(--bg-card); padding: 2rem; border-radius: 12px; border: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; background-size: cover; background-position: center; position: relative; overflow: hidden; height: 250px; }
-    .map-header::before { content: ''; position: absolute; inset: 0; background: linear-gradient(to right, #000 40%, transparent); z-index: 1; }
-    .map-title { position: relative; z-index: 2; max-width: 65%; }
-    .map-title h2 { font-family: 'Cinzel', serif; font-size: 2.2rem; color: var(--primary); margin-bottom: 0.5rem; }
+    .map-header { background: var(--bg-card); padding: 2rem; border-radius: 12px; border: 1px solid var(--border); display: flex; flex-direction: column; justify-content: center; background-size: cover; background-position: center; position: relative; overflow: hidden; min-height: 200px; }
+    .map-header::before { content: ''; position: absolute; inset: 0; background: linear-gradient(to right, #000 50%, transparent); z-index: 1; }
+    .map-title { position: relative; z-index: 2; width: 100%; }
+    .map-title h2 { font-family: 'Cinzel', serif; font-size: 2rem; color: var(--primary); margin-bottom: 0.5rem; }
     .map-title p { font-size: 1rem; color: #ccc; line-height: 1.5; }
 
     .info-section { background: var(--bg-card); padding: 2rem; border-radius: 12px; border: 1px solid var(--border); }
     .info-section h3 { color: #fff; border-bottom: 1px solid var(--border); padding-bottom: 1rem; margin-bottom: 1.5rem; font-size: 1.3rem; }
     
-    .data-table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
-    .data-table th { text-align: left; color: var(--text-dim); padding: 0.8rem; border-bottom: 1px solid var(--border); font-size: 0.85rem; }
+    .table-responsive { overflow-x: auto; -webkit-overflow-scrolling: touch; margin-top: 1rem; border-radius: 8px; border: 1px solid var(--border); }
+    .data-table { width: 100%; border-collapse: collapse; min-width: 500px; }
+    .data-table th { text-align: left; color: var(--text-dim); padding: 0.8rem; border-bottom: 1px solid var(--border); font-size: 0.85rem; background: rgba(0,0,0,0.3); }
     .data-table td { padding: 0.9rem 0.8rem; border-bottom: 1px solid rgba(255,255,255,0.05); color: #eee; font-size: 0.9rem; }
     .data-table tr:last-child td { border-bottom: none; }
     
     .drop-item { display: inline-block; background: rgba(0,0,0,0.3); padding: 3px 8px; border-radius: 4px; margin: 2px; font-size: 0.8rem; border: 1px solid #333; }
     .boss-badge { background: #8b0000; color: #fff; padding: 2px 6px; border-radius: 4px; font-size: 0.75rem; font-weight: bold; margin-right: 5px; }
 
-    .image-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
+    .image-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
     .gallery-item { border-radius: 12px; overflow: hidden; border: 1px solid var(--border); background: #000; cursor: pointer; transition: transform 0.2s; }
     .gallery-item:hover { transform: scale(1.02); border-color: var(--primary); }
     .gallery-item img { width: 100%; height: auto; display: block; }
     .gallery-item span { display: block; padding: 0.5rem; text-align: center; font-size: 0.85rem; color: var(--text-dim); background: rgba(0,0,0,0.5); }
 
-    #image-modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 1000; justify-content: center; align-items: center; padding: 2rem; cursor: zoom-out; }
-    #modal-img { max-width: 95%; max-height: 95%; object-fit: contain; border: 2px solid var(--primary); border-radius: 8px; box-shadow: 0 0 50px rgba(0,0,0,1); }
-    #modal-close { position: absolute; top: 2rem; right: 2rem; color: #fff; cursor: pointer; background: rgba(255,255,255,0.1); padding: 0.5rem; border-radius: 50%; }
+    #image-modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 1000; justify-content: center; align-items: center; padding: 1rem; cursor: zoom-out; }
+    #modal-img { max-width: 100%; max-height: 90%; object-fit: contain; border: 2px solid var(--primary); border-radius: 8px; }
+    #modal-close { position: absolute; top: 1rem; right: 1rem; color: #fff; cursor: pointer; background: rgba(255,255,255,0.1); padding: 0.5rem; border-radius: 50%; }
+
+    @media (max-width: 1024px) {
+      .map-container { flex-direction: column; }
+      .map-nav { width: 100%; position: sticky; top: 0; z-index: 100; display: flex; flex-direction: row; overflow-x: auto; border-radius: 0; border-bottom: 1px solid var(--border); background: var(--bg-deep); padding: 0.5rem; }
+      .map-nav-group { display: none; }
+      .map-nav button { white-space: nowrap; flex-shrink: 0; padding: 0.6rem 1rem; font-size: 0.85rem; }
+      .map-header { min-height: 150px; padding: 1.5rem; }
+      .map-header::before { background: rgba(0,0,0,0.6); }
+      .map-title h2 { font-size: 1.5rem; }
+      .info-section { padding: 1.5rem; }
+    }
   </style>
 </head>
 <body>
@@ -112,32 +124,27 @@
 
     <div class="map-container">
       <nav class="map-nav">
-        <div class="map-nav-group">주요 마을</div>
-        <button class="active" onclick="renderMap('talking_island')"><i data-lucide="home"></i> 말하는 섬</button>
-        <button onclick="renderMap('gludin')"><i data-lucide="home"></i> 글루딘 마을</button>
-        <button onclick="renderMap('kent')"><i data-lucide="home"></i> 켄트 마을</button>
-        <button onclick="renderMap('giran')"><i data-lucide="home"></i> 기란 마을</button>
-        <button onclick="renderMap('silver')"><i data-lucide="home"></i> 은기사 마을</button>
-        <button onclick="renderMap('woodbeck')"><i data-lucide="home"></i> 우드벡 마을</button>
-        <button onclick="renderMap('hwajeonmin')"><i data-lucide="home"></i> 화전민 마을</button>
-        <button onclick="renderMap('fairy')"><i data-lucide="tree-pine"></i> 요정 숲</button>
-        
-        <div class="map-nav-group">주요 사냥터</div>
-        <button onclick="renderMap('field_talking')"><i data-lucide="mountain"></i> 말하는 섬 필드</button>
-        <button onclick="renderMap('field_gludio')"><i data-lucide="mountain"></i> 글루디오 필드</button>
-        <button onclick="renderMap('field_fairy')"><i data-lucide="mountain"></i> 요정 숲 필드</button>
-        <button onclick="renderMap('field_wind')"><i data-lucide="mountain"></i> 윈다우드 필드</button>
-        <button onclick="renderMap('field_silver')"><i data-lucide="mountain"></i> 은기사 지역 필드</button>
-        <button onclick="renderMap('dragon')"><i data-lucide="mountain"></i> 용의 계곡</button>
-        
-        <div class="map-nav-group">주요 던전</div>
-        <button onclick="renderMap('dungeon_talking')"><i data-lucide="skull"></i> 말하는 섬 던전</button>
-        <button onclick="renderMap('dungeon_fairy')"><i data-lucide="skull"></i> 요정 숲 던전</button>
-        <button onclick="renderMap('gludio_dungeon')"><i data-lucide="skull"></i> 글루디오 던전</button>
-        <button onclick="renderMap('dungeon_samak')"><i data-lucide="skull"></i> 사막 던전</button>
-        <button onclick="renderMap('ant_cave')"><i data-lucide="skull"></i> 개미굴</button>
-        <button onclick="renderMap('dungeon_giran')"><i data-lucide="skull"></i> 기란 던전</button>
-        <button onclick="renderMap('dungeon_dragon')"><i data-lucide="skull"></i> 용의 계곡 던전</button>
+        <button class="active" onclick="renderMap('talking_island')">말하는 섬</button>
+        <button onclick="renderMap('gludin')">글루딘 마을</button>
+        <button onclick="renderMap('kent')">켄트 마을</button>
+        <button onclick="renderMap('giran')">기란 마을</button>
+        <button onclick="renderMap('silver')">은기사 마을</button>
+        <button onclick="renderMap('woodbeck')">우드벡 마을</button>
+        <button onclick="renderMap('hwajeonmin')">화전민 마을</button>
+        <button onclick="renderMap('fairy')">요정 숲</button>
+        <button onclick="renderMap('field_talking')">말하는 섬 필드</button>
+        <button onclick="renderMap('field_gludio')">글루디오 필드</button>
+        <button onclick="renderMap('field_fairy')">요정 숲 필드</button>
+        <button onclick="renderMap('field_wind')">윈다우드 필드</button>
+        <button onclick="renderMap('field_silver')">은기사 필드</button>
+        <button onclick="renderMap('dragon')">용의 계곡</button>
+        <button onclick="renderMap('dungeon_talking')">말하는 섬 던전</button>
+        <button onclick="renderMap('dungeon_fairy')">요정 숲 던전</button>
+        <button onclick="renderMap('gludio_dungeon')">글루디오 던전</button>
+        <button onclick="renderMap('dungeon_samak')">사막 던전</button>
+        <button onclick="renderMap('ant_cave')">개미굴</button>
+        <button onclick="renderMap('dungeon_giran')">기란 던전</button>
+        <button onclick="renderMap('dungeon_dragon')">용의 계곡 던전</button>
       </nav>
 
       <main id="map-detail" class="map-content">
@@ -280,6 +287,7 @@
         town_img: "image/field_windawood.png",
         monsters: [
           { name: "바실리스크", level: 32, drop: "바실리스크의 뿔" },
+          { name: "하피", level: 26, drop: "마법서(헤이스트)" },
           { name: "샌드 웜", level: 60, drop: "영웅급 장비", boss: true }
         ]
       },
@@ -445,29 +453,33 @@
           <h3><i data-lucide="map-pin"></i> 주요 정보</h3>
           ${data.npcs && data.npcs.length > 0 ? `
             <h4 style="color:var(--primary); margin-top:1rem; font-size:1.1rem;">주요 NPC</h4>
-            <table class="data-table">
-              <thead><tr><th width="30%">이름</th><th width="40%">역할</th><th>위치</th></tr></thead>
-              <tbody>
-                ${data.npcs.map(npc => `<tr><td><strong>${npc.name}</strong></td><td>${npc.role}</td><td>${npc.loc}</td></tr>`).join('')}
-              </tbody>
-            </table>
+            <div class="table-responsive">
+              <table class="data-table">
+                <thead><tr><th width="30%">이름</th><th width="40%">역할</th><th>위치</th></tr></thead>
+                <tbody>
+                  ${data.npcs.map(npc => `<tr><td><strong>${npc.name}</strong></td><td>${npc.role}</td><td>${npc.loc}</td></tr>`).join('')}
+                </tbody>
+              </table>
+            </div>
           ` : ''}
 
           ${data.monsters && data.monsters.length > 0 ? `
             <h4 style="color:var(--primary); margin-top:2rem; font-size:1.1rem;">출현 몬스터</h4>
-            <table class="data-table">
-              <thead><tr><th width="30%">이름 (레벨)</th><th>주요 드롭 아이템</th></tr></thead>
-              <tbody>
-                ${data.monsters.map(m => `
-                  <tr>
-                    <td>${m.boss ? '<span class="boss-badge">BOSS</span>' : ''} <strong>${m.name}</strong> <span style="color:#888;">(Lv.${m.level})</span></td>
-                    <td>
-                      ${m.drop.split(',').map(item => `<span class="drop-item">${item.trim()}</span>`).join('')}
-                    </td>
-                  </tr>
-                `).join('')}
-              </tbody>
-            </table>
+            <div class="table-responsive">
+              <table class="data-table">
+                <thead><tr><th width="30%">이름 (레벨)</th><th>주요 드롭 아이템</th></tr></thead>
+                <tbody>
+                  ${data.monsters.map(m => `
+                    <tr>
+                      <td>${m.boss ? '<span class="boss-badge">BOSS</span>' : ''} <strong>${m.name}</strong> <span style="color:#888;">(Lv.${m.level})</span></td>
+                      <td>
+                        ${m.drop.split(',').map(item => `<span class="drop-item">${item.trim()}</span>`).join('')}
+                      </td>
+                    </tr>
+                  `).join('')}
+                </tbody>
+              </table>
+            </div>
           ` : '<p style="color:#666; padding:1.5rem; background:rgba(0,0,0,0.1); border-radius:8px; margin-top:1rem;">이 지역에는 적대적인 몬스터가 출현하지 않거나 정보가 준비 중입니다.</p>'}
         </div>
       `;

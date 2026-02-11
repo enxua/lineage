@@ -66,23 +66,17 @@
   </script>
 
   <style>
-    .geo-summary { background: linear-gradient(135deg, rgba(227, 192, 141, 0.15) 0%, rgba(0,0,0,0) 100%); border: 1px solid var(--primary); padding: 1.5rem; border-radius: 12px; margin-bottom: 2rem; }
-    .geo-summary h2 { font-size: 1.2rem !important; color: var(--primary) !important; margin-bottom: 1rem !important; border: none !important; padding: 0 !important; }
-    .geo-summary ul { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; }
-    .geo-summary li { font-size: 0.9rem; color: #eee; }
-    .geo-summary b { color: var(--primary); }
-
     .quest-container { display: flex; gap: 2rem; align-items: flex-start; }
     .quest-sidebar { width: 250px; flex-shrink: 0; background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; position: sticky; top: 2rem; }
     .quest-sidebar button { width: 100%; text-align: left; padding: 1rem 1.5rem; background: transparent; border: none; color: var(--text-dim); border-bottom: 1px solid var(--border); cursor: pointer; font-weight: 700; transition: all 0.2s; }
     .quest-sidebar button:hover { background: var(--bg-hover); color: #fff; }
     .quest-sidebar button.active { background: var(--gold-gradient); color: #000; }
-    .quest-content { flex-grow: 1; background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 2.5rem; min-height: 600px; }
+    .quest-content { flex-grow: 1; background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 2.5rem; min-height: 600px; width: 100%; }
     .quest-section { margin-bottom: 3rem; }
     .quest-section h2 { color: var(--primary); font-size: 2rem; margin-bottom: 1.5rem; border-bottom: 2px solid var(--border); padding-bottom: 0.5rem; font-family: 'Cinzel', serif; }
     .quest-section h3 { color: #fff; font-size: 1.4rem; margin: 2.5rem 0 1rem; display: flex; align-items: center; gap: 0.5rem; border-left: 4px solid var(--primary); padding-left: 1rem; }
     .quest-step { display: flex; gap: 1.5rem; margin-bottom: 2rem; background: rgba(0,0,0,0.2); padding: 1.5rem; border-radius: 10px; border: 1px solid var(--border); }
-    .quest-step img { width: 320px; height: auto; border-radius: 8px; border: 1px solid #333; flex-shrink: 0; }
+    .quest-step img { width: 320px; height: auto; border-radius: 8px; border: 1px solid #333; flex-shrink: 0; max-width: 100%; }
     .step-info { flex-grow: 1; }
     .step-info h4 { color: var(--primary-light); font-size: 1.1rem; margin-bottom: 0.8rem; }
     .step-info p { color: var(--text-dim); font-size: 0.95rem; line-height: 1.6; margin-bottom: 0.5rem; }
@@ -90,10 +84,22 @@
     .reward-item { display: flex; align-items: center; gap: 0.5rem; background: rgba(227, 192, 141, 0.1); padding: 0.4rem 0.8rem; border-radius: 6px; border: 1px solid rgba(227, 192, 141, 0.3); color: var(--primary); font-size: 0.85rem; font-weight: 700; }
     .npc-tag { display: inline-block; background: #444; color: #fff; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; margin-right: 5px; }
     
-    .reward-table { width: 100%; border-collapse: collapse; margin-top: 1.5rem; background: rgba(0,0,0,0.3); border-radius: 8px; overflow: hidden; }
+    .reward-table-wrapper { overflow-x: auto; -webkit-overflow-scrolling: touch; margin-top: 1.5rem; border-radius: 8px; border: 1px solid var(--border); }
+    .reward-table { width: 100%; border-collapse: collapse; background: rgba(0,0,0,0.3); min-width: 500px; }
     .reward-table th { background: rgba(227, 192, 141, 0.1); color: var(--primary); padding: 1rem; text-align: left; border-bottom: 1px solid var(--border); }
     .reward-table td { padding: 1rem; border-bottom: 1px solid rgba(255,255,255,0.05); color: #eee; }
     .reward-table tr:last-child td { border-bottom: none; }
+
+    @media (max-width: 1024px) {
+      .quest-container { flex-direction: column; }
+      .quest-sidebar { width: 100%; position: sticky; top: 0; z-index: 100; display: flex; overflow-x: auto; border-radius: 0; border-left: none; border-right: none; }
+      .quest-sidebar button { border-bottom: none; border-right: 1px solid var(--border); white-space: nowrap; width: auto; padding: 1rem 1.5rem; flex-shrink: 0; }
+      .quest-step { flex-direction: column; }
+      .quest-step img { width: 100%; }
+      .quest-content { padding: 1.5rem; border-radius: 0; border-left: none; border-right: none; }
+      .quest-section h2 { font-size: 1.5rem; }
+      .quest-section h3 { font-size: 1.2rem; }
+    }
   </style>
 </head>
 <body>
@@ -291,42 +297,44 @@
           </div>
 
           <h3><i data-lucide="list"></i> 각 부족별 토템 보상은 어떻게 되나요?</h3>
-          <table class="reward-table">
-            <thead>
-              <tr>
-                <th>오크 부족</th>
-                <th>획득 토템</th>
-                <th>교환 보상 (아데나)</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><strong>간디 오크</strong></td>
-                <td>간디 오크 토템</td>
-                <td>30 아데나</td>
-              </tr>
-              <tr>
-                <td><strong>네루가 오크</strong></td>
-                <td>네루가 오크 토템</td>
-                <td>100 아데나, 확률적으로 마법 주문서 (데이/젤)</td>
-              </tr>
-              <tr>
-                <td><strong>아투바 오크</strong></td>
-                <td>아투바 오크 토템</td>
-                <td>200 아데나</td>
-              </tr>
-              <tr>
-                <td><strong>두다마라 오크</strong></td>
-                <td>두다마라 오크 토템</td>
-                <td>50 아데나, 확률적으로 재료 아이템</td>
-              </tr>
-              <tr>
-                <td><strong>로바 오크</strong></td>
-                <td>로바 오크 토템</td>
-                <td>50 아데나</td>
-              </tr>
-            </tbody>
-          </table>
+          <div class="reward-table-wrapper">
+            <table class="reward-table">
+              <thead>
+                <tr>
+                  <th>오크 부족</th>
+                  <th>획득 토템</th>
+                  <th>교환 보상 (아데나)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>간디 오크</strong></td>
+                  <td>간디 오크 토템</td>
+                  <td>30 아데나</td>
+                </tr>
+                <tr>
+                  <td><strong>네루가 오크</strong></td>
+                  <td>네루가 오크 토템</td>
+                  <td>100 아데나, 확률적으로 마법 주문서 (데이/젤)</td>
+                </tr>
+                <tr>
+                  <td><strong>아투바 오크</strong></td>
+                  <td>아투바 오크 토템</td>
+                  <td>200 아데나</td>
+                </tr>
+                <tr>
+                  <td><strong>두다마라 오크</strong></td>
+                  <td>두다마라 오크 토템</td>
+                  <td>50 아데나, 확률적으로 재료 아이템</td>
+                </tr>
+                <tr>
+                  <td><strong>로바 오크</strong></td>
+                  <td>로바 오크 토템</td>
+                  <td>50 아데나</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       `
     };
@@ -336,8 +344,13 @@
       main.innerHTML = QUEST_DB[key];
       
       document.querySelectorAll('.quest-sidebar button').forEach(btn => btn.classList.remove('active'));
-      const activeBtn = Array.from(document.querySelectorAll('.quest-sidebar button')).find(btn => btn.innerText.includes(key === 'lv15' ? '15레벨' : key === 'lv30' ? '30레벨' : '토템'));
-      if (activeBtn) activeBtn.classList.add('active');
+      const buttons = document.querySelectorAll('.quest-sidebar button');
+      for(let btn of buttons) {
+        if(btn.getAttribute('onclick').includes(key)) {
+          btn.classList.add('active');
+          break;
+        }
+      }
       
       lucide.createIcons();
       window.scrollTo(0, 0);
