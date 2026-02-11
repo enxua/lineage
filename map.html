@@ -55,6 +55,7 @@
       <nav class="map-nav">
         <div style="font-size:0.9rem; color:var(--text-dim); margin: 0.5rem 0 0.5rem 0.5rem;">마을 (Town)</div>
         <button class="active" onclick="renderMap('talking_island')"><i data-lucide="home"></i> 말하는 섬</button>
+        <button onclick="renderMap('gludin')"><i data-lucide="home"></i> 글루딘 마을</button>
         <button onclick="renderMap('giran')"><i data-lucide="home"></i> 기란 마을</button>
         <button onclick="renderMap('silver')"><i data-lucide="home"></i> 은기사 마을</button>
         
@@ -89,6 +90,22 @@
           { name: "허수아비", level: 1, drop: "없음" },
           { name: "오크", level: 3, drop: "오크족 단검, 아데나" },
           { name: "라이칸스로프", level: 15, drop: "초록 물약" }
+        ]
+      },
+      gludin: {
+        title: "글루딘 마을 (Gludin Village)",
+        desc: "본토의 관문이자 항구 도시. 슬라임 레이스와 개 훈련장이 유명하며, 수많은 상인들이 밀집해 있습니다.",
+        bg: "https://static.plaync.com/ingame/lineageclassic/guide/img/town_gludin.jpg",
+        npcs: [
+          { name: "피스", role: "선착장 관리인", loc: "항구" },
+          { name: "로로", role: "스탯 초기화 (회상의 촛불)", loc: "마을 동쪽" },
+          { name: "쿠엔", role: "대장장이", loc: "마을 북쪽" },
+          { name: "카림", role: "창고지기", loc: "광장" }
+        ],
+        monsters: [
+          { name: "늑대인간", level: 12, drop: "초록 물약, 마법서" },
+          { name: "해골", level: 12, drop: "철괴, 아데나" },
+          { name: "버그베어", level: 24, drop: "갑옷 마법 주문서" }
         ]
       },
       giran: {
