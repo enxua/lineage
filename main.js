@@ -137,25 +137,25 @@ class LineageApp {
     return `
       <td>
         <div class="item-info">
-          <div style="width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.05); border-radius: 8px;">
+          <div style="width: 40px; height: 40px; min-width: 40px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.05); border-radius: 8px;">
             ${hasImage ? `
               <img src="${item.image}" 
                    referrerpolicy="no-referrer" 
                    alt="${item.name}" 
-                   style="width: 32px; height: 32px; object-fit: contain;"
+                   style="width: 28px; height: 28px; object-fit: contain;"
                    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
               <div class="default-icon-placeholder" style="display:none;"><i data-lucide="${defaultIcon}"></i></div>
             ` : `
               <div class="default-icon-placeholder"><i data-lucide="${defaultIcon}"></i></div>
             `}
           </div>
-          <div>
-            <div style="font-weight: 800; font-size: 1.1rem;">${item.name}</div>
-            <span class="category-badge" style="font-size: 0.75rem; background: rgba(255,255,255,0.1); padding: 0.1rem 0.5rem; border-radius: 4px; color: var(--text-dim);">${item.category}</span>
+          <div style="display: flex; align-items: center; gap: 0.8rem;">
+            <div style="font-weight: 800; font-size: 1.05rem; white-space: nowrap;">${item.name}</div>
+            <span class="category-badge" style="font-size: 0.75rem; background: rgba(255,255,255,0.1); padding: 0.1rem 0.5rem; border-radius: 4px; color: var(--text-dim); white-space: nowrap;">${item.category}</span>
           </div>
         </div>
       </td>
-      <td style="color: var(--text-dim); font-size: 0.95rem;">${item.stats}</td>
+      <td style="color: var(--text-dim); font-size: 0.95rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${item.stats}</td>
     `;
   }
 }
