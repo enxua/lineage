@@ -6,6 +6,7 @@ class LineageApp {
     this.searchQuery = '';
     this.expandedRows = new Set();
     this.data = DATA || { items: [], spells: [], monsters: [], crafting: [] };
+    console.log("Data loaded keys:", Object.keys(this.data));
     this.init();
   }
 
