@@ -58,7 +58,7 @@
         {
           title: "15레벨 퀘스트 - 붉은 기사의 시련",
           desc: "클래스별로 주어진 첫 시련입니다. 기사의 두건, 군주의 검 등 핵심 초반 장비를 획득합니다.",
-          image: "https://static.inven.co.kr/column/2021/06/11/news/i14532578505.jpg",
+          image: "https://static.plaync.com/ingame/lineageclassic/guide/img/quest_15.jpg",
           tag: "LV.15",
           details: [
             "기사: 리키(은기사 마을) - 붉은 기사의 두건",
@@ -69,7 +69,7 @@
         {
           title: "30레벨 퀘스트 - 용사의 증명",
           desc: "진 레이피어, 화염의 활 등 클래스 전용 고급 무기를 보상으로 받는 중요한 퀘스트입니다.",
-          image: "https://static.inven.co.kr/column/2021/06/11/news/i14545814521.jpg",
+          image: "https://static.plaync.com/ingame/lineageclassic/guide/img/quest_30.jpg",
           tag: "LV.30",
           details: [
             "기사: 짐(은기사 마을 던전) - 진 레이피어",
@@ -80,7 +80,7 @@
         {
           title: "45레벨 퀘스트 - 수호자의 길",
           desc: "고레벨 스킬 및 특수 장비를 획득하기 위한 험난한 과정입니다.",
-          image: "https://static.inven.co.kr/column/2021/06/23/news/i15754984261.jpg",
+          image: "https://static.plaync.com/ingame/lineageclassic/guide/img/quest_45.jpg",
           tag: "LV.45",
           details: [
             "기사: 장갑 보상 및 쇼크 스턴 관련 시련",
@@ -93,7 +93,7 @@
         {
           title: "오크 부족 토템 수집",
           desc: "오크 부족별 토템을 모아 아데나로 환전하거나 주문서로 교환합니다.",
-          image: "https://static.inven.co.kr/column/2021/06/15/news/i14013584852.jpg",
+          image: "https://static.plaync.com/ingame/lineageclassic/guide/img/totem.jpg",
           tag: "FARMING",
           details: [
             "간디/네루가 토템: 아데나 교환",
@@ -109,7 +109,8 @@
       grid.innerHTML = QUEST_DATA[category].map(item => `
         <article class="visual-card">
           <div class="card-image-box">
-            <img src="${item.image}" alt="${item.title}" referrerpolicy="no-referrer">
+            <img src="${item.image}" alt="${item.title}" 
+                 onerror="this.src='https://assets.playnccdn.com/common/lineageclassic.png'; this.style.objectFit='contain';">
             <span class="card-tag">${item.tag}</span>
           </div>
           <div class="card-details">

@@ -61,21 +61,21 @@
         {
           title: "말하는 섬 마을",
           desc: "모험가들의 고향이자 수련의 장입니다. 본토로 향하는 배가 머무는 선착장이 있습니다.",
-          image: "https://static.inven.co.kr/column/2021/06/11/news/i14515220037.jpg",
+          image: "https://static.plaync.com/ingame/lineageclassic/guide/img/town_talkingisland.jpg",
           tag: "Lv.1~15",
           info: "주요 NPC: 건, 제이, 판도라"
         },
         {
           title: "기란 마을",
           desc: "아덴 대륙 최대의 상업 요충지입니다. 시장, 무한 대전, 혈맹 아지트가 밀집해 있습니다.",
-          image: "https://static.inven.co.kr/column/2021/06/25/news/i13788172109.jpg",
+          image: "https://static.plaync.com/ingame/lineageclassic/guide/img/town_giran.jpg",
           tag: "COMMERCE",
           info: "주요 시설: 기란 시장, 투기장"
         },
         {
           title: "은기사 마을",
           desc: "사막 인근에 위치한 기사들의 훈련지입니다. 거친 환경 속에서 성장을 꾀하는 곳입니다.",
-          image: "https://static.inven.co.kr/column/2021/06/11/news/i14519641753.jpg",
+          image: "https://static.plaync.com/ingame/lineageclassic/guide/img/town_silverknight.jpg",
           tag: "KNIGHT",
           info: "주요 시설: 기사 수련장, 퀘스트 NPC 리키"
         }
@@ -84,14 +84,14 @@
         {
           title: "용의 계곡",
           desc: "거대한 드레이크가 출몰하는 험난한 계곡입니다. 리니지 클래스의 대표적인 고레벨 사냥터입니다.",
-          image: "https://static.inven.co.kr/column/2021/06/18/news/i14578144211.jpg",
+          image: "https://static.plaync.com/ingame/lineageclassic/guide/img/field_dragonvalley.jpg",
           tag: "Lv.45+",
           info: "주요 몬스터: 드레이크, 흑룡의 정예병"
         },
         {
           title: "오크 숲",
           desc: "오크들이 부락을 이루고 사는 숲입니다. 토템 수집을 위해 많은 이들이 찾는 곳입니다.",
-          image: "https://static.inven.co.kr/column/2021/06/15/news/i14013584852.jpg",
+          image: "https://static.plaync.com/ingame/lineageclassic/guide/img/field_orcforest.jpg",
           tag: "FARMING",
           info: "주요 보스: 오크 대장"
         }
@@ -100,14 +100,14 @@
         {
           title: "글루디오 던전 (본던)",
           desc: "7층 규모의 고대 던전입니다. 각 층마다 데스나이트 등 강력한 언데드들이 잠들어 있습니다.",
-          image: "https://static.inven.co.kr/column/2021/06/11/news/i14538965681.jpg",
+          image: "https://static.plaync.com/ingame/lineageclassic/guide/img/dungeon_gludio.jpg",
           tag: "Lv.30~52",
           info: "7층 보스: 데스나이트"
         },
         {
           title: "말하는 섬 던전",
           desc: "지하 2층에서 바포메트가 출현합니다. 저레벨부터 중레벨까지 거쳐가는 필수 코스입니다.",
-          image: "https://static.inven.co.kr/column/2021/06/11/news/i14543781216.jpg",
+          image: "https://static.plaync.com/ingame/lineageclassic/guide/img/dungeon_talkingisland.jpg",
           tag: "Lv.15~40",
           info: "2층 보스: 바포메트"
         }
@@ -119,7 +119,8 @@
       grid.innerHTML = MAP_DATA[category].map(item => `
         <article class="visual-card">
           <div class="card-image-box">
-            <img src="${item.image}" alt="${item.title}" referrerpolicy="no-referrer">
+            <img src="${item.image}" alt="${item.title}" 
+                 onerror="this.src='https://assets.playnccdn.com/common/lineageclassic.png'; this.style.objectFit='contain';">
             <span class="card-tag">${item.tag}</span>
           </div>
           <div class="card-details">
