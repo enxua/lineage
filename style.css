@@ -138,21 +138,16 @@ body {
   background: var(--bg-card);
   border-radius: 16px;
   border: 1px solid var(--border);
-  overflow-x: auto;
   width: 100%;
 }
 
-table { width: 100%; border-collapse: collapse; min-width: 700px; table-layout: fixed; }
+table { width: 100%; border-collapse: collapse; table-layout: fixed; }
 th { background: rgba(0,0,0,0.4); color: var(--primary); padding: 1rem; text-align: left; font-size: 0.95rem; border-bottom: 2px solid var(--border); }
-td { padding: 1rem; border-bottom: 1px solid var(--border); font-size: 0.9rem; overflow: hidden; text-overflow: ellipsis; }
+td { padding: 1.2rem 1rem; border-bottom: 1px solid var(--border); font-size: 0.95rem; line-height: 1.5; }
 
-th:first-child, td:first-child { width: 35%; }
+th:first-child, td:first-child { width: 300px; }
 
-.item-info { display: flex; align-items: center; gap: 0.8rem; overflow: hidden; }
-.item-name-text { font-weight: 800; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-
-/* --- Geo Summary --- */
-.geo-summary { background: linear-gradient(135deg, rgba(227, 192, 141, 0.1) 0%, rgba(0,0,0,0) 100%); border: 1px solid var(--border); padding: 1.5rem; border-radius: 12px; margin-bottom: 2rem; }
+.item-info { display: flex; align-items: center; gap: 1rem; }
 
 /* --- Mobile / Responsive --- */
 @media (max-width: 1024px) {
@@ -162,10 +157,29 @@ th:first-child, td:first-child { width: 35%; }
   .search-box { width: 100%; }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
+  /* 표를 카드 리스트로 전환 */
+  .table-wrapper { border: none; background: transparent; }
+  table, thead, tbody, th, td, tr { display: block; width: 100% !important; }
+  thead { display: none; } /* 헤더 숨김 */
+  
+  tr { 
+    background: var(--bg-card); 
+    border: 1px solid var(--border); 
+    border-radius: 16px; 
+    margin-bottom: 1rem; 
+    padding: 0.5rem;
+  }
+  
+  td { border: none; padding: 0.8rem 1rem !important; }
+  td:first-child { border-bottom: 1px solid rgba(255,255,255,0.05); }
+  
+  .item-name-text { white-space: normal; }
+  .stats-cell { color: #ccc !important; font-size: 0.9rem !important; }
+  
   .app-container { padding: 0 1rem 3rem; }
-  .nav-menu { display: grid; grid-template-columns: 1fr 1fr; }
-  .nav-item { min-width: 0; }
+  .nav-menu { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+  .nav-item { min-width: 0; padding: 0.8rem; }
   .logo-text .line1 { font-size: 1.6rem; }
   .category-tabs { overflow-x: auto; padding-bottom: 0.5rem; }
   

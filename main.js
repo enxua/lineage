@@ -150,13 +150,13 @@ class LineageApp {
               <div class="default-icon-placeholder"><i data-lucide="${defaultIcon}"></i></div>
             `}
           </div>
-          <div style="display: flex; align-items: center; gap: 0.8rem;">
-            <div style="font-weight: 800; font-size: 1.05rem; white-space: nowrap;">${item.name}</div>
-            <span class="category-badge" style="font-size: 0.75rem; background: rgba(255,255,255,0.1); padding: 0.1rem 0.5rem; border-radius: 4px; color: var(--text-dim); white-space: nowrap;">${item.category}</span>
+          <div style="display: flex; align-items: center; gap: 0.8rem; flex-wrap: wrap;">
+            <div style="font-weight: 800; font-size: 1.05rem;">${item.name}</div>
+            <span class="category-badge" style="font-size: 0.75rem; background: rgba(255,255,255,0.1); padding: 0.1rem 0.5rem; border-radius: 4px; color: var(--text-dim);">${item.category}</span>
           </div>
         </div>
       </td>
-      <td style="color: var(--text-dim); font-size: 0.95rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${item.stats}</td>
+      <td class="stats-cell" style="color: var(--text-dim); font-size: 0.95rem;">${item.stats}</td>
     `;
   }
 }
