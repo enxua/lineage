@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://enxua.github.io/lineage/sitemap.xml
+Sitemap: https://linlib.pages.dev/sitemap.xml
