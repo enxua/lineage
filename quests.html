@@ -25,6 +25,11 @@
     .reward-box { display: flex; gap: 0.8rem; margin-top: 1rem; flex-wrap: wrap; }
     .reward-item { display: flex; align-items: center; gap: 0.5rem; background: rgba(227, 192, 141, 0.1); padding: 0.4rem 0.8rem; border-radius: 6px; border: 1px solid rgba(227, 192, 141, 0.3); color: var(--primary); font-size: 0.85rem; font-weight: 700; }
     .npc-tag { display: inline-block; background: #444; color: #fff; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; margin-right: 5px; }
+    
+    .reward-table { width: 100%; border-collapse: collapse; margin-top: 1.5rem; background: rgba(0,0,0,0.3); border-radius: 8px; overflow: hidden; }
+    .reward-table th { background: rgba(227, 192, 141, 0.1); color: var(--primary); padding: 1rem; text-align: left; border-bottom: 1px solid var(--border); }
+    .reward-table td { padding: 1rem; border-bottom: 1px solid rgba(255,255,255,0.05); color: #eee; }
+    .reward-table tr:last-child td { border-bottom: none; }
   </style>
 </head>
 <body>
@@ -183,18 +188,58 @@
       totem: `
         <div class="quest-section">
           <h2>토템 퀘스트 (반복)</h2>
-          <p style="color:var(--text-dim); margin-bottom:2rem;">오크 숲에서 진행되는 아데나 파밍의 핵심 퀘스트입니다.</p>
+          <p style="color:var(--text-dim); margin-bottom:2rem;">오크 숲에서 진행되는 아데나 파밍의 핵심 퀘스트입니다. 각 부족의 토템을 모아 보상을 획득하십시오.</p>
           
           <div class="quest-step">
-            <img src="https://lineageclassic.plaync.com/ko-kr/guidebook/view?title=%ED%86%A0%ED%85%9C%20%ED%80%98%EC%8A%A4%ED%8A%B8/img/img_guide_totem_01.png" onerror="this.src='https://assets.playnccdn.com/common/lineageclassic.png'">
+            <img src="image/quest_totem.png" alt="토템 퀘스트 메인">
             <div class="step-info">
               <h4>오크 부족 토템 수집</h4>
-              <p>오크 숲의 간디, 네루가, 아투바 오크 등을 사냥하고 토템을 모으십시오. 마을의 오크 수집가에게 가져가면 아데나로 교환해 줍니다.</p>
-              <div class="reward-box">
-                <span class="reward-item">아데나 (부족별 상이)</span>
-                <span class="reward-item">마법 주문서 (네루가 부족)</span>
-              </div>
+              <p><span class="npc-tag">대상 NPC</span> <strong>오크 수집가</strong></p>
+              <p>오크 숲과 아덴 대륙 전역에 서식하는 오크 부족을 사냥하면 확률적으로 토템을 획득할 수 있습니다. 수집한 토템은 마을의 오크 수집가를 통해 보상으로 교환 가능합니다.</p>
             </div>
+          </div>
+
+          <h3><i data-lucide="list"></i> 토템별 보상 상세</h3>
+          <table class="reward-table">
+            <thead>
+              <tr>
+                <th>오크 부족</th>
+                <th>획득 토템</th>
+                <th>교환 보상</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>간디 오크</strong></td>
+                <td>간디 오크 토템</td>
+                <td>아데나</td>
+              </tr>
+              <tr>
+                <td><strong>네루가 오크</strong></td>
+                <td>네루가 오크 토템</td>
+                <td>아데나, 확률적으로 마법 주문서 (데이/젤)</td>
+              </tr>
+              <tr>
+                <td><strong>아투바 오크</strong></td>
+                <td>아투바 오크 토템</td>
+                <td>아데나</td>
+              </tr>
+              <tr>
+                <td><strong>두다마라 오크</strong></td>
+                <td>두다마라 오크 토템</td>
+                <td>아데나, 확률적으로 재료 아이템</td>
+              </tr>
+              <tr>
+                <td><strong>로바 오크</strong></td>
+                <td>로바 오크 토템</td>
+                <td>아데나</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div style="margin-top: 2rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <img src="https://lineageclassic.plaync.com/ko-kr/guidebook/view?title=%ED%86%A0%ED%85%9C%20%ED%80%98%EC%8A%A4%ED%8A%B8/img/img_guide_totem_01.png" style="width:100%; border-radius:8px; border:1px solid var(--border);" onerror="this.style.display='none'">
+            <img src="https://lineageclassic.plaync.com/ko-kr/guidebook/view?title=%ED%86%A0%ED%85%9C%20%ED%80%98%EC%8A%A4%ED%8A%B8/img/img_guide_totem_05.png" style="width:100%; border-radius:8px; border:1px solid var(--border);" onerror="this.style.display='none'">
           </div>
         </div>
       `
