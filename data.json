@@ -5524,24 +5524,24 @@
   "crafting": [
     {
       "id": "c1",
-      "name": "가죽 모자",
-      "category": "투구(공통)",
-      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1102119580.webp",
-      "stats": "NPC 라다르(말섬), 줄리(은기사), 빈센트(기란) | 재료: 동물가죽 5, 철괴 1, 100 아데나"
+      "name": "뼈 갑옷",
+      "category": "갑옷(공통)",
+      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1437233137.webp",
+      "stats": "NPC 라다르(말섬), 줄리(은기사), 빈센트(기란) | 재료: 뼈 조각 30, 가죽 10, 2000 아데나"
     },
     {
       "id": "c2",
-      "name": "가죽 방패",
-      "category": "방패(공통)",
+      "name": "뼈 투구",
+      "category": "투구(공통)",
       "image": "https://static.inven.co.kr/column/2026/02/08/news/i1102119580.webp",
-      "stats": "NPC 라다르(말섬), 줄리(은기사), 빈센트(기란) | 재료: 동물가죽 10, 철괴 2, 200 아데나"
+      "stats": "NPC 라다르(말섬), 줄리(은기사), 빈센트(기란) | 재료: 뼈 조각 15, 가죽 5, 1000 아데나"
     },
     {
       "id": "c3",
-      "name": "가죽 부츠",
-      "category": "부츠(공통)",
+      "name": "뼈 방패",
+      "category": "방패(공통)",
       "image": "https://static.inven.co.kr/column/2026/02/08/news/i1102119580.webp",
-      "stats": "NPC 라다르(말섬), 줄리(은기사), 빈센트(기란) | 재료: 동물가죽 8, 철괴 1, 150 아데나"
+      "stats": "NPC 라다르(말섬), 줄리(은기사), 빈센트(기란) | 재료: 뼈 조각 20, 가죽 8, 1500 아데나"
     },
     {
       "id": "c4",
@@ -5615,52 +5615,94 @@
     },
     {
       "id": "c14",
-      "name": "레이피어",
-      "category": "무기(기사/요정)",
-      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1437233137.webp",
-      "stats": "NPC 줄리(은기사) | 재료: 철괴 100, 고급 피혁 2, 10,000 아데나"
+      "name": "요정족 방패",
+      "category": "방패(요정)",
+      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1102119580.webp",
+      "stats": "NPC 네루파(요정숲) | 재료: 미스릴 원석 50, 판의 갈기털 10"
     },
     {
       "id": "c15",
-      "name": "양손검",
-      "category": "무기(기사)",
-      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1437233137.webp",
-      "stats": "NPC 빈센트(기란) | 재료: 철괴 150, 아데나 20,000"
+      "name": "가죽 모자",
+      "category": "투구(공통)",
+      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1102119580.webp",
+      "stats": "NPC 라다르(말섬), 줄리(은기사), 빈센트(기란) | 재료: 동물가죽 5, 철괴 1"
     },
     {
       "id": "c16",
+      "name": "가죽 부츠",
+      "category": "부츠(공통)",
+      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1102119580.webp",
+      "stats": "NPC 라다르(말섬), 줄리(은기사), 빈센트(기란) | 재료: 동물가죽 8, 철괴 1"
+    },
+    {
+      "id": "c17",
+      "name": "가죽 방패",
+      "category": "방패(공통)",
+      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1102119580.webp",
+      "stats": "NPC 라다르(말섬), 줄리(은기사), 빈센트(기란) | 재료: 동물가죽 10, 철괴 2"
+    },
+    {
+      "id": "c18",
+      "name": "레이피어",
+      "category": "무기(기사/요정)",
+      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1437233137.webp",
+      "stats": "NPC 줄리(은기사), 빈센트(기란) | 재료: 철괴 100, 고급 피혁 2, 10,000 아데나"
+    },
+    {
+      "id": "c19",
       "name": "은기사의 검",
       "category": "무기(기사)",
       "image": "https://static.inven.co.kr/column/2026/02/08/news/i1437233137.webp",
       "stats": "NPC 줄리(은기사) | 재료: 철괴 120, 은광석 50, 15,000 아데나"
     },
     {
-      "id": "c17",
+      "id": "c20",
+      "name": "양손검",
+      "category": "무기(기사)",
+      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1437233137.webp",
+      "stats": "NPC 빈센트(기란) | 재료: 철괴 150, 아데나 20,000"
+    },
+    {
+      "id": "c21",
       "name": "마나 망토",
       "category": "망토(법사)",
       "image": "https://static.inven.co.kr/column/2026/02/08/news/i1150989084.webp",
-      "stats": "NPC 웰던(마샤) | 재료: 천 50, 마력의 돌 20, 10,000 아데나"
+      "stats": "NPC 마샤(웰던) | 재료: 천 50, 마력의 돌 20, 10,000 아데나"
     },
     {
-      "id": "c18",
+      "id": "c22",
       "name": "보호 망토",
       "category": "망토(공통)",
       "image": "https://static.inven.co.kr/column/2026/02/08/news/i1150989084.webp",
       "stats": "NPC 빈센트(기란) | 재료: 천 30, 가죽 5, 3,000 아데나"
     },
     {
-      "id": "c19",
+      "id": "c23",
+      "name": "소환 조종 반지",
+      "category": "반지",
+      "image": "https://static.inven.co.kr/column/2026/02/08/news/i123_acc.webp",
+      "stats": "NPC 레이더(수련던전 1층) | 재료: 금 원석 50, 마력의 돌 100, 50,000 아데나"
+    },
+    {
+      "id": "c24",
       "name": "철괴",
       "category": "재료",
       "image": "https://static.inven.co.kr/column/2026/02/08/news/i1490153021.webp",
       "stats": "NPC 대장장이 | 재료: 철광석 10, 500 아데나"
     },
     {
-      "id": "c20",
+      "id": "c25",
       "name": "고급 피혁",
       "category": "재료",
       "image": "https://static.inven.co.kr/column/2026/02/08/news/i1102119580.webp",
       "stats": "NPC 가죽 세공사 | 재료: 가죽 10, 1,000 아데나"
+    },
+    {
+      "id": "c26",
+      "name": "미스릴 실",
+      "category": "재료",
+      "image": "https://static.inven.co.kr/column/2026/02/08/news/i1102119580.webp",
+      "stats": "NPC 네루파(요정숲 가디언) | 재료: 미스릴 원석 10"
     }
   ]
 }
