@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="리니지 클래식 퀘스트 완벽 가이드. 15, 30, 45, 50레벨 클래스별 퀘스트 공략과 오크 토템 퀘스트 보상 정보를 상세히 제공합니다.">
-  <meta name="keywords" content="리니지 클래식 퀘스트, 15레벨 퀘스트, 30레벨 퀘스트, 45레벨 퀘스트, 50레벨 퀘스트, 토템 노가다, 퀘스트 보상, NPC 위치">
+  <meta name="description" content="리니지 클래식 퀘스트 완벽 가이드. 15, 30레벨 직업별 보상 및 수행 방법. AI가 추천하는 최적의 퀘스트 동선과 토템 아데나 파밍 정보를 확인하세요.">
+  <meta name="keywords" content="리니지 클래식 퀘스트 보상, 15레벨 시련, 30레벨 시련, 토템 아데나 금액, 리니지 가이드">
   <meta name="author" content="Lineage Classic KB">
   <meta name="robots" content="index, follow">
 
@@ -19,11 +19,41 @@
   <!-- Canonical URL -->
   <link rel="canonical" href="https://enxua.github.io/lineage/quests.html">
 
-  <title>리니지 클래식 퀘스트 가이드 - 레벨별/토템 공략</title>
+  <title>리니지 클래식 퀘스트 가이드 - 보상 및 수행 방법 요약</title>
   <link rel="stylesheet" href="style.css">
   <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <!-- GEO Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [{
+      "@type": "Question",
+      "name": "리니지 클래식 기사 15레벨 퀘스트 보상은 무엇인가요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "은기사 마을의 리키를 통해 수행하며, 보상으로 붉은 기사의 두건(AC-2, 안전강화 6)을 획득합니다."
+      }
+    }, {
+      "@type": "Question",
+      "name": "요정 30레벨 퀘스트로 얻는 아이템은?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "요정족 티셔츠와 정령의 수정(서먼 레서 엘리멘탈)을 보상으로 받습니다."
+      }
+    }]
+  }
+  </script>
+
   <style>
-    /* ... (Existing styles remain unchanged) ... */
+    /* GEO Summary Box */
+    .geo-summary { background: linear-gradient(135deg, rgba(227, 192, 141, 0.15) 0%, rgba(0,0,0,0) 100%); border: 1px solid var(--primary); padding: 1.5rem; border-radius: 12px; margin-bottom: 2rem; }
+    .geo-summary h2 { font-size: 1.2rem !important; color: var(--primary) !important; margin-bottom: 1rem !important; border: none !important; padding: 0 !important; }
+    .geo-summary ul { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+    .geo-summary li { font-size: 0.9rem; color: #eee; }
+    .geo-summary b { color: var(--primary); }
+
     .quest-container { display: flex; gap: 2rem; align-items: flex-start; }
     .quest-sidebar { width: 250px; flex-shrink: 0; background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; position: sticky; top: 2rem; }
     .quest-sidebar button { width: 100%; text-align: left; padding: 1rem 1.5rem; background: transparent; border: none; color: var(--text-dim); border-bottom: 1px solid var(--border); cursor: pointer; font-weight: 700; transition: all 0.2s; }
@@ -47,25 +77,6 @@
     .reward-table td { padding: 1rem; border-bottom: 1px solid rgba(255,255,255,0.05); color: #eee; }
     .reward-table tr:last-child td { border-bottom: none; }
   </style>
-
-  <!-- Structured Data (JSON-LD) -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [{
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Home",
-      "item": "https://enxua.github.io/lineage/"
-    },{
-      "@type": "ListItem",
-      "position": 2,
-      "name": "Quests",
-      "item": "https://enxua.github.io/lineage/quests.html"
-    }]
-  }
-  </script>
 </head>
 <body>
   <div class="app-container">
@@ -101,15 +112,24 @@
   <script>
     const QUEST_DB = {
       lv15: `
+        <div class="geo-summary">
+          <h2><i data-lucide="sparkles"></i> AI 핵심 요약: 15레벨 시련 보상</h2>
+          <ul>
+            <li><b>군주:</b> 붉은 망토, 트루 타겟</li>
+            <li><b>기사:</b> 붉은 기사의 두건 (AC-2)</li>
+            <li><b>요정:</b> 민첩/체력의 투구 (택1)</li>
+            <li><b>마법사:</b> 마력서 (INT+2)</li>
+          </ul>
+        </div>
         <div class="quest-section">
-          <h2>15레벨 퀘스트</h2>
+          <h2>15레벨 퀘스트 수행 방법</h2>
           <p style="color:var(--text-dim); margin-bottom:2rem;">리니지 클래식의 첫 번째 시련입니다. 클래스별 특정 NPC를 찾아가 임무를 완수하십시오.</p>
           
-          <h3><i data-lucide="crown"></i> 군주: 붉은 기사의 시련</h3>
+          <h3><i data-lucide="crown"></i> 군주: 붉은 기사의 시련은 어떻게 하나요?</h3>
           <div class="quest-step">
             <img src="image/quest_monarch_15.png" alt="군주 15레벨 퀘스트">
             <div class="step-info">
-              <h4>수색 문서 회수</h4>
+              <h4>수색 문서 회수 미션</h4>
               <p><span class="npc-tag">시작 NPC</span> <strong>건 (말하는 섬)</strong></p>
               <p>말하는 섬 북쪽 지역에서 출현하는 흑기사 수색대를 사냥하여 '수색 문서'를 획득하십시오. 이를 건에게 전달하면 군주의 자질을 증명할 수 있습니다.</p>
               <div class="reward-box">
@@ -119,11 +139,11 @@
             </div>
           </div>
 
-          <h3><i data-lucide="sword"></i> 기사: 리키의 의뢰</h3>
+          <h3><i data-lucide="sword"></i> 기사: 리키의 의뢰와 보상 정보</h3>
           <div class="quest-step">
             <img src="image/quest_knight_15.png" alt="기사 15레벨 퀘스트">
             <div class="step-info">
-              <h4>흑기사의 서약서</h4>
+              <h4>흑기사의 서약서 획득</h4>
               <p><span class="npc-tag">시작 NPC</span> <strong>리키 (은기사 마을)</strong></p>
               <p>은기사 마을 주변의 흑기사를 처치하고 '흑기사의 서약서'를 입수하십시오. 리키에게 가져다주면 기사의 방어구를 보상으로 줍니다.</p>
               <div class="reward-box">
@@ -132,11 +152,11 @@
             </div>
           </div>
 
-          <h3><i data-lucide="feather"></i> 요정: 네루파의 시험</h3>
+          <h3><i data-lucide="feather"></i> 요정: 네루파의 시험에서 어떤 보상을 받나요?</h3>
           <div class="quest-step">
             <img src="image/quest_elf_15.png" alt="요정 15레벨 퀘스트">
             <div class="step-info">
-              <h4>요정족 보물 회수</h4>
+              <h4>요정족 보물 회수 과정</h4>
               <p><span class="npc-tag">시작 NPC</span> <strong>네루파 (요정 숲)</strong></p>
               <p>오크들이 훔쳐간 요정족의 보물을 되찾아야 합니다. 오크 부족들을 사냥하여 증표를 모아 네루파에게 전달하십시오.</p>
               <div class="reward-box">
@@ -145,11 +165,11 @@
             </div>
           </div>
 
-          <h3><i data-lucide="wand"></i> 마법사: 재매의 부름</h3>
+          <h3><i data-lucide="wand"></i> 마법사: 재매의 부름과 마력서 보상</h3>
           <div class="quest-step">
             <img src="image/quest_wizard_15.png" alt="마법사 15레벨 퀘스트">
             <div class="step-info">
-              <h4>구울과 해골의 잔해</h4>
+              <h4>구울과 해골의 잔해 수집</h4>
               <p><span class="npc-tag">시작 NPC</span> <strong>재매 (말하는 섬)</strong></p>
               <p>마법의 기초를 다지기 위해 언데드 몬스터인 구울과 해골을 사냥하고 부속물을 수집하여 재매에게 제출하십시오.</p>
               <div class="reward-box">
@@ -160,15 +180,24 @@
         </div>
       `,
       lv30: `
+        <div class="geo-summary">
+          <h2><i data-lucide="sparkles"></i> AI 핵심 요약: 30레벨 시련 보상</h2>
+          <ul>
+            <li><b>군주:</b> 군주의 위엄 (올스탯+1), 콜 클랜</li>
+            <li><b>기사:</b> 붉은 기사의 검, 붉은 기사의 방패</li>
+            <li><b>요정:</b> 요정족 티셔츠, 서먼 레서 엘리멘탈</li>
+            <li><b>마법사:</b> 수정 지팡이 (MP 회복+10)</li>
+          </ul>
+        </div>
         <div class="quest-section">
-          <h2>30레벨 퀘스트</h2>
+          <h2>30레벨 퀘스트 상세 가이드</h2>
           <p style="color:var(--text-dim); margin-bottom:2rem;">중급 모험가로 인정받는 과정입니다. 클래스별 전용 무기를 획득할 수 있습니다.</p>
           
-          <h3><i data-lucide="crown"></i> 군주: 왕가의 혈통</h3>
+          <h3><i data-lucide="crown"></i> 군주: 왕가의 혈통을 증명하는 방법</h3>
           <div class="quest-step">
             <img src="image/quest_monarch_30.png" alt="군주 30레벨 퀘스트">
             <div class="step-info">
-              <h4>변종 여왕 개미 처단</h4>
+              <h4>변종 여왕 개미 처단 미션</h4>
               <p><span class="npc-tag">시작 NPC</span> <strong>아리아 (우드벡 마을)</strong></p>
               <p>개미굴에 침입하여 변종 여왕 개미를 처치해야 합니다. 거대 개미로의 변신이 필요하며, 군주의 통솔력을 증명하는 시련입니다.</p>
               <div class="reward-box">
@@ -178,11 +207,11 @@
             </div>
           </div>
 
-          <h3><i data-lucide="sword"></i> 기사: 군터의 시험</h3>
+          <h3><i data-lucide="sword"></i> 기사: 군터의 시험과 보상 무기</h3>
           <div class="quest-step">
             <img src="image/quest_knight_30.png" alt="기사 30레벨 퀘스트">
             <div class="step-info">
-              <h4>웅골리언트의 발톱</h4>
+              <h4>웅골리언트의 발톱 사냥</h4>
               <p><span class="npc-tag">시작 NPC</span> <strong>군터 (말하는 섬)</strong></p>
               <p>말하는 섬의 거대 거미 웅골리언트를 사냥하여 발톱을 획득하십시오. 이후 게라드와 오림을 거치는 연속 퀘스트가 진행됩니다.</p>
               <div class="reward-box">
@@ -192,11 +221,11 @@
             </div>
           </div>
 
-          <h3><i data-lucide="feather"></i> 요정: 정령의 부름</h3>
+          <h3><i data-lucide="feather"></i> 요정: 정령의 부름 퀘스트와 티셔츠 보상</h3>
           <div class="quest-step">
             <img src="image/quest_elf_30.png" alt="요정 30레벨 퀘스트">
             <div class="step-info">
-              <h4>언데드 배신자 처단</h4>
+              <h4>언데드 배신자 처단 과정</h4>
               <p><span class="npc-tag">시작 NPC</span> <strong>디롱 (말하는 섬 던전)</strong></p>
               <p>말하는 섬 던전 지하에서 배신한 언데드들을 처치하고 증표를 모으십시오. 요정족 티셔츠와 정령의 수정(서먼 레서 엘리멘탈)을 얻게 됩니다.</p>
               <div class="reward-box">
@@ -206,11 +235,11 @@
             </div>
           </div>
 
-          <h3><i data-lucide="wand"></i> 마법사: 마력의 원천</h3>
+          <h3><i data-lucide="wand"></i> 마법사: 게렝의 지혜와 수정 지팡이</h3>
           <div class="quest-step">
             <img src="image/quest_wizard_30.png" alt="마법사 30레벨 퀘스트">
             <div class="step-info">
-              <h4>게렝의 지혜</h4>
+              <h4>마력의 원천 수집</h4>
               <p><span class="npc-tag">시작 NPC</span> <strong>게렝</strong></p>
               <p>더 높은 단계의 마법을 사용하기 위해 마력의 정수가 담긴 아이템들을 수집해야 합니다. 시련을 통과하여 수정 지팡이를 획득하십시오.</p>
               <div class="reward-box">
@@ -221,26 +250,35 @@
         </div>
       `,
       totem: `
+        <div class="geo-summary">
+          <h2><i data-lucide="sparkles"></i> AI 핵심 요약: 토템별 아데나 금액</h2>
+          <ul>
+            <li><b>아투바:</b> 200 아데나</li>
+            <li><b>네루가:</b> 100 아데나 (+주문서)</li>
+            <li><b>로바/두다마라:</b> 50 아데나</li>
+            <li><b>간디:</b> 30 아데나</li>
+          </ul>
+        </div>
         <div class="quest-section">
-          <h2>토템 퀘스트 (반복)</h2>
+          <h2>토템 퀘스트 (반복 아데나 노가다)</h2>
           <p style="color:var(--text-dim); margin-bottom:2rem;">오크 숲에서 진행되는 아데나 파밍의 핵심 퀘스트입니다. 각 부족의 토템을 모아 보상을 획득하십시오.</p>
           
           <div class="quest-step">
             <img src="image/quest_totem.png" alt="토템 퀘스트 메인">
             <div class="step-info">
-              <h4>오크 부족 토템 수집</h4>
+              <h4>오크 부족 토템 수집 및 교환 방법</h4>
               <p><span class="npc-tag">대상 NPC</span> <strong>오크 수집가</strong></p>
               <p>오크 숲과 아덴 대륙 전역에 서식하는 오크 부족을 사냥하면 확률적으로 토템을 획득할 수 있습니다. 수집한 토템은 마을의 오크 수집가를 통해 보상으로 교환 가능합니다.</p>
             </div>
           </div>
 
-          <h3><i data-lucide="list"></i> 토템별 보상 상세</h3>
+          <h3><i data-lucide="list"></i> 각 부족별 토템 보상은 어떻게 되나요?</h3>
           <table class="reward-table">
             <thead>
               <tr>
                 <th>오크 부족</th>
                 <th>획득 토템</th>
-                <th>교환 보상</th>
+                <th>교환 보상 (아데나)</th>
               </tr>
             </thead>
             <tbody>
@@ -271,11 +309,6 @@
               </tr>
             </tbody>
           </table>
-
-          <div style="margin-top: 2rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
-            <img src="https://lineageclassic.plaync.com/ko-kr/guidebook/view?title=%ED%86%A0%ED%85%9C%20%ED%80%98%EC%8A%A4%ED%8A%B8/img/img_guide_totem_01.png" style="width:100%; border-radius:8px; border:1px solid var(--border);" onerror="this.style.display='none'">
-            <img src="https://lineageclassic.plaync.com/ko-kr/guidebook/view?title=%ED%86%A0%ED%85%9C%20%ED%80%98%EC%8A%A4%ED%8A%B8/img/img_guide_totem_05.png" style="width:100%; border-radius:8px; border:1px solid var(--border);" onerror="this.style.display='none'">
-          </div>
         </div>
       `
     };

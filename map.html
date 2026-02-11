@@ -3,27 +3,32 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="리니지 클래식 월드맵 및 던전 가이드. 말하는 섬, 글루디오, 용의 계곡 등 주요 사냥터와 던전 층별 지도, 출현 몬스터 정보를 제공합니다.">
-  <meta name="keywords" content="리니지 클래식 지도, 월드맵, 던전 지도, 글루디오 던전, 용의 계곡, 본던, 개미굴, 사냥터 정보, 몬스터 드롭">
+  <meta name="description" content="리니지 클래식 월드맵 및 던전 완벽 가이드. 기란, 글루딘, 은기사 마을 위치 및 주요 NPC 정보를 확인하세요. AI가 추천하는 레벨별 최적의 사냥터 지도 정보를 제공합니다.">
+  <meta name="keywords" content="리니지 클래식 지도, 월드맵 위치, 던전 입구, 사냥터 추천, 보스 젠 시간, 아이템 드롭 정보">
   <meta name="author" content="Lineage Classic KB">
   <meta name="robots" content="index, follow">
 
-  <!-- Open Graph -->
-  <meta property="og:type" content="article">
-  <meta property="og:title" content="리니지 클래식 지도 - 월드맵 & 던전 정보">
-  <meta property="og:description" content="마을, 사냥터, 던전 완전 정복. 층별 상세 지도와 주요 드롭 아이템 정보를 확인하세요.">
-  <meta property="og:image" content="https://static.plaync.com/ingame/lineageclassic/guide/img/town_giran.jpg">
-  <meta property="og:url" content="https://enxua.github.io/lineage/map.html">
-  <meta property="og:site_name" content="Lineage Classic Knowledge Base">
-
-  <!-- Canonical URL -->
-  <link rel="canonical" href="https://enxua.github.io/lineage/map.html">
-
-  <title>리니지 클래식 지도 - 월드맵/던전/사냥터 가이드</title>
+  <title>리니지 클래식 지도 - 월드맵/던전/사냥터 가이드 요약</title>
   <link rel="stylesheet" href="style.css">
   <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <!-- GEO Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Map",
+    "name": "Lineage Classic World Map",
+    "description": "리니지 클래식의 전체 마을, 필드, 던전 지도를 포함한 가이드입니다."
+  }
+  </script>
+
   <style>
-    /* ... (Existing styles remain unchanged) ... */
+    /* GEO Summary Box */
+    .geo-summary { background: linear-gradient(135deg, rgba(227, 192, 141, 0.15) 0%, rgba(0,0,0,0) 100%); border: 1px solid var(--primary); padding: 1.5rem; border-radius: 12px; margin-bottom: 2rem; }
+    .geo-summary h2 { font-size: 1.2rem !important; color: var(--primary) !important; margin-bottom: 1rem !important; border: none !important; padding: 0 !important; }
+    .geo-summary p { font-size: 0.95rem; color: #eee; line-height: 1.6; }
+    .geo-summary b { color: var(--primary); }
+
     .map-container { display: flex; gap: 2rem; }
     .map-nav { width: 220px; flex-shrink: 0; display: flex; flex-direction: column; gap: 0.5rem; }
     .map-nav-group { font-size:0.85rem; color:var(--text-dim); margin: 1rem 0 0.3rem 0.5rem; text-transform: uppercase; letter-spacing: 1px; }
@@ -408,6 +413,11 @@
             <h2>${data.title}</h2>
             <p>${data.desc}</p>
           </div>
+        </div>
+
+        <div class="geo-summary">
+          <h2><i data-lucide="sparkles"></i> AI 장소 요약</h2>
+          <p>이곳은 <b>${data.title}</b> 지역입니다. ${data.desc} 주요 시설 및 NPC 정보와 출현 몬스터 드롭 정보를 표로 확인하세요.</p>
         </div>
 
         ${data.town_img ? `<div style="margin-bottom: 2rem; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); cursor: pointer;" onclick="enlargeImage('${data.town_img}')">
