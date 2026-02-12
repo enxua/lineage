@@ -39,7 +39,7 @@
         .class-selector {
             display: flex;
             justify-content: space-around;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
             gap: 1rem;
         }
 
@@ -64,6 +64,27 @@
             border-color: var(--primary);
             background: var(--gold-gradient);
             color: #111;
+        }
+
+        /* Portrait Container - Moved for Mobile */
+        .portrait-container {
+            background: rgba(0,0,0,0.5);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            overflow: hidden;
+            height: 350px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        #class-portrait {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            transition: opacity 0.3s ease-in-out;
         }
 
         /* Stat Rows */
@@ -190,6 +211,7 @@
         @media (max-width: 768px) {
             .class-selector { display: grid; grid-template-columns: 1fr 1fr; }
             .container-main { padding: 1rem; margin: 0.5rem; }
+            .portrait-container { height: 280px; margin-bottom: 1.5rem; }
         }
     </style>
 </head>
@@ -247,6 +269,11 @@
             </div>
         </div>
 
+        <!-- Portrait immediately after Class Selector (Optimized for Mobile) -->
+        <div class="portrait-container">
+            <img id="class-portrait" src="image/monarch.jpg" alt="Character Portrait">
+        </div>
+
         <div class="row g-4">
             <!-- Left: Stats -->
             <div class="col-lg-6">
@@ -272,11 +299,6 @@
             <!-- Right: Status -->
             <div class="col-lg-6">
                 <div class="status-panel">
-                    <!-- Character Portrait -->
-                    <div class="text-center mb-4" style="background: rgba(0,0,0,0.5); border-radius: 12px; border: 1px solid var(--border); overflow: hidden; height: 300px; display: flex; align-items: center; justify-content: center;">
-                        <img id="class-portrait" src="image/monarch.jpg" alt="Character Portrait" style="max-width: 100%; max-height: 100%; object-fit: contain; transition: var(--transition);">
-                    </div>
-
                     <h5 class="mb-3 text-center" style="color:var(--primary); font-weight:700;">DETAILED STATS</h5>
                     <div class="status-item">
                         <span class="status-label">최대 HP</span>
@@ -457,7 +479,11 @@
         // Update Portrait Image
         const portrait = document.getElementById('class-portrait');
         if (portrait) {
-            portrait.src = `image/${cls}.jpg`;
+            portrait.style.opacity = '0';
+            setTimeout(() => {
+                portrait.src = `image/${cls}.jpg`;
+                portrait.style.opacity = '1';
+            }, 150);
         }
 
         // Reset Equipment? No, keep it but maybe warn if restricted.
@@ -511,8 +537,6 @@
                 state.equipment['shield'].itemId = '';
                 const shieldSelect = document.querySelector('#slot-shield select');
                 if(shieldSelect) shieldSelect.value = '';
-                // Disable shield slot?
-                // document.querySelector('#slot-shield').style.opacity = '0.5';
             }
         }
         updateDisplay();
@@ -535,8 +559,6 @@
     }
 
     function parseStats(statsStr) {
-        // Format: "Small/Large | Class | Safe | Weight | Extras..."
-        // e.g. "14/16 | 군주, 기사 | 6 | 양손 | ..."
         if(!statsStr) return {};
         const parts = statsStr.split('|').map(s => s.trim());
         
@@ -548,9 +570,6 @@
         }
 
         let ac = 0;
-        // Search AC in parts. Often first for armor: "-3" or "0"
-        // But weapons have dmg first.
-        // Heuristic: If first part has '/', it's weapon. If single number (negative or positive small), armor.
         const isWeapon = parts[0].includes('/');
         if (!isWeapon) {
             ac = parseInt(parts[0]) || 0; 
@@ -559,11 +578,8 @@
         const rawText = statsStr;
         const isTwoHanded = rawText.includes('양손');
         
-        // Parse Bonuses from text
-        // Look for "STR +1", "HP회복 +5", "MR +10", "최대 HP +20"
         let bonuses = { str:0, dex:0, con:0, int:0, wis:0, cha:0, hp:0, mp:0, mr:0, sp:0 };
         
-        // Regex for stats
         const regexes = [
             { key: 'str', re: /STR\s*([+-]?\d+)/i },
             { key: 'dex', re: /DEX\s*([+-]?\d+)/i },
@@ -582,11 +598,6 @@
             if(m) bonuses[r.key] += parseInt(m[1]);
         });
 
-        // Specific Item Hardcoding (Parsing unstructured text is hard)
-        if (rawText.includes('마법 방어력') || rawText.includes('MR')) { 
-            // fallback if regex missed complex string
-        }
-
         return { isWeapon, dmgSmall, dmgLarge, ac, isTwoHanded, bonuses, rawText };
     }
 
@@ -594,18 +605,13 @@
         const { stats, level, class: clsName, equipment } = state;
         const clsData = CLASS_BASE[clsName];
 
-        // 1. Base derived stats
-        // HP/MP Growth
         let hpGrowth = 0;
         let mpGrowth = 0;
         
-        // Simplified Lineage 1 Growth Logic
-        // Con effect on HP
         if (stats.con >= 18) hpGrowth = clsData.hpBase + 6; 
         else if (stats.con >= 16) hpGrowth = clsData.hpBase + 4;
         else hpGrowth = clsData.hpBase + 2;
 
-        // Wis effect on MP
         if (stats.wis >= 18) mpGrowth = clsData.mpBase + 4;
         else if (stats.wis >= 15) mpGrowth = clsData.mpBase + 2;
         else mpGrowth = clsData.mpBase + 1;
@@ -613,8 +619,6 @@
         let maxHP = Math.floor(clsData.hpBase + (hpGrowth * (level - 1)));
         let maxMP = Math.floor(clsData.mpBase + (mpGrowth * (level - 1)));
 
-        // Base AC from Dex (Classic: 10 base. Dex bonus lowers it. Level bonus for some classes)
-        // AC = 10 - DexBonus - ClassLevelBonus
         let baseAC = 10;
         let dexACBonus = 0;
         if (stats.dex >= 18) dexACBonus = 8;
@@ -623,10 +627,8 @@
         else if (stats.dex >= 10) dexACBonus = 2;
         
         baseAC -= dexACBonus;
-        // Level Bonus (Knight/Crown AC bonus every X levels) - Simplified
-        if (clsName === 'knight') baseAC -= Math.floor(level / 3); // Approx
+        if (clsName === 'knight') baseAC -= Math.floor(level / 3); 
 
-        // 2. Equipment Stats
         let equipAC = 0;
         let equipDmg = 0;
         let equipHit = 0;
@@ -636,7 +638,6 @@
         let equipSP = 0;
         let addedStats = { str:0, dex:0, con:0, int:0, wis:0, cha:0 };
 
-        // Process Equipment
         for (const [slot, data] of Object.entries(equipment)) {
             if (!data.itemId) continue;
             const item = getItem(data.itemId);
@@ -645,85 +646,62 @@
             const parsed = parseStats(item.stats);
             const enchant = data.enchant;
 
-            // Apply Bonuses
             maxHP += parsed.bonuses.hp;
             maxMP += parsed.bonuses.mp;
             equipMR += parsed.bonuses.mr;
             equipSP += parsed.bonuses.sp;
             
-            // Add raw stats
             for(let k in parsed.bonuses) {
                 if(STAT_TYPES.includes(k)) addedStats[k] += parsed.bonuses[k];
             }
 
-            // AC Logic
             if (!parsed.isWeapon) {
-                // Item Base AC (negative is good). e.g. -3. 
-                // Enchant: each +1 lowers AC by 1 (substract 1).
-                // Total = Base + (-Enchant)
                 equipAC += (parsed.ac - enchant);
             }
 
-            // Weapon Logic
             if (parsed.isWeapon) {
                 const isBow = item.name.includes('활') || item.name.includes('크로스') || item.name.includes('장궁');
                 const isStaff = item.name.includes('지팡이');
-
-                // Base Dmg (Avg of small/large for sim) + Enchant
                 const baseDmgAvg = (parsed.dmgSmall + parsed.dmgLarge) / 2;
                 
                 if (isBow) {
-                    equipRangedDmg += baseDmgAvg + enchant; // +1 dmg per enchant
-                    equipRangedHit += enchant; // +1 hit per enchant
-                    if(parsed.rawText.includes('원거리 대미지')) {
-                         const m = parsed.rawText.match(/원거리\s*대미지\s*([+-]?\d+)/);
-                         if(m) equipRangedDmg += parseInt(m[1]);
-                    }
-                    if(parsed.rawText.includes('원거리 명중')) {
-                         const m = parsed.rawText.match(/원거리\s*명중\s*([+-]?\d+)/);
-                         if(m) equipRangedHit += parseInt(m[1]);
-                    }
+                    equipRangedDmg += baseDmgAvg + enchant;
+                    equipRangedHit += enchant;
+                    const mDmg = parsed.rawText.match(/원거리\s*대미지\s*([+-]?\d+)/);
+                    if(mDmg) equipRangedDmg += parseInt(mDmg[1]);
+                    const mHit = parsed.rawText.match(/원거리\s*명중\s*([+-]?\d+)/);
+                    if(mHit) equipRangedHit += parseInt(mHit[1]);
                 } else {
                     equipDmg += baseDmgAvg + enchant;
                     equipHit += enchant;
-                    
-                    // Staff SP Bonus Logic (User request: Use knowledge)
-                    // Classic doesn't usually give SP on enchant, but let's give +1 SP per +6 enchant for Simulation fun?
                     if (isStaff && enchant >= 6) {
                         equipSP += 1;
                         if (enchant >= 9) equipSP += 1;
                     }
                 }
             } else {
-                // Armor Enchant Effects (MR for accessories?)
-                // User asked to allow +- for everything.
-                // Let's say accessory (Ring, Neck, Belt) gives MR+1 per 2 enchants? 
                 if (['ring1', 'ring2', 'neck', 'belt'].includes(slot)) {
-                    // Custom logic for simulation feel
-                    equipAC += -(Math.floor(enchant / 2)); // AC-1 every 2 levels for accessories?
+                    equipAC += -(Math.floor(enchant / 2)); 
                 }
             }
         }
 
-        // 3. Final Calculations
         const finalStats = {};
         STAT_TYPES.forEach(s => finalStats[s] = stats[s] + addedStats[s]);
 
-        // Str Dmg Bonus
         const strBonus = Math.floor((finalStats.str - 10) / 2);
         const dexHitBonus = Math.floor((finalStats.dex - 10) / 3);
-        const dexDmgBonus = Math.floor((finalStats.dex - 10) / 3); // Ranged Dmg often scales with Dex
-        const intSPBonus = Math.floor((finalStats.int - 10) / 3); // Base SP from INT
+        const dexDmgBonus = Math.floor((finalStats.dex - 10) / 3); 
+        const intSPBonus = Math.floor((finalStats.int - 10) / 3); 
 
         const totalAC = baseAC + equipAC;
         const totalMeleeDmg = strBonus + equipDmg + Math.floor(level/10);
         const totalMeleeHit = strBonus + dexHitBonus + equipHit + level;
         const totalRangedDmg = dexDmgBonus + equipRangedDmg + Math.floor(level/10);
-        const totalRangedHit = dexHitBonus + equipRangedHit + level + 2; // Base ranged hit is decent
+        const totalRangedHit = dexHitBonus + equipRangedHit + level + 2; 
         const totalMR = Math.floor(finalStats.wis * 2) + Math.floor(level/2) + equipMR;
-        const totalSP = intSPBonus + equipSP + (clsName === 'wizard' ? 4 : 0); // Wizard base SP
+        const totalSP = intSPBonus + equipSP + (clsName === 'wizard' ? 4 : 0); 
 
-        // Update DOM
         document.getElementById('display-hp').innerText = maxHP;
         document.getElementById('display-mp').innerText = maxMP;
         document.getElementById('display-ac').innerText = totalAC;
@@ -737,7 +715,6 @@
         document.getElementById('display-mr').innerText = `${totalMR}%`;
         document.getElementById('display-sp').innerText = totalSP;
 
-        // Bonus Text
         const bonusText = Object.entries(addedStats)
             .filter(([_,v]) => v !== 0)
             .map(([k,v]) => `${k.toUpperCase()} ${v>0?'+':''}${v}`)
@@ -745,7 +722,6 @@
         document.getElementById('display-bonus').innerText = bonusText || 'None';
     }
 
-    // Start
     window.onload = init;
 </script>
 
