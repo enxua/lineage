@@ -8,167 +8,204 @@
     <link rel="stylesheet" href="style.css">
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
-        :root {
-            --nc-gold: #c8a45d;
-            --nc-dark: #1a1a1a;
-            --nc-gray: #2d2d2d;
-            --nc-text: #e0e0e0;
-        }
-
         body {
-            background-color: var(--background);
-            color: var(--text);
-            font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
-            margin: 0;
-            padding: 0;
+            background-image: 
+                radial-gradient(circle at 50% 0%, rgba(227, 192, 141, 0.05), transparent),
+                url('https://www.transparenttextures.com/patterns/dark-leather.png');
         }
 
         .container-main {
-            max-width: 1000px;
-            margin: 20px auto;
-            padding: 20px;
-            background: var(--nc-gray);
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2.5rem;
+            background: var(--bg-card);
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
         }
 
         .header-title {
             text-align: center;
-            color: var(--nc-gold);
-            margin-bottom: 30px;
-            border-bottom: 2px solid var(--nc-gold);
-            padding-bottom: 10px;
+            color: var(--primary);
+            margin-bottom: 2.5rem;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 1rem;
             font-family: 'Cinzel', serif;
+            letter-spacing: 2px;
+            font-weight: 900;
         }
 
         .class-selector {
             display: flex;
             justify-content: space-around;
-            margin-bottom: 30px;
-            flex-wrap: wrap;
-            gap: 10px;
+            margin-bottom: 2.5rem;
+            gap: 1rem;
         }
 
         .class-card {
             cursor: pointer;
-            padding: 15px;
-            border: 2px solid transparent;
-            border-radius: 8px;
-            transition: all 0.3s;
+            padding: 1.2rem;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            transition: var(--transition);
             text-align: center;
             flex: 1;
-            min-width: 100px;
-            background: #3d3d3d;
+            background: rgba(0,0,0,0.3);
+            color: var(--text-dim);
         }
 
         .class-card:hover {
-            border-color: #888;
+            border-color: var(--primary);
+            background: rgba(227, 192, 141, 0.05);
         }
 
         .class-card.active {
-            border-color: var(--nc-gold);
-            background: #4d4d4d;
+            border-color: var(--primary);
+            background: var(--gold-gradient);
+            color: #111;
+        }
+
+        .class-card.active .small {
+            color: rgba(0,0,0,0.6);
         }
 
         .stat-row {
             display: flex;
             align-items: center;
-            margin-bottom: 12px;
-            background: #383838;
-            padding: 8px 12px;
-            border-radius: 6px;
+            margin-bottom: 1rem;
+            background: rgba(0,0,0,0.2);
+            padding: 0.8rem 1.2rem;
+            border-radius: 10px;
+            border: 1px solid transparent;
+            transition: var(--transition);
+        }
+
+        .stat-row:hover {
+            border-color: var(--border);
+            background: rgba(0,0,0,0.3);
         }
 
         .stat-label {
             width: 50px;
-            font-weight: bold;
-            color: var(--nc-gold);
-            font-size: 0.9rem;
+            font-weight: 900;
+            color: var(--primary);
+            font-family: 'Cinzel', serif;
         }
 
         .stat-value {
-            width: 30px;
+            width: 40px;
             text-align: center;
-            font-size: 1.1rem;
-            margin: 0 10px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin: 0 1rem;
+            color: var(--text-main);
         }
 
         .stat-btn {
-            width: 28px;
-            height: 28px;
-            border-radius: 50%;
-            border: none;
-            background: var(--nc-gold);
-            color: #000;
-            font-weight: bold;
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: rgba(255,255,255,0.05);
+            color: var(--primary);
+            font-weight: 900;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .stat-btn:hover:not(:disabled) {
+            background: var(--primary);
+            color: #111;
         }
 
         .stat-btn:disabled {
-            background: #666;
+            opacity: 0.3;
             cursor: not-allowed;
         }
 
         .status-panel {
-            background: #222;
-            padding: 20px;
-            border-radius: 8px;
+            background: rgba(0,0,0,0.4);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
             height: 100%;
         }
 
         .status-item {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 10px;
-            border-bottom: 1px solid #444;
-            padding-bottom: 5px;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 0.5rem;
+        }
+
+        .status-label {
+            color: var(--text-dim);
+            font-weight: 400;
         }
 
         .status-value {
-            color: #fff;
-            font-weight: bold;
+            color: var(--text-main);
+            font-weight: 700;
+            font-family: 'Noto Sans KR', sans-serif;
         }
 
         .level-control {
-            background: #3d3d3d;
-            padding: 15px;
-            border-radius: 8px;
-            margin-top: 20px;
+            background: rgba(0,0,0,0.3);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-top: 2rem;
             text-align: center;
+            border: 1px solid var(--border);
+        }
+
+        .level-display {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            font-weight: 900;
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .info-box {
             font-size: 0.85rem;
-            color: #ccc;
-            margin-top: 20px;
-            padding: 15px;
-            background: #333;
-            border-left: 4px solid var(--nc-gold);
+            color: var(--text-dim);
+            margin-top: 2rem;
+            padding: 1.2rem;
+            background: rgba(227, 192, 141, 0.03);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
         }
 
-        /* Mobile specific adjustments */
+        .badge-bonus {
+            background: var(--gold-gradient);
+            color: #111;
+            font-weight: 900;
+            padding: 0.3rem 0.8rem;
+            border-radius: 6px;
+        }
+
         @media (max-width: 768px) {
+            .class-selector {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+            }
             .container-main {
-                margin: 10px;
-                padding: 15px;
+                padding: 1.5rem;
+                margin: 0 1rem;
+                border-radius: 0;
+                border: none;
+                background: transparent;
             }
-            .class-card {
-                min-width: calc(50% - 10px);
-                padding: 10px;
+            .status-panel {
+                padding: 1.5rem;
+                background: var(--bg-card);
             }
-            .stat-desc {
-                display: none; /* Hide descriptions on small mobile */
-            }
-            .stat-row {
-                justify-content: space-between;
-            }
-            .header-title {
-                font-size: 1.5rem;
-            }
+            .stat-desc { display: none; }
         }
     </style>
 </head>
@@ -209,19 +246,19 @@
         <!-- Class Selection -->
         <div class="class-selector">
             <div class="class-card active" onclick="selectClass('monarch')">
-                <div class="fs-5">군주</div>
+                <div class="fs-5 fw-bold">군주</div>
                 <div class="small">Monarch</div>
             </div>
             <div class="class-card" onclick="selectClass('knight')">
-                <div class="fs-5">기사</div>
+                <div class="fs-5 fw-bold">기사</div>
                 <div class="small">Knight</div>
             </div>
             <div class="class-card" onclick="selectClass('elf')">
-                <div class="fs-5">요정</div>
+                <div class="fs-5 fw-bold">요정</div>
                 <div class="small">Elf</div>
             </div>
             <div class="class-card" onclick="selectClass('wizard')">
-                <div class="fs-5">마법사</div>
+                <div class="fs-5 fw-bold">마법사</div>
                 <div class="small">Wizard</div>
             </div>
         </div>
@@ -229,9 +266,9 @@
         <div class="row g-4">
             <!-- Left: Stats Distribution -->
             <div class="col-lg-6">
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                    <h5 class="m-0">베이스 스탯 설정</h5>
-                    <span id="bonusPointsDisplay" class="badge bg-danger fs-6">8</span>
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h5 class="m-0" style="color:var(--primary); font-weight:700;">BASE STAT SETTING</h5>
+                    <span id="bonusPointsDisplay" class="badge-bonus">8</span>
                 </div>
                 <div id="statControls">
                     <!-- STR -->
@@ -242,7 +279,7 @@
                             <div class="stat-value" id="val-str">13</div>
                             <button class="stat-btn" onclick="changeStat('str', 1)">+</button>
                         </div>
-                        <div class="ms-3 small text-secondary stat-desc">근거리 대미지, 명중, 무게</div>
+                        <div class="ms-3 small text-secondary stat-desc" style="font-size:0.75rem;">대미지, 명중, 무게</div>
                     </div>
                     <!-- DEX -->
                     <div class="stat-row">
@@ -252,7 +289,7 @@
                             <div class="stat-value" id="val-dex">10</div>
                             <button class="stat-btn" onclick="changeStat('dex', 1)">+</button>
                         </div>
-                        <div class="ms-3 small text-secondary stat-desc">AC, 원거리 대미지, 명중</div>
+                        <div class="ms-3 small text-secondary stat-desc" style="font-size:0.75rem;">AC, 원거리 명중</div>
                     </div>
                     <!-- CON -->
                     <div class="stat-row">
@@ -262,7 +299,7 @@
                             <div class="stat-value" id="val-con">10</div>
                             <button class="stat-btn" onclick="changeStat('con', 1)">+</button>
                         </div>
-                        <div class="ms-3 small text-secondary stat-desc">HP 상승량, 회복, 최대 HP</div>
+                        <div class="ms-3 small text-secondary stat-desc" style="font-size:0.75rem;">HP 상승, 회복</div>
                     </div>
                     <!-- INT -->
                     <div class="stat-row">
@@ -272,7 +309,7 @@
                             <div class="stat-value" id="val-int">10</div>
                             <button class="stat-btn" onclick="changeStat('int', 1)">+</button>
                         </div>
-                        <div class="ms-3 small text-secondary stat-desc">마법 대미지, 명중, MP절약</div>
+                        <div class="ms-3 small text-secondary stat-desc" style="font-size:0.75rem;">마법 대미지, 명중</div>
                     </div>
                     <!-- WIS -->
                     <div class="stat-row">
@@ -282,7 +319,7 @@
                             <div class="stat-value" id="val-wis">11</div>
                             <button class="stat-btn" onclick="changeStat('wis', 1)">+</button>
                         </div>
-                        <div class="ms-3 small text-secondary stat-desc">MP 상승량, 회복, MR</div>
+                        <div class="ms-3 small text-secondary stat-desc" style="font-size:0.75rem;">MP 상승, MR</div>
                     </div>
                     <!-- CHA -->
                     <div class="stat-row">
@@ -292,16 +329,16 @@
                             <div class="stat-value" id="val-cha">13</div>
                             <button class="stat-btn" onclick="changeStat('cha', 1)">+</button>
                         </div>
-                        <div class="ms-3 small text-secondary stat-desc">혈맹원 수, 서먼 몬스터</div>
+                        <div class="ms-3 small text-secondary stat-desc" style="font-size:0.75rem;">혈맹원, 서먼 수</div>
                     </div>
                 </div>
 
                 <div class="level-control">
-                    <div class="mb-2">캐릭터 레벨 (1 ~ 49)</div>
-                    <div class="d-flex justify-content-center align-items-center">
-                        <button class="btn btn-sm btn-outline-light" onclick="changeLevel(-1)">Lv -1</button>
-                        <div class="mx-4 fs-4 fw-bold text-warning" id="levelDisplay">Lv. 1</div>
-                        <button class="btn btn-sm btn-outline-light" onclick="changeLevel(1)">Lv +1</button>
+                    <div class="mb-2 text-dim" style="font-size:0.9rem;">CHARACTER LEVEL</div>
+                    <div class="d-flex justify-content-center align-items-center gap-4">
+                        <button class="stat-btn" style="width:40px; height:40px;" onclick="changeLevel(-1)">-</button>
+                        <div class="level-display" id="levelDisplay">Lv. 1</div>
+                        <button class="stat-btn" style="width:40px; height:40px;" onclick="changeLevel(1)">+</button>
                     </div>
                 </div>
             </div>
@@ -309,41 +346,44 @@
             <!-- Right: Status Display -->
             <div class="col-lg-6">
                 <div class="status-panel">
-                    <h5 class="mb-3 text-center border-bottom pb-2">상세 능력치</h5>
+                    <h5 class="mb-4 text-center pb-3" style="color:var(--primary); border-bottom:1px solid var(--border); font-weight:700;">DETAILED STATS</h5>
                     <div class="status-item">
-                        <span>최대 HP</span>
-                        <span class="status-value text-danger" id="display-hp">16</span>
+                        <span class="status-label">최대 HP</span>
+                        <span class="status-value" style="color:#ff4d4d;" id="display-hp">16</span>
                     </div>
                     <div class="status-item">
-                        <span>최대 MP</span>
-                        <span class="status-value text-info" id="display-mp">2</span>
+                        <span class="status-label">최대 MP</span>
+                        <span class="status-value" style="color:#4da6ff;" id="display-mp">2</span>
                     </div>
                     <div class="status-item">
-                        <span>방어력 (AC)</span>
+                        <span class="status-label">방어력 (AC)</span>
                         <span class="status-value" id="display-ac">0</span>
                     </div>
                     <div class="status-item">
-                        <span>근거리 대미지</span>
+                        <span class="status-label">근거리 대미지</span>
                         <span class="status-value" id="display-melee-dmg">0</span>
                     </div>
                     <div class="status-item">
-                        <span>근거리 명중</span>
+                        <span class="status-label">근거리 명중</span>
                         <span class="status-value" id="display-melee-hit">0</span>
                     </div>
                     <div class="status-item">
-                        <span>마법 방어 (MR)</span>
+                        <span class="status-label">마법 방어 (MR)</span>
                         <span class="status-value" id="display-mr">0%</span>
                     </div>
                     <div class="status-item">
-                        <span>마법력 (SP)</span>
+                        <span class="status-label">마법력 (SP)</span>
                         <span class="status-value" id="display-sp">0</span>
                     </div>
 
                     <div class="info-box">
+                        <i data-lucide="info" size="16" class="me-2" style="vertical-align:middle; color:var(--primary);"></i>
                         <strong>리니지 클래식 가이드:</strong><br>
-                        - <strong>CON 18</strong>: 레벨업 시 HP 상승량이 최대로 적용됩니다.<br>
-                        - <strong>WIS 18</strong>: 레벨업 시 MP 상승량과 MR 보너스가 증가합니다.<br>
-                        - 베이스 스탯 보너스는 캐릭터 생성 시에만 부여되는 고유한 능력치입니다.
+                        <div class="mt-2" style="line-height:1.8;">
+                            • <strong>CON 18</strong> 세팅 시 레벨업 당 HP 증가량이 최대가 됩니다.<br>
+                            • <strong>WIS 18</strong> 세팅 시 레벨업 당 MP 증가량이 최대가 됩니다.<br>
+                            • 베이스 스탯 보너스는 캐릭터 생성 단계에서만 결정 가능합니다.
+                        </div>
                     </div>
                 </div>
             </div>
