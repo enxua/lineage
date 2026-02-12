@@ -504,8 +504,9 @@
     window.changeStat = (stat, delta) => {
         const currentVal = state.stats[stat];
         const baseVal = CLASS_BASE[state.class].base[stat];
+        const maxVal = stat === 'str' ? 20 : 18;
 
-        if (delta > 0 && state.bonusRemaining > 0 && currentVal < 18) { // Cap at 18 for classic base stats
+        if (delta > 0 && state.bonusRemaining > 0 && currentVal < maxVal) {
             state.stats[stat]++;
             state.bonusRemaining--;
         } else if (delta < 0 && currentVal > baseVal) {
