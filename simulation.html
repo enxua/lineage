@@ -1,104 +1,441 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4R12CNMZRR"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-4R12CNMZRR');
-  </script>
-  <script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "vfkz80ifgs");
-  </script>
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6144766552255496" crossorigin="anonymous"></script>
-  <meta name="google-adsense-account" content="ca-pub-6144766552255496">
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="리니지 클래식 강화 및 스탯 시뮬레이터. 장비 인챈트 확률, 스탯별 효율, 대미지 계산 등 다양한 실험을 미리 해보세요.">
-  <meta name="keywords" content="리니지 클래식 시뮬레이터, 강화 확률, 스탯 계산기, 장비 효율, 인챈트 시뮬, 대미지 실험, Lineage Classic Simulator">
-  <meta name="author" content="Lineage Classic KB">
-  <meta name="robots" content="index, follow">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>리니지 클래식 캐릭터 시뮬레이터</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --nc-gold: #c8a45d;
+            --nc-dark: #1a1a1a;
+            --nc-gray: #2d2d2d;
+            --nc-text: #e0e0e0;
+        }
 
-  <!-- Open Graph -->
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="리니지 클래식 시뮬레이터 - 강화 & 스탯 실험실">
-  <meta property="og:description" content="내 장비는 얼마나 강할까? 강화 확률과 스탯 효율을 직접 확인해보세요.">
-  <meta property="og:image" content="https://assets.playnccdn.com/uikit/cnb/3.2.0/img/bi/bi-lineageclassic-type1.png">
-  <meta property="og:url" content="https://linlib.pages.dev/simulation.html">
-  <meta property="og:site_name" content="Lineage Classic Knowledge Base">
+        body {
+            background-color: var(--nc-dark);
+            color: var(--nc-text);
+            font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+        }
 
-  <!-- Canonical URL -->
-  <link rel="canonical" href="https://linlib.pages.dev/simulation.html">
-  <link rel="icon" type="image/svg+xml" href="./favicon.svg">
-  <link rel="shortcut icon" href="./favicon.svg">
+        .container-main {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 20px;
+            background: var(--nc-gray);
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
 
-  <title>리니지 클래식 시뮬레이터 - 강화/스탯 계산기</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="https://unpkg.com/lucide@latest"></script>
+        .header-title {
+            text-align: center;
+            color: var(--nc-gold);
+            margin-bottom: 30px;
+            border-bottom: 2px solid var(--nc-gold);
+            padding-bottom: 10px;
+        }
 
-  <!-- Structured Data (JSON-LD) -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [{
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Home",
-      "item": "https://linlib.pages.dev/"
-    },{
-      "@type": "ListItem",
-      "position": 2,
-      "name": "Simulation",
-      "item": "https://linlib.pages.dev/simulation.html"
-    }]
-  }
-  </script>
+        .class-selector {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .class-card {
+            cursor: pointer;
+            padding: 15px;
+            border: 2px solid transparent;
+            border-radius: 8px;
+            transition: all 0.3s;
+            text-align: center;
+            flex: 1;
+            min-width: 120px;
+            background: #3d3d3d;
+        }
+
+        .class-card:hover {
+            border-color: #888;
+        }
+
+        .class-card.active {
+            border-color: var(--nc-gold);
+            background: #4d4d4d;
+        }
+
+        .stat-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            background: #383838;
+            padding: 10px;
+            border-radius: 6px;
+        }
+
+        .stat-label {
+            width: 60px;
+            font-weight: bold;
+            color: var(--nc-gold);
+        }
+
+        .stat-value {
+            width: 40px;
+            text-align: center;
+            font-size: 1.2rem;
+            margin: 0 15px;
+        }
+
+        .stat-btn {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: none;
+            background: var(--nc-gold);
+            color: #000;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .stat-btn:disabled {
+            background: #666;
+            cursor: not-allowed;
+        }
+
+        .status-panel {
+            background: #222;
+            padding: 20px;
+            border-radius: 8px;
+            height: 100%;
+        }
+
+        .status-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #444;
+            padding-bottom: 5px;
+        }
+
+        .status-value {
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .level-control {
+            background: #3d3d3d;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .info-box {
+            font-size: 0.85rem;
+            color: #ccc;
+            margin-top: 20px;
+            padding: 15px;
+            background: #333;
+            border-left: 4px solid var(--nc-gold);
+        }
+    </style>
 </head>
 <body>
-  <div class="app-container">
-    <header class="main-header">
-      <a href="index.html" class="logo-link">
-        <i data-lucide="shield-check" size="48" style="color: var(--primary);"></i>
-        <div class="logo-text">
-          <span class="line1">LINEAGE CLASSIC</span>
-          <span class="line2">KNOWLEDGE BASE</span>
-        </div>
-      </a>
-      <nav class="nav-menu">
-        <a href="index.html" class="nav-item">
-          <i data-lucide="book-open"></i>
-          <span>사전</span>
-        </a>
-        <a href="quests.html" class="nav-item">
-          <i data-lucide="scroll"></i>
-          <span>퀘스트</span>
-        </a>
-        <a href="map.html" class="nav-item">
-          <i data-lucide="map"></i>
-          <span>지도</span>
-        </a>
-        <a href="simulation.html" class="nav-item active">
-          <i data-lucide="flask-conical"></i>
-          <span>모의실험</span>
-        </a>
-      </nav>
-    </header>
 
-    <main style="text-align: center; padding: 10rem 0;">
-      <div class="visual-card" style="display:inline-block; padding: 4rem; max-width: 600px;">
-        <i data-lucide="flask-conical" size="80" style="color: var(--primary); margin-bottom: 2rem;"></i>
-        <h2 style="color: var(--primary); font-size: 2.2rem; margin-bottom: 1.5rem; font-family: 'Cinzel', serif;">LABORATORY</h2>
-        <p style="color: var(--text-dim); font-size: 1.1rem;">강화 시뮬레이터 및 스탯 계산기가 곧 추가됩니다.</p>
-      </div>
-    </main>
-  </div>
-  <script>lucide.createIcons();</script>
+<div class="container container-main">
+    <h1 class="header-title">LINEAGE CLASSIC STAT SIMULATOR</h1>
+
+    <!-- Class Selection -->
+    <div class="class-selector">
+        <div class="class-card active" onclick="selectClass('monarch')">
+            <div class="fs-4">군주</div>
+            <div class="small">Monarch</div>
+        </div>
+        <div class="class-card" onclick="selectClass('knight')">
+            <div class="fs-4">기사</div>
+            <div class="small">Knight</div>
+        </div>
+        <div class="class-card" onclick="selectClass('elf')">
+            <div class="fs-4">요정</div>
+            <div class="small">Elf</div>
+        </div>
+        <div class="class-card" onclick="selectClass('wizard')">
+            <div class="fs-4">마법사</div>
+            <div class="small">Wizard</div>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Left: Stats Distribution -->
+        <div class="col-md-6">
+            <h4 class="mb-3">베이스 스탯 설정 <span id="bonusPointsDisplay" class="badge bg-danger ms-2">8</span></h4>
+            <div id="statControls">
+                <!-- STR -->
+                <div class="stat-row">
+                    <div class="stat-label">STR</div>
+                    <button class="stat-btn" onclick="changeStat('str', -1)">-</button>
+                    <div class="stat-value" id="val-str">13</div>
+                    <button class="stat-btn" onclick="changeStat('str', 1)">+</button>
+                    <div class="ms-3 small text-secondary">근거리 대미지, 명중, 무게</div>
+                </div>
+                <!-- DEX -->
+                <div class="stat-row">
+                    <div class="stat-label">DEX</div>
+                    <button class="stat-btn" onclick="changeStat('dex', -1)">-</button>
+                    <div class="stat-value" id="val-dex">10</div>
+                    <button class="stat-btn" onclick="changeStat('dex', 1)">+</button>
+                    <div class="ms-3 small text-secondary">AC, 원거리 대미지, 명중</div>
+                </div>
+                <!-- CON -->
+                <div class="stat-row">
+                    <div class="stat-label">CON</div>
+                    <button class="stat-btn" onclick="changeStat('con', -1)">-</button>
+                    <div class="stat-value" id="val-con">10</div>
+                    <button class="stat-btn" onclick="changeStat('con', 1)">+</button>
+                    <div class="ms-3 small text-secondary">HP 상승량, 회복, 최대 HP</div>
+                </div>
+                <!-- INT -->
+                <div class="stat-row">
+                    <div class="stat-label">INT</div>
+                    <button class="stat-btn" onclick="changeStat('int', -1)">-</button>
+                    <div class="stat-value" id="val-int">10</div>
+                    <button class="stat-btn" onclick="changeStat('int', 1)">+</button>
+                    <div class="ms-3 small text-secondary">마법 대미지, 명중, MP절약</div>
+                </div>
+                <!-- WIS -->
+                <div class="stat-row">
+                    <div class="stat-label">WIS</div>
+                    <button class="stat-btn" onclick="changeStat('wis', -1)">-</button>
+                    <div class="stat-value" id="val-wis">11</div>
+                    <button class="stat-btn" onclick="changeStat('wis', 1)">+</button>
+                    <div class="ms-3 small text-secondary">MP 상승량, 회복, MR</div>
+                </div>
+                <!-- CHA -->
+                <div class="stat-row">
+                    <div class="stat-label">CHA</div>
+                    <button class="stat-btn" onclick="changeStat('cha', -1)">-</button>
+                    <div class="stat-value" id="val-cha">13</div>
+                    <button class="stat-btn" onclick="changeStat('cha', 1)">+</button>
+                    <div class="ms-3 small text-secondary">혈맹원 수, 서먼 몬스터</div>
+                </div>
+            </div>
+
+            <div class="level-control">
+                <div class="mb-2">캐릭터 레벨 (1 ~ 49)</div>
+                <div class="d-flex justify-content-center align-items-center">
+                    <button class="btn btn-outline-light" onclick="changeLevel(-1)">Lv -1</button>
+                    <div class="mx-4 fs-3 fw-bold" id="levelDisplay">Lv. 1</div>
+                    <button class="btn btn-outline-light" onclick="changeLevel(1)">Lv +1</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right: Status Display -->
+        <div class="col-md-6">
+            <div class="status-panel">
+                <h4 class="mb-4 text-center">캐릭터 정보</h4>
+                <div class="status-item">
+                    <span>최대 HP</span>
+                    <span class="status-value text-danger" id="display-hp">16</span>
+                </div>
+                <div class="status-item">
+                    <span>최대 MP</span>
+                    <span class="status-value text-info" id="display-mp">2</span>
+                </div>
+                <div class="status-item">
+                    <span>방어력 (AC)</span>
+                    <span class="status-value" id="display-ac">0</span>
+                </div>
+                <div class="status-item">
+                    <span>근거리 대미지</span>
+                    <span class="status-value" id="display-melee-dmg">0</span>
+                </div>
+                <div class="status-item">
+                    <span>근거리 명중</span>
+                    <span class="status-value" id="display-melee-hit">0</span>
+                </div>
+                <div class="status-item">
+                    <span>마법 방어 (MR)</span>
+                    <span class="status-value" id="display-mr">0%</span>
+                </div>
+                <div class="status-item">
+                    <span>마법력 (SP)</span>
+                    <span class="status-value" id="display-sp">0</span>
+                </div>
+
+                <div class="info-box">
+                    <strong>리니지 클래식 가이드:</strong><br>
+                    - 레벨 1~49 구간에서는 베이스 스탯에 따른 성장이 캐릭터의 운명을 결정합니다.<br>
+                    - <strong>CON</strong>: 18 달성 시 레벨업 당 HP 상승량이 최대화됩니다.<br>
+                    - <strong>WIS</strong>: 18 달성 시 레벨업 당 MP 상승량이 최대화됩니다.<br>
+                    - 초기 보너스 스탯은 나중에 변경하기 매우 어려우므로 신중하게 분배하세요.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const classData = {
+        monarch: {
+            name: '군주',
+            base: { str: 13, dex: 10, con: 10, int: 10, wis: 11, cha: 13 },
+            bonus: 8,
+            hpBase: 16,
+            mpBase: 2,
+            hpGrowth: (con) => {
+                if (con >= 18) return 10.5;
+                if (con >= 16) return 8.5;
+                return 6.5;
+            },
+            mpGrowth: (wis) => {
+                if (wis >= 18) return 6.5;
+                if (wis >= 15) return 4.5;
+                return 3.5;
+            }
+        },
+        knight: {
+            name: '기사',
+            base: { str: 16, dex: 12, con: 14, int: 8, wis: 9, cha: 12 },
+            bonus: 4,
+            hpBase: 20,
+            mpBase: 1,
+            hpGrowth: (con) => {
+                if (con >= 18) return 13.5;
+                if (con >= 16) return 11.5;
+                return 9.5;
+            },
+            mpGrowth: (wis) => {
+                if (wis >= 12) return 2.0;
+                return 1.2;
+            }
+        },
+        elf: {
+            name: '요정',
+            base: { str: 11, dex: 12, con: 12, int: 12, wis: 12, cha: 9 },
+            bonus: 7,
+            hpBase: 15,
+            mpBase: 4,
+            hpGrowth: (con) => {
+                if (con >= 18) return 9.5;
+                if (con >= 16) return 8.0;
+                return 6.5;
+            },
+            mpGrowth: (wis) => {
+                if (wis >= 18) return 9.0;
+                if (wis >= 15) return 6.5;
+                return 4.5;
+            }
+        },
+        wizard: {
+            name: '마법사',
+            base: { str: 8, dex: 7, con: 12, int: 12, wis: 12, cha: 8 },
+            bonus: 16,
+            hpBase: 12,
+            mpBase: 6,
+            hpGrowth: (con) => {
+                if (con >= 18) return 7.5;
+                if (con >= 16) return 5.5;
+                return 4.5;
+            },
+            mpGrowth: (wis) => {
+                if (wis >= 18) return 10.5;
+                if (wis >= 15) return 8.5;
+                return 6.5;
+            }
+        }
+    };
+
+    let currentClass = 'monarch';
+    let currentStats = { ...classData.monarch.base };
+    let currentLevel = 1;
+    let remainingBonus = classData.monarch.bonus;
+
+    function selectClass(className) {
+        currentClass = className;
+        currentStats = { ...classData[className].base };
+        remainingBonus = classData[className].bonus;
+        currentLevel = 1;
+
+        // Update UI Classes
+        document.querySelectorAll('.class-card').forEach(card => {
+            card.classList.remove('active');
+            if (card.innerText.includes(classData[className].name)) {
+                card.classList.add('active');
+            }
+        });
+
+        updateDisplay();
+    }
+
+    function changeStat(stat, delta) {
+        const baseVal = classData[currentClass].base[stat];
+        const currentVal = currentStats[stat];
+        
+        if (delta > 0 && remainingBonus > 0 && currentVal < 20) {
+            currentStats[stat]++;
+            remainingBonus--;
+        } else if (delta < 0 && currentVal > baseVal) {
+            currentStats[stat]--;
+            remainingBonus++;
+        }
+
+        updateDisplay();
+    }
+
+    function changeLevel(delta) {
+        const nextLevel = currentLevel + delta;
+        if (nextLevel >= 1 && nextLevel <= 49) {
+            currentLevel = nextLevel;
+            updateDisplay();
+        }
+    }
+
+    function updateDisplay() {
+        // Update Stat values
+        for (const stat in currentStats) {
+            const el = document.getElementById(`val-${stat}`);
+            if (el) el.innerText = currentStats[stat];
+        }
+        document.getElementById('bonusPointsDisplay').innerText = remainingBonus;
+        document.getElementById('levelDisplay').innerText = `Lv. ${currentLevel}`;
+
+        // Calculate HP/MP
+        const data = classData[currentClass];
+        const hpg = data.hpGrowth(currentStats.con);
+        const mpg = data.mpGrowth(currentStats.wis);
+
+        const totalHP = Math.floor(data.hpBase + (hpg * (currentLevel - 1)));
+        const totalMP = Math.floor(data.mpBase + (mpg * (currentLevel - 1)));
+
+        document.getElementById('display-hp').innerText = totalHP;
+        document.getElementById('display-mp').innerText = totalMP;
+
+        // Simplified combat stats logic
+        const acBonusFromDex = Math.floor((currentStats.dex - 10) / 2);
+        const acLevelBonus = Math.floor(currentLevel / 4);
+        const totalAC = 0 - acBonusFromDex - acLevelBonus;
+
+        const meleeDmg = Math.max(0, Math.floor((currentStats.str - 10) / 2) + Math.floor(currentLevel / 10));
+        const meleeHit = Math.max(0, Math.floor((currentStats.str - 10) / 1.5) + Math.floor(currentLevel / 5));
+        
+        const mr = Math.floor(currentStats.wis / 2) + Math.floor(currentLevel / 2);
+        const sp = Math.max(0, Math.floor((currentStats.int - 10) / 2) + (currentClass === 'wizard' ? 2 : 0));
+
+        document.getElementById('display-ac').innerText = totalAC;
+        document.getElementById('display-melee-dmg').innerText = `+${meleeDmg}`;
+        document.getElementById('display-melee-hit').innerText = `+${meleeHit}`;
+        document.getElementById('display-mr').innerText = `${mr}%`;
+        document.getElementById('display-sp').innerText = sp;
+    }
+
+    // Initialize
+    updateDisplay();
+</script>
+
 </body>
 </html>
