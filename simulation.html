@@ -452,44 +452,47 @@
     }
 
     function renderEquipSlots() {
-        // Collect ALL items from DATA
-        const allItems = [
+        // Collect ALL items from ALL sources
+        const combinedSource = [
             ...(DATA.items || []), 
-            ...(DATA.spells || []), // Spells are not items, ignore
-            ...(DATA.crafting || []) // Crafting might have item names
-        ].filter(i => i.stats); // Ensure stats exist
+            ...(DATA.crafting || [])
+        ];
 
-        // Clean duplicates by name preference (DATA.items usually has stats)
+        // Clean duplicates and filter by presence of stats
         const uniqueItems = [];
         const seen = new Set();
-        // Priority: items > crafting.
-        [...(DATA.items || [])].forEach(i => {
-            if(!seen.has(i.name)) { uniqueItems.push(i); seen.add(i.name); }
+        combinedSource.forEach(i => {
+            if(i.name && i.stats && !seen.has(i.name)) {
+                uniqueItems.push(i);
+                seen.add(i.name);
+            }
         });
 
         equipGrid.innerHTML = SLOTS.map(slot => {
-            // Filter items for this slot
             const validItems = uniqueItems.filter(item => {
-                // Special handling for Accessories overlap or specific exclusions could go here
-                // For Ring, check '반지', exclude '변신 조종' if needed? No, include all rings.
                 return slot.keywords.some(kw => item.name.includes(kw) || (item.category && item.category.includes(kw)));
             }).sort((a,b) => a.name.localeCompare(b.name));
 
             return `
                 <div class="equip-slot" id="slot-${slot.id}">
-                    <div class="equip-label">
-                        <span>${slot.label}</span>
-                        <span class="enchant-control">
-                            <button class="stat-btn" style="width:20px;height:20px;font-size:0.8rem" onclick="window.changeEnchant('${slot.id}', -1)">-</button>
-                            <span class="enchant-val" id="enchant-${slot.id}">+0</span>
-                            <button class="stat-btn" style="width:20px;height:20px;font-size:0.8rem" onclick="window.changeEnchant('${slot.id}', 1)">+</button>
-                        </span>
+                    <div class="equip-icon-box">
+                        <img id="icon-${slot.id}" src="" alt="" style="display:none">
                     </div>
-                    <select class="equip-select" onchange="window.equipItem('${slot.id}', this.value)">
-                        <option value="">(장착 해제)</option>
-                        ${validItems.map(i => `<option value="${i.name}">${i.name}</option>`).join('')}
-                    </select>
-                    <div class="small text-dim mt-1" id="desc-${slot.id}" style="font-size:0.75rem; min-height:1.2em;"></div>
+                    <div class="equip-info">
+                        <div class="equip-label">
+                            <span>${slot.label}</span>
+                            <span class="enchant-control">
+                                <button class="stat-btn" style="width:20px;height:20px;font-size:0.8rem" onclick="window.changeEnchant('${slot.id}', -1)">-</button>
+                                <span class="enchant-val" id="enchant-${slot.id}">+0</span>
+                                <button class="stat-btn" style="width:20px;height:20px;font-size:0.8rem" onclick="window.changeEnchant('${slot.id}', 1)">+</button>
+                            </span>
+                        </div>
+                        <select class="equip-select" onchange="window.equipItem('${slot.id}', this.value)">
+                            <option value="">(장착 해제)</option>
+                            ${validItems.map(i => `<option value="${i.name}">${i.name}</option>`).join('')}
+                        </select>
+                        <div class="small text-dim mt-1" id="desc-${slot.id}" style="font-size:0.75rem; min-height:1.2em;"></div>
+                    </div>
                 </div>
             `;
         }).join('');
@@ -502,7 +505,6 @@
         state.bonusRemaining = CLASS_BASE[cls].bonus;
         state.level = 1;
         
-        // Update Portrait Image
         const portrait = document.getElementById('class-portrait');
         if (portrait) {
             portrait.style.opacity = '0';
@@ -512,16 +514,15 @@
             }, 150);
         }
 
-        // Reset Equipment? No, keep it but maybe warn if restricted.
-        // Re-render class cards
         document.querySelectorAll('.class-card').forEach(c => c.classList.remove('active'));
-        // Find card by text content match
         const cards = Array.from(document.querySelectorAll('.class-card'));
         const target = cards.find(c => c.innerText.includes(CLASS_BASE[cls].name));
         if(target) target.classList.add('active');
 
-        // Update UI stats
-        STAT_TYPES.forEach(s => document.getElementById(`val-${s}`).innerText = state.stats[s]);
+        STAT_TYPES.forEach(s => {
+            const el = document.getElementById(`val-${s}`);
+            if(el) el.innerText = state.stats[s];
+        });
         document.getElementById('bonusPointsDisplay').innerText = state.bonusRemaining;
         
         updateDisplay();
@@ -556,23 +557,13 @@
     window.equipItem = (slotId, itemName) => {
         state.equipment[slotId].itemId = itemName;
         
-        // Update Icon
-        const iconImg = document.querySelector(`#slot-${slotId} .equip-icon-box img`);
-        const item = getItem(itemName);
-        if (iconImg) {
-            iconImg.src = item ? item.image : '';
-            iconImg.style.display = item ? 'block' : 'none';
-        }
-
         // Logic: 2-Handed Weapon
         if (slotId === 'weapon') {
+            const item = getItem(itemName);
             if (item && item.stats && item.stats.includes('양손')) {
-                // Unequip shield
                 state.equipment['shield'].itemId = '';
                 const shieldSelect = document.querySelector('#slot-shield select');
                 if(shieldSelect) shieldSelect.value = '';
-                const shieldImg = document.querySelector('#slot-shield .equip-icon-box img');
-                if(shieldImg) shieldImg.style.display = 'none';
             }
         }
         updateDisplay();
@@ -591,7 +582,7 @@
     // -- Calculations --
     function getItem(name) {
         if(!name) return null;
-        return DATA.items.find(i => i.name === name) || DATA.crafting.find(i => i.name === name);
+        return (DATA.items || []).find(i => i.name === name) || (DATA.crafting || []).find(i => i.name === name);
     }
 
     function parseStats(statsStr) {
@@ -675,8 +666,20 @@
         let addedStats = { str:0, dex:0, con:0, int:0, wis:0, cha:0 };
 
         for (const [slot, data] of Object.entries(equipment)) {
-            if (!data.itemId) continue;
+            // Sync Icon Image
+            const iconImg = document.getElementById(`icon-${slot}`);
             const item = getItem(data.itemId);
+            if (iconImg) {
+                if (item && item.image) {
+                    iconImg.src = item.image;
+                    iconImg.style.display = 'block';
+                } else {
+                    iconImg.src = '';
+                    iconImg.style.display = 'none';
+                }
+            }
+
+            if (!data.itemId) continue;
             if (!item) continue;
 
             const parsed = parseStats(item.stats);
@@ -728,7 +731,6 @@
         const strBonus = Math.floor((finalStats.str - 10) / 2);
         const dexHitBonus = Math.floor((finalStats.dex - 10) / 3);
         const dexDmgBonus = Math.floor((finalStats.dex - 10) / 3); 
-        const intSPBonus = Math.floor((finalStats.int - 10) / 3); 
 
         const totalAC = baseAC + equipAC;
         const totalMeleeDmg = strBonus + equipDmg + Math.floor(level/10);
@@ -736,7 +738,7 @@
         const totalRangedDmg = dexDmgBonus + equipRangedDmg + Math.floor(level/10);
         const totalRangedHit = dexHitBonus + equipRangedHit + level + 2; 
         const totalMR = Math.floor(finalStats.wis * 2) + Math.floor(level/2) + equipMR;
-        const totalSP = intSPBonus + equipSP + (clsName === 'wizard' ? 4 : 0); 
+        const totalSP = Math.floor((finalStats.int - 10) / 3) + equipSP + (clsName === 'wizard' ? 4 : 0); 
 
         document.getElementById('display-hp').innerText = maxHP;
         document.getElementById('display-mp').innerText = maxMP;
