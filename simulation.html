@@ -454,6 +454,12 @@
         state.bonusRemaining = CLASS_BASE[cls].bonus;
         state.level = 1;
         
+        // Update Portrait Image
+        const portrait = document.getElementById('class-portrait');
+        if (portrait) {
+            portrait.src = `image/${cls}.jpg`;
+        }
+
         // Reset Equipment? No, keep it but maybe warn if restricted.
         // Re-render class cards
         document.querySelectorAll('.class-card').forEach(c => c.classList.remove('active'));
