@@ -272,6 +272,11 @@
             <!-- Right: Status -->
             <div class="col-lg-6">
                 <div class="status-panel">
+                    <!-- Character Portrait -->
+                    <div class="text-center mb-4" style="background: rgba(0,0,0,0.5); border-radius: 12px; border: 1px solid var(--border); overflow: hidden; height: 300px; display: flex; align-items: center; justify-content: center;">
+                        <img id="class-portrait" src="image/monarch.jpg" alt="Character Portrait" style="max-width: 100%; max-height: 100%; object-fit: contain; transition: var(--transition);">
+                    </div>
+
                     <h5 class="mb-3 text-center" style="color:var(--primary); font-weight:700;">DETAILED STATS</h5>
                     <div class="status-item">
                         <span class="status-label">최대 HP</span>
@@ -468,7 +473,7 @@
         const currentVal = state.stats[stat];
         const baseVal = CLASS_BASE[state.class].base[stat];
 
-        if (delta > 0 && state.bonusRemaining > 0 && currentVal < 35) { // Cap at 35 generic classic cap
+        if (delta > 0 && state.bonusRemaining > 0 && currentVal < 18) { // Cap at 18 for classic base stats
             state.stats[stat]++;
             state.bonusRemaining--;
         } else if (delta < 0 && currentVal > baseVal) {
