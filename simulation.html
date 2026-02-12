@@ -15,9 +15,9 @@
         }
 
         .container-main {
-            max-width: 1100px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 2.5rem;
+            padding: 2rem;
             background: var(--bg-card);
             border-radius: 16px;
             border: 1px solid var(--border);
@@ -27,7 +27,7 @@
         .header-title {
             text-align: center;
             color: var(--primary);
-            margin-bottom: 2.5rem;
+            margin-bottom: 2rem;
             border-bottom: 1px solid var(--border);
             padding-bottom: 1rem;
             font-family: 'Cinzel', serif;
@@ -35,16 +35,17 @@
             font-weight: 900;
         }
 
+        /* Class Selector */
         .class-selector {
             display: flex;
             justify-content: space-around;
-            margin-bottom: 2.5rem;
+            margin-bottom: 2rem;
             gap: 1rem;
         }
 
         .class-card {
             cursor: pointer;
-            padding: 1.2rem;
+            padding: 1rem;
             border: 1px solid var(--border);
             border-radius: 12px;
             transition: var(--transition);
@@ -65,24 +66,15 @@
             color: #111;
         }
 
-        .class-card.active .small {
-            color: rgba(0,0,0,0.6);
-        }
-
+        /* Stat Rows */
         .stat-row {
             display: flex;
             align-items: center;
-            margin-bottom: 1rem;
+            margin-bottom: 0.8rem;
             background: rgba(0,0,0,0.2);
-            padding: 0.8rem 1.2rem;
-            border-radius: 10px;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
             border: 1px solid transparent;
-            transition: var(--transition);
-        }
-
-        .stat-row:hover {
-            border-color: var(--border);
-            background: rgba(0,0,0,0.3);
         }
 
         .stat-label {
@@ -93,18 +85,18 @@
         }
 
         .stat-value {
-            width: 40px;
+            width: 30px;
             text-align: center;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: 700;
-            margin: 0 1rem;
+            margin: 0 0.5rem;
             color: var(--text-main);
         }
 
         .stat-btn {
-            width: 32px;
-            height: 32px;
-            border-radius: 8px;
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
             border: 1px solid var(--border);
             background: rgba(255,255,255,0.05);
             color: var(--primary);
@@ -121,14 +113,10 @@
             color: #111;
         }
 
-        .stat-btn:disabled {
-            opacity: 0.3;
-            cursor: not-allowed;
-        }
-
+        /* Status Panel */
         .status-panel {
             background: rgba(0,0,0,0.4);
-            padding: 2rem;
+            padding: 1.5rem;
             border-radius: 12px;
             border: 1px solid var(--border);
             height: 100%;
@@ -137,75 +125,71 @@
         .status-item {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 1rem;
+            margin-bottom: 0.8rem;
             border-bottom: 1px solid var(--border);
-            padding-bottom: 0.5rem;
+            padding-bottom: 0.4rem;
         }
 
-        .status-label {
-            color: var(--text-dim);
-            font-weight: 400;
+        .status-label { color: var(--text-dim); }
+        .status-value { color: var(--text-main); font-weight: 700; }
+
+        /* Equipment Grid */
+        .equip-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-top: 2rem;
         }
 
-        .status-value {
-            color: var(--text-main);
-            font-weight: 700;
-            font-family: 'Noto Sans KR', sans-serif;
-        }
-
-        .level-control {
+        .equip-slot {
             background: rgba(0,0,0,0.3);
-            padding: 1.5rem;
-            border-radius: 12px;
-            margin-top: 2rem;
-            text-align: center;
             border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 0.8rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
         }
 
-        .level-display {
-            font-family: 'Cinzel', serif;
-            font-size: 2rem;
-            font-weight: 900;
-            background: var(--gold-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .info-box {
+        .equip-label {
             font-size: 0.85rem;
-            color: var(--text-dim);
-            margin-top: 2rem;
-            padding: 1.2rem;
-            background: rgba(227, 192, 141, 0.03);
-            border-left: 3px solid var(--primary);
+            color: var(--primary);
+            font-weight: 700;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .equip-select {
+            background: var(--bg-deep);
+            color: var(--text-main);
+            border: 1px solid var(--border);
             border-radius: 4px;
+            padding: 0.4rem;
+            font-size: 0.9rem;
+            width: 100%;
         }
 
-        .badge-bonus {
-            background: var(--gold-gradient);
-            color: #111;
-            font-weight: 900;
-            padding: 0.3rem 0.8rem;
-            border-radius: 6px;
+        .enchant-control {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 0.5rem;
         }
 
+        .enchant-val {
+            font-weight: 700;
+            color: #ffcc00;
+            width: 30px;
+            text-align: center;
+        }
+
+        @media (max-width: 992px) {
+            .equip-grid { grid-template-columns: 1fr; }
+        }
+        
         @media (max-width: 768px) {
-            .class-selector {
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-            }
-            .container-main {
-                padding: 1.5rem;
-                margin: 0 1rem;
-                border-radius: 0;
-                border: none;
-                background: transparent;
-            }
-            .status-panel {
-                padding: 1.5rem;
-                background: var(--bg-card);
-            }
-            .stat-desc { display: none; }
+            .class-selector { display: grid; grid-template-columns: 1fr 1fr; }
+            .container-main { padding: 1rem; margin: 0.5rem; }
         }
     </style>
 </head>
@@ -264,96 +248,38 @@
         </div>
 
         <div class="row g-4">
-            <!-- Left: Stats Distribution -->
+            <!-- Left: Stats -->
             <div class="col-lg-6">
-                <div class="d-flex justify-content-between align-items-center mb-4">
-                    <h5 class="m-0" style="color:var(--primary); font-weight:700;">BASE STAT SETTING</h5>
-                    <span id="bonusPointsDisplay" class="badge-bonus">8</span>
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h5 class="m-0" style="color:var(--primary); font-weight:700;">BASE STATS</h5>
+                    <span id="bonusPointsDisplay" class="badge bg-danger">8</span>
                 </div>
+                
                 <div id="statControls">
-                    <!-- STR -->
-                    <div class="stat-row">
-                        <div class="stat-label">STR</div>
-                        <div class="d-flex align-items-center">
-                            <button class="stat-btn" onclick="changeStat('str', -1)">-</button>
-                            <div class="stat-value" id="val-str">13</div>
-                            <button class="stat-btn" onclick="changeStat('str', 1)">+</button>
-                        </div>
-                        <div class="ms-3 small text-secondary stat-desc" style="font-size:0.75rem;">대미지, 명중, 무게</div>
-                    </div>
-                    <!-- DEX -->
-                    <div class="stat-row">
-                        <div class="stat-label">DEX</div>
-                        <div class="d-flex align-items-center">
-                            <button class="stat-btn" onclick="changeStat('dex', -1)">-</button>
-                            <div class="stat-value" id="val-dex">10</div>
-                            <button class="stat-btn" onclick="changeStat('dex', 1)">+</button>
-                        </div>
-                        <div class="ms-3 small text-secondary stat-desc" style="font-size:0.75rem;">AC, 원거리 명중</div>
-                    </div>
-                    <!-- CON -->
-                    <div class="stat-row">
-                        <div class="stat-label">CON</div>
-                        <div class="d-flex align-items-center">
-                            <button class="stat-btn" onclick="changeStat('con', -1)">-</button>
-                            <div class="stat-value" id="val-con">10</div>
-                            <button class="stat-btn" onclick="changeStat('con', 1)">+</button>
-                        </div>
-                        <div class="ms-3 small text-secondary stat-desc" style="font-size:0.75rem;">HP 상승, 회복</div>
-                    </div>
-                    <!-- INT -->
-                    <div class="stat-row">
-                        <div class="stat-label">INT</div>
-                        <div class="d-flex align-items-center">
-                            <button class="stat-btn" onclick="changeStat('int', -1)">-</button>
-                            <div class="stat-value" id="val-int">10</div>
-                            <button class="stat-btn" onclick="changeStat('int', 1)">+</button>
-                        </div>
-                        <div class="ms-3 small text-secondary stat-desc" style="font-size:0.75rem;">마법 대미지, 명중</div>
-                    </div>
-                    <!-- WIS -->
-                    <div class="stat-row">
-                        <div class="stat-label">WIS</div>
-                        <div class="d-flex align-items-center">
-                            <button class="stat-btn" onclick="changeStat('wis', -1)">-</button>
-                            <div class="stat-value" id="val-wis">11</div>
-                            <button class="stat-btn" onclick="changeStat('wis', 1)">+</button>
-                        </div>
-                        <div class="ms-3 small text-secondary stat-desc" style="font-size:0.75rem;">MP 상승, MR</div>
-                    </div>
-                    <!-- CHA -->
-                    <div class="stat-row">
-                        <div class="stat-label">CHA</div>
-                        <div class="d-flex align-items-center">
-                            <button class="stat-btn" onclick="changeStat('cha', -1)">-</button>
-                            <div class="stat-value" id="val-cha">13</div>
-                            <button class="stat-btn" onclick="changeStat('cha', 1)">+</button>
-                        </div>
-                        <div class="ms-3 small text-secondary stat-desc" style="font-size:0.75rem;">혈맹원, 서먼 수</div>
-                    </div>
+                    <!-- Stats generated by JS -->
                 </div>
 
-                <div class="level-control">
-                    <div class="mb-2 text-dim" style="font-size:0.9rem;">CHARACTER LEVEL</div>
+                <div class="level-control mt-4 text-center p-3" style="background: rgba(0,0,0,0.3); border-radius: 8px; border: 1px solid var(--border);">
+                    <div class="mb-2 text-dim">CHARACTER LEVEL</div>
                     <div class="d-flex justify-content-center align-items-center gap-4">
                         <button class="stat-btn" style="width:40px; height:40px;" onclick="changeLevel(-1)">-</button>
-                        <div class="level-display" id="levelDisplay">Lv. 1</div>
+                        <div class="fs-2 fw-bold text-warning" id="levelDisplay">Lv. 1</div>
                         <button class="stat-btn" style="width:40px; height:40px;" onclick="changeLevel(1)">+</button>
                     </div>
                 </div>
             </div>
 
-            <!-- Right: Status Display -->
+            <!-- Right: Status -->
             <div class="col-lg-6">
                 <div class="status-panel">
-                    <h5 class="mb-4 text-center pb-3" style="color:var(--primary); border-bottom:1px solid var(--border); font-weight:700;">DETAILED STATS</h5>
+                    <h5 class="mb-3 text-center" style="color:var(--primary); font-weight:700;">DETAILED STATS</h5>
                     <div class="status-item">
                         <span class="status-label">최대 HP</span>
-                        <span class="status-value" style="color:#ff4d4d;" id="display-hp">16</span>
+                        <span class="status-value text-danger" id="display-hp">0</span>
                     </div>
                     <div class="status-item">
                         <span class="status-label">최대 MP</span>
-                        <span class="status-value" style="color:#4da6ff;" id="display-mp">2</span>
+                        <span class="status-value text-info" id="display-mp">0</span>
                     </div>
                     <div class="status-item">
                         <span class="status-label">방어력 (AC)</span>
@@ -368,6 +294,14 @@
                         <span class="status-value" id="display-melee-hit">0</span>
                     </div>
                     <div class="status-item">
+                        <span class="status-label">원거리 대미지</span>
+                        <span class="status-value" id="display-ranged-dmg">0</span>
+                    </div>
+                    <div class="status-item">
+                        <span class="status-label">원거리 명중</span>
+                        <span class="status-value" id="display-ranged-hit">0</span>
+                    </div>
+                    <div class="status-item">
                         <span class="status-label">마법 방어 (MR)</span>
                         <span class="status-value" id="display-mr">0%</span>
                     </div>
@@ -375,180 +309,434 @@
                         <span class="status-label">마법력 (SP)</span>
                         <span class="status-value" id="display-sp">0</span>
                     </div>
-
-                    <div class="info-box">
-                        <i data-lucide="info" size="16" class="me-2" style="vertical-align:middle; color:var(--primary);"></i>
-                        <strong>리니지 클래식 가이드:</strong><br>
-                        <div class="mt-2" style="line-height:1.8;">
-                            • <strong>CON 18</strong> 세팅 시 레벨업 당 HP 증가량이 최대가 됩니다.<br>
-                            • <strong>WIS 18</strong> 세팅 시 레벨업 당 MP 증가량이 최대가 됩니다.<br>
-                            • 베이스 스탯 보너스는 캐릭터 생성 단계에서만 결정 가능합니다.
-                        </div>
+                    <div class="status-item">
+                        <span class="status-label">스탯 보너스</span>
+                        <span class="status-value small" id="display-bonus" style="font-weight:400; text-align:right;">-</span>
                     </div>
                 </div>
+            </div>
+        </div>
+
+        <!-- Equipment Section -->
+        <div class="mt-5">
+            <h5 style="color:var(--primary); font-weight:700; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem;">
+                <i data-lucide="sword" style="vertical-align:text-bottom;"></i> EQUIPMENT
+            </h5>
+            <div class="equip-grid" id="equipGrid">
+                <!-- Generated by JS -->
             </div>
         </div>
     </div>
 </div>
 
-<script>
-    const classData = {
-        monarch: {
-            name: '군주',
-            base: { str: 13, dex: 10, con: 10, int: 10, wis: 11, cha: 13 },
-            bonus: 8,
-            hpBase: 16,
-            mpBase: 2,
-            hpGrowth: (con) => {
-                if (con >= 18) return 10.5;
-                if (con >= 16) return 8.5;
-                return 6.5;
-            },
-            mpGrowth: (wis) => {
-                if (wis >= 18) return 6.5;
-                if (wis >= 15) return 4.5;
-                return 3.5;
-            }
-        },
-        knight: {
-            name: '기사',
-            base: { str: 16, dex: 12, con: 14, int: 8, wis: 9, cha: 12 },
-            bonus: 4,
-            hpBase: 20,
-            mpBase: 1,
-            hpGrowth: (con) => {
-                if (con >= 18) return 13.5;
-                if (con >= 16) return 11.5;
-                return 9.5;
-            },
-            mpGrowth: (wis) => {
-                if (wis >= 12) return 2.0;
-                return 1.2;
-            }
-        },
-        elf: {
-            name: '요정',
-            base: { str: 11, dex: 12, con: 12, int: 12, wis: 12, cha: 9 },
-            bonus: 7,
-            hpBase: 15,
-            mpBase: 4,
-            hpGrowth: (con) => {
-                if (con >= 18) return 9.5;
-                if (con >= 16) return 8.0;
-                return 6.5;
-            },
-            mpGrowth: (wis) => {
-                if (wis >= 18) return 9.0;
-                if (wis >= 15) return 6.5;
-                return 4.5;
-            }
-        },
-        wizard: {
-            name: '마법사',
-            base: { str: 8, dex: 7, con: 12, int: 12, wis: 12, cha: 8 },
-            bonus: 16,
-            hpBase: 12,
-            mpBase: 6,
-            hpGrowth: (con) => {
-                if (con >= 18) return 7.5;
-                if (con >= 16) return 5.5;
-                return 4.5;
-            },
-            mpGrowth: (wis) => {
-                if (wis >= 18) return 10.5;
-                if (wis >= 15) return 8.5;
-                return 6.5;
-            }
+<script type="module">
+    import { DATA } from './data.js';
+
+    // -- Game Constants & Logic --
+    const STAT_TYPES = ['str', 'dex', 'con', 'int', 'wis', 'cha'];
+    const STAT_LABELS = {str:'STR', dex:'DEX', con:'CON', int:'INT', wis:'WIS', cha:'CHA'};
+    
+    const CLASS_BASE = {
+        monarch: { name:'군주', base:{str:13, dex:10, con:10, int:10, wis:11, cha:13}, bonus:8, hpBase:16, mpBase:2 },
+        knight:  { name:'기사', base:{str:16, dex:12, con:14, int:8, wis:9, cha:12}, bonus:4, hpBase:20, mpBase:1 },
+        elf:     { name:'요정', base:{str:11, dex:12, con:12, int:12, wis:12, cha:9}, bonus:7, hpBase:15, mpBase:4 },
+        wizard:  { name:'마법사', base:{str:8, dex:7, con:12, int:12, wis:12, cha:8}, bonus:16, hpBase:12, mpBase:6 }
+    };
+
+    // Slots definition
+    const SLOTS = [
+        { id: 'weapon', label: '무기 (Weapon)', keywords: ['무기'] },
+        { id: 'shield', label: '방패 (Shield)', keywords: ['방패', '마력서', '가더'] },
+        { id: 'helm',   label: '투구 (Helm)',   keywords: ['투구', '모자', '두건', '면갑'] },
+        { id: 'armor',  label: '갑옷 (Armor)',  keywords: ['갑옷', '로브', '재킷', '조끼', '판금', '껍질'] },
+        { id: 'shirt',  label: '티셔츠 (Shirt)', keywords: ['티셔츠'] },
+        { id: 'cloak',  label: '망토 (Cloak)',  keywords: ['망토', '위엄'] },
+        { id: 'gloves', label: '장갑 (Gloves)', keywords: ['장갑', '글로브', '골무'] },
+        { id: 'boots',  label: '신발 (Boots)',  keywords: ['부츠', '장화', '샌달'] },
+        { id: 'neck',   label: '목걸이 (Neck)', keywords: ['목걸이'] },
+        { id: 'belt',   label: '벨트 (Belt)',   keywords: ['벨트'] },
+        { id: 'ring1',  label: '반지 1 (Ring)', keywords: ['반지'] },
+        { id: 'ring2',  label: '반지 2 (Ring)', keywords: ['반지'] },
+    ];
+
+    // -- State --
+    let state = {
+        class: 'monarch',
+        level: 1,
+        stats: { ...CLASS_BASE.monarch.base },
+        bonusRemaining: 8,
+        equipment: {} // { slotId: { itemId, enchant } }
+    };
+
+    // Initialize Equipment State
+    SLOTS.forEach(s => state.equipment[s.id] = { itemId: '', enchant: 0 });
+
+    // -- DOM Elements --
+    const statControls = document.getElementById('statControls');
+    const equipGrid = document.getElementById('equipGrid');
+
+    // -- Initialization --
+    function init() {
+        renderStatControls();
+        renderEquipSlots();
+        updateDisplay();
+        window.lucide.createIcons();
+    }
+
+    // -- Renderers --
+    function renderStatControls() {
+        statControls.innerHTML = STAT_TYPES.map(stat => `
+            <div class="stat-row">
+                <div class="stat-label">${STAT_LABELS[stat]}</div>
+                <div class="d-flex align-items-center">
+                    <button class="stat-btn" onclick="window.changeStat('${stat}', -1)">-</button>
+                    <div class="stat-value" id="val-${stat}">${state.stats[stat]}</div>
+                    <button class="stat-btn" onclick="window.changeStat('${stat}', 1)">+</button>
+                </div>
+                <div class="ms-auto small text-dim" id="desc-${stat}" style="font-size:0.75rem"></div>
+            </div>
+        `).join('');
+    }
+
+    function renderEquipSlots() {
+        // Collect ALL items from DATA
+        const allItems = [
+            ...(DATA.items || []), 
+            ...(DATA.spells || []), // Spells are not items, ignore
+            ...(DATA.crafting || []) // Crafting might have item names
+        ].filter(i => i.stats); // Ensure stats exist
+
+        // Clean duplicates by name preference (DATA.items usually has stats)
+        const uniqueItems = [];
+        const seen = new Set();
+        // Priority: items > crafting.
+        [...(DATA.items || [])].forEach(i => {
+            if(!seen.has(i.name)) { uniqueItems.push(i); seen.add(i.name); }
+        });
+
+        equipGrid.innerHTML = SLOTS.map(slot => {
+            // Filter items for this slot
+            const validItems = uniqueItems.filter(item => {
+                // Special handling for Accessories overlap or specific exclusions could go here
+                // For Ring, check '반지', exclude '변신 조종' if needed? No, include all rings.
+                return slot.keywords.some(kw => item.name.includes(kw) || (item.category && item.category.includes(kw)));
+            }).sort((a,b) => a.name.localeCompare(b.name));
+
+            return `
+                <div class="equip-slot" id="slot-${slot.id}">
+                    <div class="equip-label">
+                        <span>${slot.label}</span>
+                        <span class="enchant-control">
+                            <button class="stat-btn" style="width:20px;height:20px;font-size:0.8rem" onclick="window.changeEnchant('${slot.id}', -1)">-</button>
+                            <span class="enchant-val" id="enchant-${slot.id}">+0</span>
+                            <button class="stat-btn" style="width:20px;height:20px;font-size:0.8rem" onclick="window.changeEnchant('${slot.id}', 1)">+</button>
+                        </span>
+                    </div>
+                    <select class="equip-select" onchange="window.equipItem('${slot.id}', this.value)">
+                        <option value="">(장착 해제)</option>
+                        ${validItems.map(i => `<option value="${i.name}">${i.name}</option>`).join('')}
+                    </select>
+                    <div class="small text-dim mt-1" id="desc-${slot.id}" style="font-size:0.75rem; min-height:1.2em;"></div>
+                </div>
+            `;
+        }).join('');
+    }
+
+    // -- Actions --
+    window.selectClass = (cls) => {
+        state.class = cls;
+        state.stats = { ...CLASS_BASE[cls].base };
+        state.bonusRemaining = CLASS_BASE[cls].bonus;
+        state.level = 1;
+        
+        // Reset Equipment? No, keep it but maybe warn if restricted.
+        // Re-render class cards
+        document.querySelectorAll('.class-card').forEach(c => c.classList.remove('active'));
+        // Find card by text content match
+        const cards = Array.from(document.querySelectorAll('.class-card'));
+        const target = cards.find(c => c.innerText.includes(CLASS_BASE[cls].name));
+        if(target) target.classList.add('active');
+
+        // Update UI stats
+        STAT_TYPES.forEach(s => document.getElementById(`val-${s}`).innerText = state.stats[s]);
+        document.getElementById('bonusPointsDisplay').innerText = state.bonusRemaining;
+        
+        updateDisplay();
+    };
+
+    window.changeStat = (stat, delta) => {
+        const currentVal = state.stats[stat];
+        const baseVal = CLASS_BASE[state.class].base[stat];
+
+        if (delta > 0 && state.bonusRemaining > 0 && currentVal < 35) { // Cap at 35 generic classic cap
+            state.stats[stat]++;
+            state.bonusRemaining--;
+        } else if (delta < 0 && currentVal > baseVal) {
+            state.stats[stat]--;
+            state.bonusRemaining++;
+        }
+        document.getElementById(`val-${stat}`).innerText = state.stats[stat];
+        document.getElementById('bonusPointsDisplay').innerText = state.bonusRemaining;
+        updateDisplay();
+    };
+
+    window.changeLevel = (delta) => {
+        const next = state.level + delta;
+        if (next >= 1 && next <= 99) {
+            state.level = next;
+            document.getElementById('levelDisplay').innerText = `Lv. ${state.level}`;
+            updateDisplay();
         }
     };
 
-    let currentClass = 'monarch';
-    let currentStats = { ...classData.monarch.base };
-    let currentLevel = 1;
-    let remainingBonus = classData.monarch.bonus;
-
-    function selectClass(className) {
-        currentClass = className;
-        currentStats = { ...classData[className].base };
-        remainingBonus = classData[className].bonus;
-        currentLevel = 1;
-
-        document.querySelectorAll('.class-card').forEach(card => {
-            card.classList.remove('active');
-            if (card.querySelector('.fs-5').innerText.includes(classData[className].name)) {
-                card.classList.add('active');
-            }
-        });
-
-        updateDisplay();
-    }
-
-    function changeStat(stat, delta) {
-        const baseVal = classData[currentClass].base[stat];
-        const currentVal = currentStats[stat];
+    window.equipItem = (slotId, itemName) => {
+        state.equipment[slotId].itemId = itemName;
         
-        if (delta > 0 && remainingBonus > 0 && currentVal < 20) {
-            currentStats[stat]++;
-            remainingBonus--;
-        } else if (delta < 0 && currentVal > baseVal) {
-            currentStats[stat]--;
-            remainingBonus++;
+        // Logic: 2-Handed Weapon
+        if (slotId === 'weapon') {
+            const item = getItem(itemName);
+            if (item && item.stats && item.stats.includes('양손')) {
+                // Unequip shield
+                state.equipment['shield'].itemId = '';
+                const shieldSelect = document.querySelector('#slot-shield select');
+                if(shieldSelect) shieldSelect.value = '';
+                // Disable shield slot?
+                // document.querySelector('#slot-shield').style.opacity = '0.5';
+            }
         }
-
         updateDisplay();
-    }
+    };
 
-    function changeLevel(delta) {
-        const nextLevel = currentLevel + delta;
-        if (nextLevel >= 1 && nextLevel <= 49) {
-            currentLevel = nextLevel;
+    window.changeEnchant = (slotId, delta) => {
+        const current = state.equipment[slotId].enchant;
+        const next = current + delta;
+        if (next >= 0 && next <= 11) {
+            state.equipment[slotId].enchant = next;
+            document.getElementById(`enchant-${slotId}`).innerText = `+${next}`;
             updateDisplay();
         }
+    };
+
+    // -- Calculations --
+    function getItem(name) {
+        if(!name) return null;
+        return DATA.items.find(i => i.name === name) || DATA.crafting.find(i => i.name === name);
+    }
+
+    function parseStats(statsStr) {
+        // Format: "Small/Large | Class | Safe | Weight | Extras..."
+        // e.g. "14/16 | 군주, 기사 | 6 | 양손 | ..."
+        if(!statsStr) return {};
+        const parts = statsStr.split('|').map(s => s.trim());
+        
+        let dmgSmall = 0, dmgLarge = 0;
+        if (parts[0].includes('/')) {
+            const d = parts[0].split('/');
+            dmgSmall = parseInt(d[0]) || 0;
+            dmgLarge = parseInt(d[1]) || 0;
+        }
+
+        let ac = 0;
+        // Search AC in parts. Often first for armor: "-3" or "0"
+        // But weapons have dmg first.
+        // Heuristic: If first part has '/', it's weapon. If single number (negative or positive small), armor.
+        const isWeapon = parts[0].includes('/');
+        if (!isWeapon) {
+            ac = parseInt(parts[0]) || 0; 
+        }
+
+        const rawText = statsStr;
+        const isTwoHanded = rawText.includes('양손');
+        
+        // Parse Bonuses from text
+        // Look for "STR +1", "HP회복 +5", "MR +10", "최대 HP +20"
+        let bonuses = { str:0, dex:0, con:0, int:0, wis:0, cha:0, hp:0, mp:0, mr:0, sp:0 };
+        
+        // Regex for stats
+        const regexes = [
+            { key: 'str', re: /STR\s*([+-]?\d+)/i },
+            { key: 'dex', re: /DEX\s*([+-]?\d+)/i },
+            { key: 'con', re: /CON\s*([+-]?\d+)/i },
+            { key: 'int', re: /INT\s*([+-]?\d+)/i },
+            { key: 'wis', re: /WIS\s*([+-]?\d+)/i },
+            { key: 'cha', re: /CHA\s*([+-]?\d+)/i },
+            { key: 'hp', re: /최대\s*HP\s*([+-]?\d+)/i },
+            { key: 'mp', re: /최대\s*MP\s*([+-]?\d+)/i },
+            { key: 'mr', re: /MR\s*([+-]?\d+)/i },
+            { key: 'sp', re: /SP\s*([+-]?\d+)/i }
+        ];
+
+        regexes.forEach(r => {
+            const m = rawText.match(r.re);
+            if(m) bonuses[r.key] += parseInt(m[1]);
+        });
+
+        // Specific Item Hardcoding (Parsing unstructured text is hard)
+        if (rawText.includes('마법 방어력') || rawText.includes('MR')) { 
+            // fallback if regex missed complex string
+        }
+
+        return { isWeapon, dmgSmall, dmgLarge, ac, isTwoHanded, bonuses, rawText };
     }
 
     function updateDisplay() {
-        for (const stat in currentStats) {
-            const el = document.getElementById(`val-${stat}`);
-            if (el) el.innerText = currentStats[stat];
-        }
-        document.getElementById('bonusPointsDisplay').innerText = remainingBonus;
-        document.getElementById('levelDisplay').innerText = `Lv. ${currentLevel}`;
+        const { stats, level, class: clsName, equipment } = state;
+        const clsData = CLASS_BASE[clsName];
 
-        const data = classData[currentClass];
-        const hpg = data.hpGrowth(currentStats.con);
-        const mpg = data.mpGrowth(currentStats.wis);
-
-        const totalHP = Math.floor(data.hpBase + (hpg * (currentLevel - 1)));
-        const totalMP = Math.floor(data.mpBase + (mpg * (currentLevel - 1)));
-
-        document.getElementById('display-hp').innerText = totalHP;
-        document.getElementById('display-mp').innerText = totalMP;
-
-        const acBonusFromDex = Math.floor((currentStats.dex - 10) / 2);
-        const acLevelBonus = Math.floor(currentLevel / 4);
-        const totalAC = 0 - acBonusFromDex - acLevelBonus;
-
-        const meleeDmg = Math.max(0, Math.floor((currentStats.str - 10) / 2) + Math.floor(currentLevel / 10));
-        const meleeHit = Math.max(0, Math.floor((currentStats.str - 10) / 1.5) + Math.floor(currentLevel / 5));
+        // 1. Base derived stats
+        // HP/MP Growth
+        let hpGrowth = 0;
+        let mpGrowth = 0;
         
-        const mr = Math.floor(currentStats.wis / 2) + Math.floor(currentLevel / 2);
-        const sp = Math.max(0, Math.floor((currentStats.int - 10) / 2) + (currentClass === 'wizard' ? 2 : 0));
+        // Simplified Lineage 1 Growth Logic
+        // Con effect on HP
+        if (stats.con >= 18) hpGrowth = clsData.hpBase + 6; 
+        else if (stats.con >= 16) hpGrowth = clsData.hpBase + 4;
+        else hpGrowth = clsData.hpBase + 2;
 
+        // Wis effect on MP
+        if (stats.wis >= 18) mpGrowth = clsData.mpBase + 4;
+        else if (stats.wis >= 15) mpGrowth = clsData.mpBase + 2;
+        else mpGrowth = clsData.mpBase + 1;
+
+        let maxHP = Math.floor(clsData.hpBase + (hpGrowth * (level - 1)));
+        let maxMP = Math.floor(clsData.mpBase + (mpGrowth * (level - 1)));
+
+        // Base AC from Dex (Classic: 10 base. Dex bonus lowers it. Level bonus for some classes)
+        // AC = 10 - DexBonus - ClassLevelBonus
+        let baseAC = 10;
+        let dexACBonus = 0;
+        if (stats.dex >= 18) dexACBonus = 8;
+        else if (stats.dex >= 16) dexACBonus = 6;
+        else if (stats.dex >= 13) dexACBonus = 4;
+        else if (stats.dex >= 10) dexACBonus = 2;
+        
+        baseAC -= dexACBonus;
+        // Level Bonus (Knight/Crown AC bonus every X levels) - Simplified
+        if (clsName === 'knight') baseAC -= Math.floor(level / 3); // Approx
+
+        // 2. Equipment Stats
+        let equipAC = 0;
+        let equipDmg = 0;
+        let equipHit = 0;
+        let equipRangedDmg = 0;
+        let equipRangedHit = 0;
+        let equipMR = 0;
+        let equipSP = 0;
+        let addedStats = { str:0, dex:0, con:0, int:0, wis:0, cha:0 };
+
+        // Process Equipment
+        for (const [slot, data] of Object.entries(equipment)) {
+            if (!data.itemId) continue;
+            const item = getItem(data.itemId);
+            if (!item) continue;
+
+            const parsed = parseStats(item.stats);
+            const enchant = data.enchant;
+
+            // Apply Bonuses
+            maxHP += parsed.bonuses.hp;
+            maxMP += parsed.bonuses.mp;
+            equipMR += parsed.bonuses.mr;
+            equipSP += parsed.bonuses.sp;
+            
+            // Add raw stats
+            for(let k in parsed.bonuses) {
+                if(STAT_TYPES.includes(k)) addedStats[k] += parsed.bonuses[k];
+            }
+
+            // AC Logic
+            if (!parsed.isWeapon) {
+                // Item Base AC (negative is good). e.g. -3. 
+                // Enchant: each +1 lowers AC by 1 (substract 1).
+                // Total = Base + (-Enchant)
+                equipAC += (parsed.ac - enchant);
+            }
+
+            // Weapon Logic
+            if (parsed.isWeapon) {
+                const isBow = item.name.includes('활') || item.name.includes('크로스') || item.name.includes('장궁');
+                const isStaff = item.name.includes('지팡이');
+
+                // Base Dmg (Avg of small/large for sim) + Enchant
+                const baseDmgAvg = (parsed.dmgSmall + parsed.dmgLarge) / 2;
+                
+                if (isBow) {
+                    equipRangedDmg += baseDmgAvg + enchant; // +1 dmg per enchant
+                    equipRangedHit += enchant; // +1 hit per enchant
+                    if(parsed.rawText.includes('원거리 대미지')) {
+                         const m = parsed.rawText.match(/원거리\s*대미지\s*([+-]?\d+)/);
+                         if(m) equipRangedDmg += parseInt(m[1]);
+                    }
+                    if(parsed.rawText.includes('원거리 명중')) {
+                         const m = parsed.rawText.match(/원거리\s*명중\s*([+-]?\d+)/);
+                         if(m) equipRangedHit += parseInt(m[1]);
+                    }
+                } else {
+                    equipDmg += baseDmgAvg + enchant;
+                    equipHit += enchant;
+                    
+                    // Staff SP Bonus Logic (User request: Use knowledge)
+                    // Classic doesn't usually give SP on enchant, but let's give +1 SP per +6 enchant for Simulation fun?
+                    if (isStaff && enchant >= 6) {
+                        equipSP += 1;
+                        if (enchant >= 9) equipSP += 1;
+                    }
+                }
+            } else {
+                // Armor Enchant Effects (MR for accessories?)
+                // User asked to allow +- for everything.
+                // Let's say accessory (Ring, Neck, Belt) gives MR+1 per 2 enchants? 
+                if (['ring1', 'ring2', 'neck', 'belt'].includes(slot)) {
+                    // Custom logic for simulation feel
+                    equipAC += -(Math.floor(enchant / 2)); // AC-1 every 2 levels for accessories?
+                }
+            }
+        }
+
+        // 3. Final Calculations
+        const finalStats = {};
+        STAT_TYPES.forEach(s => finalStats[s] = stats[s] + addedStats[s]);
+
+        // Str Dmg Bonus
+        const strBonus = Math.floor((finalStats.str - 10) / 2);
+        const dexHitBonus = Math.floor((finalStats.dex - 10) / 3);
+        const dexDmgBonus = Math.floor((finalStats.dex - 10) / 3); // Ranged Dmg often scales with Dex
+        const intSPBonus = Math.floor((finalStats.int - 10) / 3); // Base SP from INT
+
+        const totalAC = baseAC + equipAC;
+        const totalMeleeDmg = strBonus + equipDmg + Math.floor(level/10);
+        const totalMeleeHit = strBonus + dexHitBonus + equipHit + level;
+        const totalRangedDmg = dexDmgBonus + equipRangedDmg + Math.floor(level/10);
+        const totalRangedHit = dexHitBonus + equipRangedHit + level + 2; // Base ranged hit is decent
+        const totalMR = Math.floor(finalStats.wis * 2) + Math.floor(level/2) + equipMR;
+        const totalSP = intSPBonus + equipSP + (clsName === 'wizard' ? 4 : 0); // Wizard base SP
+
+        // Update DOM
+        document.getElementById('display-hp').innerText = maxHP;
+        document.getElementById('display-mp').innerText = maxMP;
         document.getElementById('display-ac').innerText = totalAC;
-        document.getElementById('display-melee-dmg').innerText = `+${meleeDmg}`;
-        document.getElementById('display-melee-hit').innerText = `+${meleeHit}`;
-        document.getElementById('display-mr').innerText = `${mr}%`;
-        document.getElementById('display-sp').innerText = sp;
+        document.getElementById('display-ac').style.color = totalAC < 0 ? '#4da6ff' : '#fff';
+        
+        document.getElementById('display-melee-dmg').innerText = totalMeleeDmg;
+        document.getElementById('display-melee-hit').innerText = totalMeleeHit;
+        document.getElementById('display-ranged-dmg').innerText = totalRangedDmg;
+        document.getElementById('display-ranged-hit').innerText = totalRangedHit;
+        
+        document.getElementById('display-mr').innerText = `${totalMR}%`;
+        document.getElementById('display-sp').innerText = totalSP;
 
-        if (window.lucide) lucide.createIcons();
+        // Bonus Text
+        const bonusText = Object.entries(addedStats)
+            .filter(([_,v]) => v !== 0)
+            .map(([k,v]) => `${k.toUpperCase()} ${v>0?'+':''}${v}`)
+            .join(', ');
+        document.getElementById('display-bonus').innerText = bonusText || 'None';
     }
 
-    window.onload = () => {
-        updateDisplay();
-        if (window.lucide) lucide.createIcons();
-    };
+    // Start
+    window.onload = init;
 </script>
 
 </body>
 </html>
-
